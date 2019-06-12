@@ -42,13 +42,13 @@ class NavBar extends React.Component {
     return (
       <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">En Développement</NavbarBrand>
+        <NavbarBrand href="/home">En Développement</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link" href="/notification">
+              <a class="nav-link" href="/alert">
               <span className="badge badge-danger">0</span>
                 <i class="fas fa-bell fa-fw"></i>
               </a>
@@ -70,13 +70,7 @@ class NavBar extends React.Component {
               <DropdownMenu right>
               <h6 className="dropdown-header">Hi Mike Doe</h6>
               <DropdownItem>
-              <a className="dropdown-item" href="#1">Settings Admin</a>
-              </DropdownItem>
-              <DropdownItem>
-              <a className="dropdown-item" href="#2">Activity Log Admin</a>
-              </DropdownItem>
-              <DropdownItem>
-              <a className="dropdown-item" href="#3" data-toggle="modal" data-target="#logoutModal">Logout</a>
+              <a className="dropdown-item" href="/setting">Settings Admin</a>
               </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

@@ -32,19 +32,19 @@ class SideBar extends React.Component {
         <NavItem>
         <a className="nav-link" href="/users-page">
             <i className="fas fa-fw fa-users"></i>
-            <span> Clients</span>
+            <span> User</span>
         </a>
         </NavItem>
         <NavItem>
-        <a className="nav-link" href="/catalog-page">
+        <a className="nav-link" href="/*">
             <i className="fas fa-fw fa-table"></i>
-            <span> Catalogue Produits</span>
+            <span> ...</span>
         </a>
         </NavItem>
         <NavItem>
-        <a className="nav-link" href="/order-list-page">
+        <a className="nav-link" href="/*">
             <i className="fas fa-fw fa-table"></i>
-            <span> Commandes</span>
+            <span> ...</span>
         </a>
         </NavItem>
         </ul>

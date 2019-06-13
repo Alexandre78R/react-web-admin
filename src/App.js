@@ -22,7 +22,7 @@ class App extends React.Component {
         <div>
           <NavBar/>
           <SideBar/>
-            <div className = "contenu">
+            <div className = "page">
               <Switch>
               <Route path="/" exact component={SignIn}/>
               <Route path="/alert" component={Alert}/>

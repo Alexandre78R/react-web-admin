@@ -23,12 +23,9 @@
   color: #61dafb;
 }
 
-.contenu{
-  color : red;
-  font-size: 50px;
-  /* text-align: center; */
-  margin-left: 250px;
-  margin-top: -660px;
+.page{
+  margin-left: 16%;
+  margin-top: -43%;
 }
 
 @keyframes App-logo-spin {

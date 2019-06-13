@@ -35,18 +35,6 @@ class SideBar extends React.Component {
             <span> User</span>
         </a>
         </NavItem>
-        <NavItem>
-        <a className="nav-link" href="/*">
-            <i className="fas fa-fw fa-table"></i>
-            <span> ...</span>
-        </a>
-        </NavItem>
-        <NavItem>
-        <a className="nav-link" href="/*">
-            <i className="fas fa-fw fa-table"></i>
-            <span> ...</span>
-        </a>
-        </NavItem>
         </ul>
     </div>
     );

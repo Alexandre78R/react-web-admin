@@ -4,7 +4,7 @@ import NavBar from './Composent/NavBar'
 import SideBar from './Composent/SideBar';
 import Footer from './Composent/Footer';
 import './App.css';
-import Home from './Pages/Home';
+import SignIn from './Pages/Signin';
 import Alert from './Pages/Alert';
 import Message from './Pages/Message';
 import Setting from './Pages/Setting';
@@ -24,7 +24,7 @@ class App extends React.Component {
           <SideBar/>
             <div className = "contenu">
               <Switch>
-              <Route path="/home" component={Home}/>
+              <Route path="/" exact component={SignIn}/>
               <Route path="/alert" component={Alert}/>
               <Route path="/message" component={Message}/>
               <Route path="/setting" component={Setting}/>

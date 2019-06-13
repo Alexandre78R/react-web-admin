@@ -1,15 +1,15 @@
 import React from 'react';
 import '../App.css';
 
-class Home extends React.Component {
+class SignIn extends React.Component {
 
   render() {
     return (
         <div>
-            <h1>Home</h1>
+            <h1>Sign In</h1>
         </div>
     );
   }
 }
 
-export default Home;
+export default SignIn;

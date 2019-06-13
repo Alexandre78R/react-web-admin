@@ -1,64 +1,114 @@
 import React from 'react';
 import '../App.css';
 
+import {
+  Row,
+  Col,
+  Container,
+  Card,
+  CardBody,
+  CardText,
+  CardFooter,
+  
+} from 'reactstrap';
+
+import NavBar from '../Composent/NavBar'
+import SideBar from '../Composent/SideBar';
+// import Footer from './Composent/Footer';
 class Dashboard extends React.Component {
 
   render() {
     return (
-        <div>
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-comments"></i>
-                  </div>
-                  <div class="mr-5">0 Messages</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="/messages-page">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
 
-                    <i class="fas fa-fw fa-users"></i>
-                  </div>
-                  <div class="mr-5">0 Users</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="/users-page">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
+      <div id="page-top">
+        <NavBar/>
 
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-list"></i>
-                  </div>
-                  <div class="mr-5">0 Alerte</div>
-                </div>
-                <a class="card-footer text-white clearfix small z-1" href="/tasks-page">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div id="wrapper">
+            <SideBar/>
+
+              <Container className="container-fluid dashboard-page">
+               <Row>
+
+                <Col xs="12" sm="6" xl="3">
+                 <Card className="card text-white bg-primary o-hidden ">
+                   <CardBody>
+                      <div className="card-body-icon">
+                       <i className="fas fa-fw fa-comments"></i>
+                      </div>
+                      <CardText>0 Messages</CardText>
+                      </CardBody>
+                      <CardFooter>
+                        <a class="text-white" href="/dashboard#1">
+                          <span>View Details</span>
+                          <span className="float-right">
+                          <i className="fas fa-angle-right"></i>
+                          </span>
+                        </a>
+                      </CardFooter>
+                    </Card>
+                  </Col>
+
+                  <Col xs="12" sm="6" xl="3">
+                    <Card className="card text-white bg-warning o-hidden ">
+                      <CardBody>
+                       <div class="card-body-icon">
+                        <i class="fas fa-fw fa-users"></i>
+                      </div>
+                      <CardText>0 Clients</CardText>
+                      </CardBody>
+                      <CardFooter>
+                      <a class="text-white" href="/dashboard#2">
+                        <span>View Details</span>
+                        <span className="float-right">
+                        <i className="fas fa-angle-right"></i>
+                        </span>
+                     </a>
+                    </CardFooter>
+                  </Card>
+                </Col>
+
+                <Col xs="12" sm="6" xl="3">
+                  <Card className="card text-white bg-danger o-hidden">
+                    <CardBody>
+                      <div class="card-body-icon">
+                        <i class="fas fa-fw fa-list"></i>
+                      </div>
+                      <CardText>0 Alerts</CardText>
+                    </CardBody>
+                    <CardFooter>
+                    <a class="text-white" href="/dashboard#3">
+                      <span>View Details</span>
+                      <span className="float-right">
+                        <i className="fas fa-angle-right"></i>
+                      </span>
+                    </a>
+                    </CardFooter>
+                  </Card>
+                </Col>
+
+                <Col xs="12" sm="6" xl="3">
+                  <Card className="card text-white bg-success o-hidden">
+                    <CardBody>
+                      <div class="card-body-icon">
+                      <i className="fas fa-fw fa-comments"></i>
+                      </div>
+                      <CardText>0 Tchat Online</CardText>
+                    </CardBody>
+                    <CardFooter>
+                    <a class="text-white" href="/dashboard#4">
+                      <span>View Details</span>
+                      <span className="float-right">
+                        <i className="fas fa-angle-right"></i>
+                      </span>
+                    </a>
+                    </CardFooter>
+                  </Card>
+                </Col>
+
+          </Row>
+        </Container>
+      </div>
+    </div>
     );
   }
 }

@@ -1,13 +1,29 @@
 import React from 'react';
 import '../App.css';
+import {
+  Row,
+  Container,  
+} from 'reactstrap';
+import NavBar from '../Composent/NavBar'
+import SideBar from '../Composent/SideBar';
 
 class Message extends React.Component {
 
   render() {
     return (
-        <div>
-            <h1>Message</h1>
-        </div>
+      <div id="page-top">
+        <NavBar/>
+
+          <div id="wrapper">
+            <SideBar/>
+
+              <Container className="container-fluid">
+               <Row>
+                <h1>Message</h1>
+               </Row>
+             </Container>
+          </div>
+    </div>
     );
   }
 }

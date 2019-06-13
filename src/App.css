@@ -23,9 +23,9 @@
   color: #61dafb;
 }
 
-.page{
-  margin-left: 16%;
-  margin-top: -43%;
+
+.dashboard-page{
+  margin-top: 1%;
 }
 
 @keyframes App-logo-spin {

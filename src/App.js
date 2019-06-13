@@ -10,7 +10,11 @@ import Message from './Pages/Message';
 import Setting from './Pages/Setting';
 import Dashboard from './Pages/Dashboard';
 import User from './Pages/User';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './vendor/bootstrap/css/bootstrap.min.css';
+import './vendor/fontawesome-free/css/all.min.css';
+import './vendor/datatables/dataTables.bootstrap4.css';
+import './css/sb-admin.css';
 
 
 

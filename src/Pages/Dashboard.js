@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                       <CardText>0 Messages</CardText>
                       </CardBody>
                       <CardFooter>
-                        <a class="text-white" href="/dashboard#1">
+                        <a class="text-white" href="/message">
                           <span>View Details</span>
                           <span className="float-right">
                           <i className="fas fa-angle-right"></i>
@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
                       <CardText>0 Clients</CardText>
                       </CardBody>
                       <CardFooter>
-                      <a class="text-white" href="/dashboard#2">
+                      <a class="text-white" href="/user">
                         <span>View Details</span>
                         <span className="float-right">
                         <i className="fas fa-angle-right"></i>
@@ -76,7 +76,7 @@ class Dashboard extends React.Component {
                       <CardText>0 Alerts</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a class="text-white" href="/dashboard#3">
+                    <a class="text-white" href="/alert">
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>
@@ -95,7 +95,7 @@ class Dashboard extends React.Component {
                       <CardText>0 Tchat Online</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a class="text-white" href="/dashboard#4">
+                    <a class="text-white" href="/dashboard#Fake">
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>

@@ -3,6 +3,7 @@ import '../App.css';
 import {
   Row,
   Container,  
+  Table,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -18,9 +19,68 @@ class Message extends React.Component {
           <div id="wrapper">
             <SideBar/>
 
-              <Container className="container-fluid">
+              <Container className="container-fluid page">
                <Row>
-                <h1>Message</h1>
+               <Table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Objet</th>
+                <th scope="col">Expediteur</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-envelope"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-envelope"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="far fa-envelope-open"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="far fa-envelope-open"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-envelope"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="far fa-envelope-open"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-envelope"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+              <tr>
+                <td><i class="far fa-envelope-open"></i></td>
+                <td>Contenue de l'objet</td>
+                <td>Username</td>
+                <td>jj/mm/yyyy</td>
+              </tr>
+            </tbody>
+          </Table>
                </Row>
              </Container>
              <Footer/>

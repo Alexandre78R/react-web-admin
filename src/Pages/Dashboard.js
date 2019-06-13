@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-
 import {
   Row,
   Col,
@@ -14,7 +13,8 @@ import {
 
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
-// import Footer from './Composent/Footer';
+import Footer from '../Composent/Footer';
+
 class Dashboard extends React.Component {
 
   render() {
@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
           <div id="wrapper">
             <SideBar/>
 
-              <Container className="container-fluid dashboard-page">
+              <Container className="container-fluid page">
                <Row>
 
                 <Col xs="12" sm="6" xl="3">
@@ -107,6 +107,7 @@ class Dashboard extends React.Component {
 
           </Row>
         </Container>
+        <Footer/>
       </div>
     </div>
     );

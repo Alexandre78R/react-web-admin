@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
+import Footer from '../Composent/Footer';
 
 class Alert extends React.Component {
 
@@ -22,6 +23,7 @@ class Alert extends React.Component {
                  <h1>Alert</h1>
                </Row>
              </Container>
+             <Footer/>
           </div>
     </div>
     );

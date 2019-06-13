@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
-// import NavBar from './Composent/NavBar'
-// import SideBar from './Composent/SideBar';
-// import Footer from './Composent/Footer';
 import './App.css';
 import SignIn from './Pages/Signin';
 import Alert from './Pages/Alert';

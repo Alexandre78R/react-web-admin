@@ -49,6 +49,13 @@ class Message extends React.Component {
       {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
       {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
       {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+
+
    ];
     
    this.dataSet = messageData.map(
@@ -58,7 +65,7 @@ class Message extends React.Component {
   );
 
     const { currentPage } = this.state;
-    this.pageSize = 5
+    this.pageSize = 8
     this.pagesCount = Math.ceil(messageData.length / this.pageSize);
 
     return (
@@ -73,7 +80,7 @@ class Message extends React.Component {
                <Table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col"> ... </th>
+                <th scope="col"> <i class="fas fa-envelope"></i> </th>
                 <th scope="col">Objet</th>
                 <th scope="col">Expediteur</th>
                 <th scope="col">Date</th>
@@ -90,21 +97,9 @@ class Message extends React.Component {
             </tbody>
             )}
             </Table>
-                     
-      <div className="pagination-wrapper pagination">
         
         <Pagination aria-label="Page navigation example">
           
-          <PaginationItem disabled={currentPage <= 0}>
-            
-            <PaginationLink
-              onClick={e => this.handleClick(e, currentPage - 1)}
-              previous
-              href="#"
-            />
-            
-          </PaginationItem>
-
           {[...Array(this.pagesCount)].map((page, i) => 
             <PaginationItem active={i === currentPage} key={i}>
               <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
@@ -112,20 +107,9 @@ class Message extends React.Component {
               </PaginationLink>
             </PaginationItem>
           )}
-
-          <PaginationItem disabled={currentPage >= this.pagesCount - 1}>
-            
-            <PaginationLink
-              onClick={e => this.handleClick(e, currentPage + 1)}
-              next
-              href="#"
-            />
-            
-          </PaginationItem>
           
         </Pagination>
         
-      </div>
                </Row>
              </Container>
              <Footer/>

@@ -28,10 +28,28 @@
   margin-top: 1%;
 }
 
-.logosignin {
-  /* width: 2; */
+body {
+  text-align: center;
+}
 
+.pagination-wrapper {
+  overflow-x:auto;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top:10px;
   /* text-align: center; */
+  
+}
+
+.tableboucle{
+  margin : 10px;
+  line-height: 140%;
+}
+
+.data-slice {
+  margin-top: 15px;
 }
 @keyframes App-logo-spin {
   from {

@@ -29,7 +29,7 @@ export default class App extends React.Component {
             <Route path="/" exact component={SignIn}/>
             <Route path="/alert" component={Alert}/>
             <Route path="/message" component={Message}/>
-            <Route path="/:id:" component={Message}/>
+            <Route path="/message/:id:" component={Message}/>
             <Route path="/setting" component={Setting}/>
             <Route path="/user" component={User}/>
             <Route path="/dashboard" component={Dashboard}/>

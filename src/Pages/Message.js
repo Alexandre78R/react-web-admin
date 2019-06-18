@@ -58,7 +58,7 @@ class Message extends React.Component {
    var message_boucle =   this.state.messageData.map(
         (message, i) => {
 
-          console.log("messageData2",message.object, message.expediteur, message.date)
+          // console.log("messageData2",message.object, message.expediteur, message.date)
            this.props.tab(message.object, message.expediteur, message.date)
 
           return (message_boucle)
@@ -86,7 +86,7 @@ class Message extends React.Component {
             <td>{message.object}</td>
             <td>{message.expediteur}</td>
             <td>{message.date}</td>
-            <td><Button color="danger" href = {'#' + (i)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
+            <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
           </tr>
         )
       }
@@ -153,7 +153,7 @@ class Message extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Table::::",state.Tables) 
+  // console.log("Table::::",state.Tables) 
    return ({
     Tables: state.Tables,
  

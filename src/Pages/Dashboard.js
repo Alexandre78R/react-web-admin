@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                       <CardText>0 Messages</CardText>
                       </CardBody>
                       <CardFooter>
-                        <a class="text-white" href="/message">
+                        <a className="text-white" href="/message">
                           <span>View Details</span>
                           <span className="float-right">
                           <i className="fas fa-angle-right"></i>
@@ -51,13 +51,13 @@ class Dashboard extends React.Component {
                   <Col xs="12" sm="6" xl="3">
                     <Card className="card text-white bg-warning o-hidden ">
                       <CardBody>
-                       <div class="card-body-icon">
-                        <i class="fas fa-fw fa-users"></i>
+                       <div className="card-body-icon">
+                        <i className="fas fa-fw fa-users"></i>
                       </div>
                       <CardText>0 Clients</CardText>
                       </CardBody>
                       <CardFooter>
-                      <a class="text-white" href="/user">
+                      <a className="text-white" href="/user">
                         <span>View Details</span>
                         <span className="float-right">
                         <i className="fas fa-angle-right"></i>
@@ -70,13 +70,13 @@ class Dashboard extends React.Component {
                 <Col xs="12" sm="6" xl="3">
                   <Card className="card text-white bg-danger o-hidden">
                     <CardBody>
-                      <div class="card-body-icon">
-                        <i class="fas fa-fw fa-list"></i>
+                      <div className="card-body-icon">
+                        <i className="fas fa-fw fa-list"></i>
                       </div>
                       <CardText>0 Alerts</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a class="text-white" href="/alert">
+                    <a className="text-white" href="/alert">
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>
@@ -89,13 +89,13 @@ class Dashboard extends React.Component {
                 <Col xs="12" sm="6" xl="3">
                   <Card className="card text-white bg-success o-hidden">
                     <CardBody>
-                      <div class="card-body-icon">
+                      <div className="card-body-icon">
                       <i className="fas fa-fw fa-comments"></i>
                       </div>
                       <CardText>0 Tchat Online</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a class="text-white" href="/dashboard#Fake">
+                    <a className="text-white" href="/dashboard#Fake">
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>

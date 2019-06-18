@@ -21,33 +21,33 @@ class Message extends React.Component {
     this.state = {
       currentPage: 0,
       messageData : [ 
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "ObjectTest1", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest2", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest3", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest4", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest5", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest6", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest7", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest8", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest9", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest10", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest11", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "Object12", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object13", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object14", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object15", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object16", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object17", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object18", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object19", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object20", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object21", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object22", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object23", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object24", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object25", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object26", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object27", expediteur : "Username", date : "jj/mm/yyyy"},
      ],
 
     };
@@ -58,14 +58,9 @@ class Message extends React.Component {
    var message_boucle =   this.state.messageData.map(
         (message, i) => {
 
-          var object = this.state.messageData[i].object;
-          var expediteur = this.state.messageData[i].expediteur;
-          var date = this.state.messageData[i].date;
-          var position = i;
-      
-          console.log("messageData",object, expediteur, date, position)
-           this.props.tab(object, expediteur, date)
-          // console.log("i",i)
+          console.log("messageData2",message.object, message.expediteur, message.date)
+           this.props.tab(message.object, message.expediteur, message.date)
+
           return (message_boucle)
         }
       );
@@ -88,10 +83,10 @@ class Message extends React.Component {
         return (
           <tr>
             <td><i className="fas fa-envelope"></i></td>
-            <td>{message.object}{i+1}</td>
-            <td>{message.expediteur}{i+1}</td>
+            <td>{message.object}</td>
+            <td>{message.expediteur}</td>
             <td>{message.date}</td>
-            <td><Button color="danger" href = {'#' + (i+1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
+            <td><Button color="danger" href = {'#' + (i)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
           </tr>
         )
       }
@@ -173,7 +168,6 @@ function mapDispatchToProps(dispatch) {
       object : object,
       expediteur: expediteur,
       date: date,
-      position : position,
     }) 
    },
     deleteTab(position) { 

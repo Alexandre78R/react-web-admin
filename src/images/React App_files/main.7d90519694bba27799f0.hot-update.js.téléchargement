@@ -1,0 +1,366 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/Pages/Message.js":
+/*!******************************!*\
+  !*** ./src/Pages/Message.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../App.css */ "./src/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _Composent_NavBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Composent/NavBar */ "./src/Composent/NavBar.js");
+/* harmony import */ var _Composent_SideBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Composent/SideBar */ "./src/Composent/SideBar.js");
+/* harmony import */ var _Composent_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Composent/Footer */ "./src/Composent/Footer.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var _jsxFileName = "C:\\Users\\Alexandre\\Desktop\\react-web-admin\\src\\Pages\\Message.js";
+
+
+
+
+
+
+
+
+class Message extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 0,
+      messageData: [{
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }, {
+        object: "Object",
+        expediteur: "Username",
+        date: "jj/mm/yyyy"
+      }]
+    };
+  }
+
+  handleClick(e, index) {
+    e.preventDefault();
+    this.setState({
+      currentPage: index
+    });
+  } // handleClickDelele(delete1){
+  //   console.log("Delete : ", delete1)
+  //   delete1.splice(delete1,1);
+  //   return delete1
+  // }
+
+
+  render() {
+    //   var messageData = [ 
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //     {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+    //  ];
+    this.dataSet = this.state.messageData.map((messages, i) => {
+      console.log("i", i);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 90
+        },
+        __self: this
+      }, console.log("boucle", this.props.deleteTab(i)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 92
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        class: "fas fa-envelope",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 92
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 93
+        },
+        __self: this
+      }, messages.object, i + 1), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 94
+        },
+        __self: this
+      }, messages.expediteur, i + 1), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 95
+        },
+        __self: this
+      }, messages.date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        color: "danger",
+        href: '#' + (i + 1),
+        onClick: this.props.deleteTab(i),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 96
+        },
+        __self: this
+      }, "Delete")));
+    });
+    const currentPage = this.state.currentPage;
+    this.pageSize = 2;
+    this.pagesCount = Math.ceil(this.state.messageData.length / this.pageSize);
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "page-top",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 107
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Composent_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 108
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "wrapper",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 110
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Composent_SideBar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 111
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
+      className: "container-fluid page",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 113
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Row"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 114
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Table"], {
+      className: "table table-hover",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 115
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 116
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 117
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      scope: "col",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 118
+      },
+      __self: this
+    }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      class: "fas fa-envelope",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 118
+      },
+      __self: this
+    }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      scope: "col",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 119
+      },
+      __self: this
+    }, "Objet"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      scope: "col",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 120
+      },
+      __self: this
+    }, "Expediteur"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      scope: "col",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 121
+      },
+      __self: this
+    }, "Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      scope: "col",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 122
+      },
+      __self: this
+    }, "Action"))), this.dataSet.slice(currentPage * this.pageSize, (currentPage + 1) * this.pageSize).map((data, i) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 131
+      },
+      __self: this
+    }, data))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Pagination"], {
+      "aria-label": "Page navigation example",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 137
+      },
+      __self: this
+    }, [...Array(this.pagesCount)].map((page, i) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["PaginationItem"], {
+      active: i === currentPage,
+      key: i,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 141
+      },
+      __self: this
+    }, i >= 29 ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["PaginationLink"], {
+      onClick: e => this.handleClick(e, i),
+      href: "#",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 145
+      },
+      __self: this
+    }, i + 1)))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Composent_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 155
+      },
+      __self: this
+    })));
+  }
+
+}
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    Cards: state.Cards
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteTab: function (position) {
+      dispatch({
+        type: 'deleteTable',
+        position: position
+      });
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps, mapDispatchToProps)(Message));
+
+/***/ })
+
+})
+//# sourceMappingURL=main.7d90519694bba27799f0.hot-update.js.map

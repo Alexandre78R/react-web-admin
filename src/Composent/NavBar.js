@@ -35,22 +35,17 @@ class NavBar extends React.Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link" href="/alert">
+            <NavItem className="nav-item dropdown no-arrow mx-1">
+              <a className="nav-link" href="/alert">
               <span className="badge badge-danger">0</span>
-                <i class="fas fa-bell fa-fw"></i>
+                <i className="fas fa-bell fa-fw"></i>
               </a>
-            </li>
             </NavItem>
-            <NavItem>
-              {/* <NavLink className="fas fa-envelope fa-fw" href="#"></NavLink> */}
-            <li className="nav-item dropdown no-arrow mx-1">
+            <NavItem className="nav-item dropdown no-arrow mx-1">
               <a className="nav-link" href="/message">
               <span className="badge badge-danger">0</span>
               <i className="fas fa-envelope fa-fw"></i>
               </a>
-            </li>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav >

@@ -13,26 +13,29 @@ import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.css';
 import './css/sb-admin.css';
 
+import Tables from './Composent/Reducer.js';
+import {Provider} from 'react-redux';
+import {createStore, combineReducers}  from 'redux';
+const store = createStore(combineReducers({Tables}));
 
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <div>
-            <Switch>
-              <Route path="/" exact component={SignIn}/>
-              <Route path="/alert" component={Alert}/>
-              <Route path="/message" component={Message}/>
-              <Route path="/setting" component={Setting}/>
-              <Route path="/user" component={User}/>
-              <Route path="/dashboard" component={Dashboard}/>
-            </Switch>
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/" exact component={SignIn}/>
+            <Route path="/alert" component={Alert}/>
+            <Route path="/message" component={Message}/>
+            <Route path="/:id:" component={Message}/>
+            <Route path="/setting" component={Setting}/>
+            <Route path="/user" component={User}/>
+            <Route path="/dashboard" component={Dashboard}/>
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
 }
-
-export default App;

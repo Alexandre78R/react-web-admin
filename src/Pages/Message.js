@@ -6,312 +6,101 @@ import {
   Table,
   Pagination,
   PaginationItem,
-  PaginationLink
+  PaginationLink,
+  Button,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
 import Footer from '../Composent/Footer';
+import {connect} from 'react-redux';
 
 class Message extends React.Component {
   constructor() {
     
     super();
-
     this.state = {
       currentPage: 0,
+      messageData : [ 
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "ObjectTest", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
+     ],
+
     };
     
   }
+  componentWillMount(){
+      
+   var message_boucle =   this.state.messageData.map(
+        (message, i) => {
 
+          var object = this.state.messageData[i].object;
+          var expediteur = this.state.messageData[i].expediteur;
+          var date = this.state.messageData[i].date;
+          var position = i;
+      
+          console.log("messageData",object, expediteur, date, position)
+           this.props.tab(object, expediteur, date)
+          // console.log("i",i)
+          return (message_boucle)
+        }
+      );
+    // return message_boucle;
+    }
+  
   handleClick(e, index) {
     
     e.preventDefault();
-
     this.setState({
       currentPage: index
     });
     
   }
   render() {
-    var messageData = [ 
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-      {object : "Object", expediteur : "Username", date : "jj/mm/yyyy"},
-   ];
-    
-   this.dataSet = messageData.map(
-    (messages, i) => {
-      return <Messages messageObject={messages.object} messageNumber={i+1} messageExpediteur={messages.expediteur} messageDate={messages.date} key={i}/>;
-    }
-  );
+
+    this.dataSet = this.props.Tables.map(
+      (message, i) => {
+// console.log("Posiotion Tables", i)
+        return (
+          <tr>
+            <td><i className="fas fa-envelope"></i></td>
+            <td>{message.object}{i+1}</td>
+            <td>{message.expediteur}{i+1}</td>
+            <td>{message.date}</td>
+            <td><Button color="danger" href = {'#' + (i+1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
+          </tr>
+        )
+      }
+    );
 
     const { currentPage } = this.state;
-    this.pageSize = 8
-    this.pagesCount = Math.ceil(messageData.length / this.pageSize);    
+    this.pageSize = 4
+    this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
 
-    var pagelimit = 30;
     return (
       <div id="page-top">
         <NavBar/>
@@ -322,41 +111,42 @@ class Message extends React.Component {
               <Container className="container-fluid page">
                <Row>
                <Table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col"> <i class="fas fa-envelope"></i> </th>
-                <th scope="col">Objet</th>
-                <th scope="col">Expediteur</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-            {this.dataSet
-            .slice(
-              currentPage * this.pageSize,
-              (currentPage + 1) * this.pageSize
-            )
-            .map((data, i) => 
-            <tbody>
-                {data}
-            </tbody>
-            )}
+                <thead>
+                  <tr>
+                    <th scope="col"> <i className ="fas fa-envelope"></i> </th>
+                    <th scope="col">Objet</th>
+                    <th scope="col">Expediteur</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                {this.dataSet
+                .slice(
+                  currentPage * this.pageSize,
+                  (currentPage + 1) * this.pageSize
+                )
+                .map((data, i) => 
+                <tbody key={i}>
+                    {data}
+                </tbody>
+                )}
             </Table>
         
-        <Pagination aria-label="Page navigation example">
-          
-          {[...Array(this.pagesCount)].map((page, i) => 
-           
-            <PaginationItem  active={i === currentPage} key={i}>
-            { i >= 29 ? 
-            ""
-             :
-             <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
-             {i + 1} 
-            </PaginationLink>
-            }
-            </PaginationItem>
-          )}
-        </Pagination>
+            <Pagination aria-label="Page navigation example">
+              
+              {[...Array(this.pagesCount)].map((page, i) => 
+              
+                <PaginationItem  active={i === currentPage} key={i}>
+                { i >= 29 ? 
+                ""
+                :
+                <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
+                {i + 1} 
+                </PaginationLink>
+                }
+                </PaginationItem>
+              )}
+            </Pagination>
         
                </Row>
              </Container>
@@ -367,21 +157,31 @@ class Message extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  console.log("Table::::",state.Tables) 
+   return ({
+    Tables: state.Tables,
+ 
+ })
+ }
 
-class Messages extends React.Component {
-  render() {
-    return (
-      <tr>
-        
-          <td><i class="fas fa-envelope"></i></td>
-          <td>{this.props.messageObject}{this.props.messageNumber}</td>
-          <td>{this.props.messageExpediteur}{this.props.messageNumber}</td>
-          <td>{this.props.messageDate}</td>
-        
-      </tr>
-    );
+function mapDispatchToProps(dispatch) {
+  return {
+    tab(object, expediteur, date, position) { 
+      dispatch({
+      type: 'table',
+      object : object,
+      expediteur: expediteur,
+      date: date,
+      position : position,
+    }) 
+   },
+    deleteTab(position) { 
+      dispatch({
+        type: 'deleteTable',
+        position : position,
+      }) 
+    },
   }
-}
-
-
-export default Message;
+ }
+ export default connect(mapStateToProps, mapDispatchToProps)(Message);

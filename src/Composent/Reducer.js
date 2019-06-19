@@ -17,6 +17,7 @@ export default function(TableContent = [], action){
             object : action.object,
             expediteur: action.expediteur,
             date: action.date,
+            message : action.message,
             })
 
             // console.log("TableContentCopy - table", TableContentCopy)

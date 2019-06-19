@@ -77,12 +77,13 @@ class MessageView extends React.Component {
                                                     <Button className="like_btn" color="danger">Likes</Button>
                                                 </div>
                                                 <div className="footer">
-                                                    <div className="view_profile">
-                                                        View profile
-                                                    </div>
-                                                    <div className="message">
+
+                                                    <a className="view_profile" href="#1">
+                                                        <div>View profile</div>
+                                                    </a>
+                                                    <a className="message" href="#2">
                                                         Message
-                                                    </div>
+                                                    </a>
                                                 </div>
                                             </Card>
                                         </Col>

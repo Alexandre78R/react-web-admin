@@ -14,6 +14,7 @@ import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
 // import Footer from '../Composent/Footer';
 import {connect} from 'react-redux';
+import { Link } from "react-router-dom";
 
 class Message extends React.Component {
   constructor() {
@@ -22,33 +23,33 @@ class Message extends React.Component {
     this.state = {
       currentPage: 0,
       messageData : [ 
-        {object : "Object1", expediteur : "Username", date : "jj/mm/yyyy", message : "message1"},
-        {object : "Object2", expediteur : "Username", date : "jj/mm/yyyy", message : "message2"},
-        {object : "Object3", expediteur : "Username", date : "jj/mm/yyyy", message : "message3"},
-        {object : "Object4", expediteur : "Username", date : "jj/mm/yyyy", message : "message4"},
-        {object : "Object5", expediteur : "Username", date : "jj/mm/yyyy", message : "message5"},
-        {object : "Object6", expediteur : "Username", date : "jj/mm/yyyy", message : "message6"},
-        {object : "Object7", expediteur : "Username", date : "jj/mm/yyyy", message : "message7"},
-        {object : "Object8", expediteur : "Username", date : "jj/mm/yyyy", message : "message8"},
-        {object : "Object9", expediteur : "Username", date : "jj/mm/yyyy", message : "message9"},
-        {object : "Object10", expediteur : "Username", date : "jj/mm/yyyy", message : "message10"},
-        {object : "Object11", expediteur : "Username", date : "jj/mm/yyyy", message : "message11"},
-        {object : "Object12", expediteur : "Username", date : "jj/mm/yyyy", message : "message12"},
-        {object : "Object13", expediteur : "Username", date : "jj/mm/yyyy", message : "message13"},
-        {object : "Object14", expediteur : "Username", date : "jj/mm/yyyy", message : "message14"},
-        {object : "Object15", expediteur : "Username", date : "jj/mm/yyyy", message : "message15"},
-        {object : "Object16", expediteur : "Username", date : "jj/mm/yyyy", message : "message16"},
-        {object : "Object17", expediteur : "Username", date : "jj/mm/yyyy", message : "message17"},
-        {object : "Object18", expediteur : "Username", date : "jj/mm/yyyy", message : "message18"},
-        {object : "Object19", expediteur : "Username", date : "jj/mm/yyyy", message : "message19"},
-        {object : "Object20", expediteur : "Username", date : "jj/mm/yyyy", message : "message20"},
-        {object : "Object21", expediteur : "Username", date : "jj/mm/yyyy", message : "message21"},
-        {object : "Object22", expediteur : "Username", date : "jj/mm/yyyy", message : "message22"},
-        {object : "Object23", expediteur : "Username", date : "jj/mm/yyyy", message : "message23"},
-        {object : "Object24", expediteur : "Username", date : "jj/mm/yyyy", message : "message24"},
-        {object : "Object25", expediteur : "Username", date : "jj/mm/yyyy", message : "message25"},
-        {object : "Object26", expediteur : "Username", date : "jj/mm/yyyy", message : "message26"},
-        {object : "Object27", expediteur : "Username", date : "jj/mm/yyyy", message : "message27"},
+        {key : "1", object : "Object1", expediteur : "Username", date : "jj/mm/yyyy", message : "message1"},
+        {key : "2", object : "Object2", expediteur : "Username", date : "jj/mm/yyyy", message : "message2"},
+        {key : "3", object : "Object3", expediteur : "Username", date : "jj/mm/yyyy", message : "message3"},
+        {key : "4", object : "Object4", expediteur : "Username", date : "jj/mm/yyyy", message : "message4"},
+        {key : "5", object : "Object5", expediteur : "Username", date : "jj/mm/yyyy", message : "message5"},
+        {key : "6", object : "Object6", expediteur : "Username", date : "jj/mm/yyyy", message : "message6"},
+        {key : "7", object : "Object7", expediteur : "Username", date : "jj/mm/yyyy", message : "message7"},
+        {key : "8", object : "Object8", expediteur : "Username", date : "jj/mm/yyyy", message : "message8"},
+        {key : "9", object : "Object9", expediteur : "Username", date : "jj/mm/yyyy", message : "message9"},
+        {key : "10", object : "Object10", expediteur : "Username", date : "jj/mm/yyyy", message : "message10"},
+        {key : "11", object : "Object11", expediteur : "Username", date : "jj/mm/yyyy", message : "message11"},
+        {key : "12", object : "Object12", expediteur : "Username", date : "jj/mm/yyyy", message : "message12"},
+        {key : "13", object : "Object13", expediteur : "Username", date : "jj/mm/yyyy", message : "message13"},
+        {key : "14", object : "Object14", expediteur : "Username", date : "jj/mm/yyyy", message : "message14"},
+        {key : "15", object : "Object15", expediteur : "Username", date : "jj/mm/yyyy", message : "message15"},
+        {key : "16", object : "Object16", expediteur : "Username", date : "jj/mm/yyyy", message : "message16"},
+        {key : "17", object : "Object17", expediteur : "Username", date : "jj/mm/yyyy", message : "message17"},
+        {key : "18", object : "Object18", expediteur : "Username", date : "jj/mm/yyyy", message : "message18"},
+        {key : "19", object : "Object19", expediteur : "Username", date : "jj/mm/yyyy", message : "message19"},
+        {key : "20", object : "Object20", expediteur : "Username", date : "jj/mm/yyyy", message : "message20"},
+        {key : "21", object : "Object21", expediteur : "Username", date : "jj/mm/yyyy", message : "message21"},
+        {key : "22", object : "Object22", expediteur : "Username", date : "jj/mm/yyyy", message : "message22"},
+        {key : "23", object : "Object23", expediteur : "Username", date : "jj/mm/yyyy", message : "message23"},
+        {key : "24", object : "Object24", expediteur : "Username", date : "jj/mm/yyyy", message : "message24"},
+        {key : "25", object : "Object25", expediteur : "Username", date : "jj/mm/yyyy", message : "message25"},
+        {key : "26", object : "Object26", expediteur : "Username", date : "jj/mm/yyyy", message : "message26"},
+        {key : "27", object : "Object27", expediteur : "Username", date : "jj/mm/yyyy", message : "message27"},
      ],
      Alertvisible: true,
     };
@@ -61,7 +62,7 @@ class Message extends React.Component {
         (message, i) => {
 
           // console.log("messageData2",message.object, message.expediteur, message.date)
-           this.props.tab(message.object, message.expediteur, message.date, message.message)
+           this.props.tab(message.key, message.object, message.expediteur, message.date, message.message)
 
           return (message_boucle)
         }
@@ -98,7 +99,7 @@ class Message extends React.Component {
             <td>{message.expediteur}</td>
             <td>{message.date}</td>
             <td>
-              <Button className = "buttonTable" color="success" href = {"/messageView/" + (i + 1)} onClick= {() => this.props.deleteTab(i)}>View</Button>
+              <Button className = "buttonTable" color="success"><Link to={'/messageView/' + (message.key)}>Valider</Link></Button>
               <Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button>
             </td>
             
@@ -176,7 +177,7 @@ class Message extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("Table::::",state.Tables) 
+  console.log("Table::::",state.Tables) 
    return ({
     Tables: state.Tables,
  
@@ -185,9 +186,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    tab(object, expediteur, date, message) { 
+    tab(key, object, expediteur, date, message) { 
       dispatch({
       type: 'table',
+      key : key,
       object : object,
       expediteur: expediteur,
       date: date,

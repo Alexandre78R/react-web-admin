@@ -12,10 +12,59 @@ import {
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
 // import Footer from '../Composent/Footer';
+import {connect} from 'react-redux';
+
 
 class MessageView extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+          key : props.match.params.key,
+          object : "",
+          expediteur : "",
+          date : "",
+          message : "",
+        };
+    }
+    // componentWillMount() {
+    //     var list = this.props.Tables
+    //     console.log("List", list)
+    //     for (var i = 0; i < list.lenght; i++) {
+    //         // console.log("List", list[i])
+    //       if (this.state.key === list[i].key) {
+    //         //   console.log("List", list[i])
+    //           this.setState({
+    //           object : list[i].object,
+    //           expediteur : list[i].expediteur,
+    //           date : list[i].date,
+    //           message : list[i].message,
+    //         })
+    //         // console.log("message", list[i].message)
+    //       }
+    //     //   console.log("message", list[i].message)
+    //     }
+    //     console.log("message :", list[i].message)
+    //     console.log("message state : ", this.state.message)
+    //   }
+
+    componentWillMount() {
+        var list = this.props.Tables
+        for (var i = 0; i < list.length; i++) {
+          if (this.state.key === list[i].key) {
+              this.setState({
+                key : list[i].key,
+                object : list[i].object,
+                expediteur : list[i].expediteur,
+                date : list[i].date,
+                message : list[i].message
+            })
+          }
+        }
+      }
 
   render() {
+//   :
     return (
       <div id="page-top">
         <NavBar/>
@@ -34,11 +83,11 @@ class MessageView extends React.Component {
                                         <Row>  
                                             <Col md="12">
                                                 <div className="news-title">
-                                                    <h2>Object</h2>
+                                                    <h2>{this.state.object}</h2>
                                                 </div>
                                                 <hr></hr>
                                                 <div className="news-content">
-                                                    <p>text jejef efejjnefke efekefjbekee ef fekiefnkfe kldjddkdckdd dckdndkddnkdd dkndkndcknccddcd cdkdncldc,dcdvd dvlsds,ld,dvdvvd kddnvkdvnef efkebkefnkeffef ekfebkefnefkefneffe fekfenefnefkefnee efefinefkefnekfef  kefbefkefef</p>
+                                                    <p>{this.state.message}</p>
                                                 </div>
                                                 <hr></hr>
                                                 <Button className="buttonTable" color="dark">#Tag</Button>
@@ -101,4 +150,12 @@ class MessageView extends React.Component {
   }
 }
 
-export default MessageView;
+function mapStateToProps(state) {
+    console.log("Table::::", state) 
+     return ({
+      Tables: state.Tables,
+   
+   })
+   }
+  
+   export default connect(mapStateToProps, null)(MessageView);

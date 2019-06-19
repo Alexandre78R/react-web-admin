@@ -14,6 +14,7 @@ export default function(TableContent = [], action){
             // var TableContentCopy = [...TableContent]
 
             TableContentCopy.push({
+            key : action.key,
             object : action.object,
             expediteur: action.expediteur,
             date: action.date,

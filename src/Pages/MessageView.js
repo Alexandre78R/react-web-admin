@@ -64,23 +64,23 @@ class MessageView extends React.Component {
                                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmakotPhkt-QXqcTdpIhlKydHVpTqNDZ7p-IxcbwpEhBRUujwV"/>
                                                 </div>
                                                 </div>
-                                                <div class="cardBody">
-                                                    <div class="d-lfex justify-content-center flex-column">
-                                                        <div class="name_container">
-                                                            <div class="name">Alexandre</div>
+                                                <div className="cardBody">
+                                                    <div className="d-lfex justify-content-center flex-column">
+                                                        <div className="name_container">
+                                                            <div className="name">Alexandre</div>
                                                         </div>
-                                                        <div class="address">Description</div>
+                                                        <div className="address">Description</div>
                                                     </div>
                                                 </div>
                                                 <div class="like">
-                                                    <Button class="like_btn" color="success">Likes</Button>
-                                                    <Button class="like_btn" color="danger">Likes</Button>
+                                                    <Button className="like_btn" color="success">Likes</Button>
+                                                    <Button className="like_btn" color="danger">Likes</Button>
                                                 </div>
-                                                <div class="footer">
-                                                    <div class="view_profile">
+                                                <div className="footer">
+                                                    <div className="view_profile">
                                                         View profile
                                                     </div>
-                                                    <div class="message">
+                                                    <div className="message">
                                                         Message
                                                     </div>
                                                 </div>

@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
-import Footer from '../Composent/Footer';
+// import Footer from '../Composent/Footer';
 import {connect} from 'react-redux';
 
 class Message extends React.Component {
@@ -97,7 +97,11 @@ class Message extends React.Component {
             <td>{message.object}</td>
             <td>{message.expediteur}</td>
             <td>{message.date}</td>
-            <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
+            <td>
+              <Button className = "buttonTable" color="success" href = {"/messageView/" + (i + 1)} onClick= {() => this.props.deleteTab(i)}>View</Button>
+              <Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button>
+            </td>
+            
             </tr>
             // :
             // <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
@@ -164,7 +168,7 @@ class Message extends React.Component {
         
                </Row>
              </Container>
-             <Footer/>
+             {/* <Footer/> */}
           </div>
     </div>
     );

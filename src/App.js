@@ -4,6 +4,7 @@ import './App.css';
 import SignIn from './Pages/Signin';
 import Alert from './Pages/Alert';
 import Message from './Pages/Message';
+import MessageView from './Pages/MessageView';
 import Setting from './Pages/Setting';
 import Dashboard from './Pages/Dashboard';
 import User from './Pages/User';
@@ -29,7 +30,7 @@ export default class App extends React.Component {
             <Route path="/" exact component={SignIn}/>
             <Route path="/alert" component={Alert}/>
             <Route path="/message" component={Message}/>
-            <Route path="/message/:id:" component={Message}/>
+            <Route path="/messageView/:id" component={MessageView}/>
             <Route path="/setting" component={Setting}/>
             <Route path="/user" component={User}/>
             <Route path="/dashboard" component={Dashboard}/>

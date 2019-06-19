@@ -13,7 +13,7 @@ import {
 
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
-import Footer from '../Composent/Footer';
+// import Footer from '../Composent/Footer';
 
 class Dashboard extends React.Component {
 
@@ -107,7 +107,7 @@ class Dashboard extends React.Component {
 
           </Row>
         </Container>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </div>
     );

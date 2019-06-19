@@ -13,7 +13,7 @@ import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
 // import Footer from '../Composent/Footer';
 
-class Alert extends React.Component {
+class MessageView extends React.Component {
 
   render() {
     return (
@@ -100,4 +100,4 @@ class Alert extends React.Component {
   }
 }
 
-export default Alert;
+export default MessageView;

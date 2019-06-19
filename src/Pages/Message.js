@@ -8,6 +8,7 @@ import {
   PaginationItem,
   PaginationLink,
   Button,
+  Alert,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -21,17 +22,17 @@ class Message extends React.Component {
     this.state = {
       currentPage: 0,
       messageData : [ 
-        {object : "ObjectTest1", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest2", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest3", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest4", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest5", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest6", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest7", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest8", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest9", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest10", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
-        {object : "ObjectTest11", expediteur : "UsernameTest", date : "jj/mm/yyyy"},
+        {object : "Object1", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object2", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object3", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object4", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object5", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object6", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object7", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object8", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object9", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object10", expediteur : "Username", date : "jj/mm/yyyy"},
+        {object : "Object11", expediteur : "Username", date : "jj/mm/yyyy"},
         {object : "Object12", expediteur : "Username", date : "jj/mm/yyyy"},
         {object : "Object13", expediteur : "Username", date : "jj/mm/yyyy"},
         {object : "Object14", expediteur : "Username", date : "jj/mm/yyyy"},
@@ -49,10 +50,11 @@ class Message extends React.Component {
         {object : "Object26", expediteur : "Username", date : "jj/mm/yyyy"},
         {object : "Object27", expediteur : "Username", date : "jj/mm/yyyy"},
      ],
-
+     Alertvisible: true,
     };
     
   }
+  
   componentWillMount(){
       
    var message_boucle =   this.state.messageData.map(
@@ -77,24 +79,33 @@ class Message extends React.Component {
   }
   render() {
 
+    const { currentPage } = this.state;
+    this.pageSize = 4
+    this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
+
     this.dataSet = this.props.Tables.map(
       (message, i) => {
 // console.log("Posiotion Tables", i)
+// console.log(this.pagesCount)
+
         return (
-          <tr>
+          // <div>
+          //   {console.log("PageSize", this.pagesCount, this.pageSize)}
+          //   {(this.pagesCount == currentPage - 1) ?
+            <tr>
             <td><i className="fas fa-envelope"></i></td>
             <td>{message.object}</td>
             <td>{message.expediteur}</td>
             <td>{message.date}</td>
             <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
-          </tr>
+            </tr>
+            // :
+            // <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
+            // }
+            // </div>
         )
       }
-    );
-
-    const { currentPage } = this.state;
-    this.pageSize = 4
-    this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
+    );    
 
     return (
       <div id="page-top">
@@ -106,6 +117,14 @@ class Message extends React.Component {
               <Container className="container-fluid page">
                <Row>
                <Table className="table table-hover">
+               {this.pagesCount === 0 ? 
+                <tbody>
+                  <Alert color="danger" className = "bgAlert">
+                    <p className = "textAlert"> Vous n'avez pas de messages !</p>
+                    <a href="/message/" className="alert-link"> Refresh Page</a>
+                  </Alert>
+                </tbody>
+                :
                 <thead>
                   <tr>
                     <th scope="col"> <i className ="fas fa-envelope"></i> </th>
@@ -114,7 +133,8 @@ class Message extends React.Component {
                     <th scope="col">Date</th>
                     <th scope="col">Action</th>
                   </tr>
-                </thead>
+                </thead>              
+                }
                 {this.dataSet
                 .slice(
                   currentPage * this.pageSize,
@@ -130,7 +150,6 @@ class Message extends React.Component {
             <Pagination aria-label="Page navigation example">
               
               {[...Array(this.pagesCount)].map((page, i) => 
-              
                 <PaginationItem  active={i === currentPage} key={i}>
                 { i >= 29 ? 
                 ""

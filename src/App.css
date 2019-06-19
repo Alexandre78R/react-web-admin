@@ -51,6 +51,24 @@ body {
 .data-slice {
   margin-top: 15px;
 }
+
+.errorTab{
+  color : red;
+  font-size: 20px;
+  text-align: center;
+}
+
+.textAlert{
+  font-family: Impact;
+  font-size: 30px;
+  margin-top : 10px;
+  text-align: center;
+}
+
+.bgAlert{
+  margin-top : 15%;
+  text-align: center;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

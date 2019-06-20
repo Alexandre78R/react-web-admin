@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import {connect} from 'react-redux';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class NavBar extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      key : "",
     };
   }
   toggle() {
@@ -27,6 +29,17 @@ class NavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  componentWillMount() {
+    var list = this.props.Tables
+    console.log("Table", list)
+    for (var i = 0; i < list.length; i++) {
+          this.setState({
+            key : i,
+        })
+    }
+  }
+
   render() {
     return (
       <div>
@@ -43,7 +56,7 @@ class NavBar extends React.Component {
             </NavItem>
             <NavItem className="nav-item dropdown no-arrow mx-1">
               <a className="nav-link" href="/message">
-              <span className="badge badge-danger">0</span>
+              <span className="badge badge-danger">{this.state.key === "" ? 0 : this.state.key }</span>
               <i className="fas fa-envelope fa-fw"></i>
               </a>
             </NavItem>
@@ -66,4 +79,12 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+function mapStateToProps(state) {
+    console.log("Table::::", state) 
+     return ({
+      Tables: state.Tables,
+   
+   })
+   }
+  
+   export default connect(mapStateToProps, null)(NavBar);

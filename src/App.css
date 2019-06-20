@@ -43,9 +43,8 @@ body {
   
 }
 
-.tableboucle{
-  margin : 10px;
-  line-height: 140%;
+.listMessage{
+  margin-top: 1%;
 }
 
 .data-slice {
@@ -73,10 +72,24 @@ body {
 .buttonTable{
   margin-right: 1%;
 }
+.textBtnTableMessage{
+  color :#fff;
+  text-decoration: none;
+}
+.textBtnTableMessage:hover{
+  color: #fff;
+  text-decoration: none;
 
+}
 .messageView{
-  /* text-align: center; */
   margin-Top : 2%;
+}
+
+.breadcrumbBg {
+  width: 100%;
+}   
+.breadcrumbText:hover{
+  text-decoration: none;
 }
 
 /* Card message */
@@ -213,6 +226,13 @@ html, body{
   font-weight: 600;
   margin-right: 5px;
 }
+
+.message:hover{
+  color : #fff;
+  background: #E29111;
+  text-decoration: none;
+}
+
 .view_profile{
   display: flex;
   justify-content: center;
@@ -230,6 +250,11 @@ html, body{
   content: "\f406";
   margin-right: 5px;
   font-weight: 600;
+}
+.view_profile:hover{
+  color : #fff;
+  background: #D84839;
+  text-decoration: none;
 }
 @keyframes App-logo-spin {
   from {

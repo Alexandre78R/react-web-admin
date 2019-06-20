@@ -9,6 +9,8 @@ import {
   PaginationLink,
   Button,
   Alert,
+  Breadcrumb,
+  BreadcrumbItem,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -81,7 +83,7 @@ class Message extends React.Component {
   render() {
 
     const { currentPage } = this.state;
-    this.pageSize = 4
+    this.pageSize = 3
     this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
 
     this.dataSet = this.props.Tables.map(
@@ -99,8 +101,8 @@ class Message extends React.Component {
             <td>{message.expediteur}</td>
             <td>{message.date}</td>
             <td>
-              <Button className = "buttonTable" color="success"><Link to={'/messageView/' + (message.key)}>Valider</Link></Button>
-              <Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button>
+              <Button className = "buttonTable" color="success"><Link className="textBtnTableMessage" to={'/messageView/' + (message.key)}>View</Link></Button>
+              <Button className = "buttonTable" color="danger" onClick= {() => this.props.deleteTab(i)}><Link className="textBtnTableMessage" to={'/message/#' + (message.key)}>Delete</Link></Button>
             </td>
             
             </tr>
@@ -119,53 +121,62 @@ class Message extends React.Component {
           <div id="wrapper">
             <SideBar/>
 
-              <Container className="container-fluid page">
+              <Container className="container-fluid page ">
                <Row>
-               <Table className="table table-hover">
-               {this.pagesCount === 0 ? 
-                <tbody>
-                  <Alert color="danger" className = "bgAlert">
-                    <p className = "textAlert"> Vous n'avez pas de messages !</p>
-                    <a href="/message/" className="alert-link"> Refresh Page</a>
-                  </Alert>
-                </tbody>
-                :
-                <thead>
-                  <tr>
-                    <th scope="col"> <i className ="fas fa-envelope"></i> </th>
-                    <th scope="col">Objet</th>
-                    <th scope="col">Expediteur</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>              
-                }
-                {this.dataSet
-                .slice(
-                  currentPage * this.pageSize,
-                  (currentPage + 1) * this.pageSize
-                )
-                .map((data, i) => 
-                <tbody key={i}>
-                    {data}
-                </tbody>
-                )}
-            </Table>
-        
-            <Pagination aria-label="Page navigation example">
-              
-              {[...Array(this.pagesCount)].map((page, i) => 
-                <PaginationItem  active={i === currentPage} key={i}>
-                { i >= 29 ? 
-                ""
-                :
-                <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
-                {i + 1} 
-                </PaginationLink>
-                }
-                </PaginationItem>
-              )}
-            </Pagination>
+                    {this.pagesCount === 0 ? 
+                    ""
+                    :                
+                    <Breadcrumb className="breadcrumbBg">
+                      <BreadcrumbItem active>Liste des messages</BreadcrumbItem>
+
+                    </Breadcrumb>
+                    }
+
+                  <Table className="table table-hover listMessage">
+                  {this.pagesCount === 0 ? 
+                    <tbody>
+                      <Alert color="danger" className = "bgAlert">
+                        <p className = "textAlert"> Vous n'avez pas de messages !</p>
+                        <a href="/message/" className="alert-link"> Refresh Page</a>
+                      </Alert>
+                    </tbody>
+                    :                
+                    <thead>
+                      <tr>
+                        <th scope="col"> <i className ="fas fa-envelope"></i> </th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Expediteur</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>       
+                    }
+                    {this.dataSet
+                    .slice(
+                      currentPage * this.pageSize,
+                      (currentPage + 1) * this.pageSize
+                    )
+                    .map((data, i) => 
+                    <tbody key={i}>
+                        {data}
+                    </tbody>
+                    )}
+                </Table>
+            
+                <Pagination aria-label="Page navigation example">
+                  
+                  {[...Array(this.pagesCount)].map((page, i) => 
+                    <PaginationItem  active={i === currentPage} key={i}>
+                    { i >= 29 ? 
+                    ""
+                    :
+                    <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
+                    {i + 1} 
+                    </PaginationLink>
+                    }
+                    </PaginationItem>
+                  )}
+                </Pagination>
         
                </Row>
              </Container>

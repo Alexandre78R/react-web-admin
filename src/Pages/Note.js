@@ -8,9 +8,9 @@ import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
 // import { default as Stickies } from '../Composent/Stickies';
 // import Footer from '../Composent/Footer';
-import { Stickies } from '../Composent/index';
+import { Stickies } from '../Composent/Note/index';
 
-const mock = require('./mock');
+const mock = require('../Composent/Note/mock');
 
 
 

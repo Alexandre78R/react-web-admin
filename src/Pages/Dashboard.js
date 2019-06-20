@@ -73,10 +73,10 @@ class Dashboard extends React.Component {
                       <div className="card-body-icon">
                         <i className="fas fa-fw fa-list"></i>
                       </div>
-                      <CardText>0 Alerts</CardText>
+                      <CardText>0 Notes</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a className="text-white" href="/alert">
+                    <a className="text-white" href="/note">
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>

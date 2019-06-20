@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import './App.css';
 import SignIn from './Pages/Signin';
-import Alert from './Pages/Alert';
+import Note from './Pages/Note';
 import Message from './Pages/Message';
 import MessageView from './Pages/MessageView';
 import Setting from './Pages/Setting';
@@ -28,7 +28,7 @@ export default class App extends React.Component {
         <Router>
           <Switch>
             <Route path="/" exact component={SignIn}/>
-            <Route path="/alert" component={Alert}/>
+            <Route path="/note" component={Note}/>
             <Route path="/message" component={Message}/>
             <Route path="/messageView/:key" component={MessageView}/>
             <Route path="/setting" component={Setting}/>

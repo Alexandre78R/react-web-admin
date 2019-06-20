@@ -13,6 +13,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import {connect} from 'react-redux';
+import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -49,16 +50,16 @@ class NavBar extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="nav-item dropdown no-arrow mx-1">
-              <a className="nav-link" href="/alert">
-              <span className="badge badge-danger">0</span>
+              <Link className="nav-link" to={'#'}>
+                <span className="badge badge-danger">0</span>
                 <i className="fas fa-bell fa-fw"></i>
-              </a>
+              </Link>
             </NavItem>
             <NavItem className="nav-item dropdown no-arrow mx-1">
-              <a className="nav-link" href="/message">
+            <Link className="nav-link" to={'/message/'}>
               <span className="badge badge-danger">{this.state.key === "" ? 0 : this.state.key }</span>
               <i className="fas fa-envelope fa-fw"></i>
-              </a>
+            </Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav >

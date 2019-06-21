@@ -72,6 +72,10 @@ body {
 .buttonTable{
   margin-right: 1%;
 }
+
+.buttonTable1{
+  margin-left: 1%;
+}
 .textBtnTableMessage{
   color :#fff;
   text-decoration: none;
@@ -281,6 +285,7 @@ html, body{
   margin-right: 5px;
   box-shadow: 0 -1px 9px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,0.1);
   margin-top:  5%;
+  background-color: #fff;
 }
 .note-pagination {
   margin-top : 3%;
@@ -295,8 +300,9 @@ html, body{
   margin-left: 10px;
   text-align: center;
   color: #fff;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 500;
+  margin-top : 1px;
 }
 .org {
   background-color: orange;

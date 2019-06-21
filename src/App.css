@@ -261,6 +261,19 @@ html, body{
   text-decoration: none;
 }
 
+.react-draggable, .cursor {
+  cursor: move;
+}
+.no-cursor {
+  cursor: auto;
+}
+.cursor-y {
+  cursor: ns-resize;
+}
+.cursor-x {
+  cursor: ew-resize;
+}
+
 /* NOTE Affichage */
 .note-button{
   margin-top : -30px;
@@ -333,7 +346,8 @@ html, body{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  /* background: #f1f1f1;  */
+  background: #E5E3E2;
   border-radius: 10px;
 }
 

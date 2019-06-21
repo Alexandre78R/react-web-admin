@@ -186,10 +186,10 @@ class Message extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Table::::",state.Tables) 
+  // console.log("Table::::",state.Tables) 
+  console.log("state", state)
    return ({
     Tables: state.Tables,
- 
  })
  }
 

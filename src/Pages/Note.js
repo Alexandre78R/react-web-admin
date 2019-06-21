@@ -18,6 +18,7 @@ import SideBar from '../Composent/SideBar';
 // import Footer from '../Composent/Footer';
 // import { Link } from "react-router-dom";
 import Draggable from 'react-draggable';
+import {connect} from 'react-redux';
 
 class Note extends React.Component {
   
@@ -48,15 +49,25 @@ class Note extends React.Component {
     }));
   }
 
+  componentWillMount(){
+      
+     this.state.notes.map(
+         (note, i) => {
+            this.props.note(note.title, note.note)
+         }
+       );
+     // return message_boucle;
+     }
+
   render() {
-    var notes_boucle = this.state.notes.map(
+    var notes_boucle = this.props.Notes.map(
       (note, i) => {
         return (
            <Draggable handle="strong">
             <div className="note no-cursor">
                <strong  className="note-topic bleuClaire cursor">
                    {note.title}
-                   <span className="close"><i className="far fa-times-circle"></i></span>
+                   <span className="close" onClick= {() => this.props.deleteNote(i)}><i className="far fa-times-circle"></i></span>
                    <span className="close"><i className="far fa-edit"></i></span>
                </strong>
                <div className="note-body">
@@ -111,5 +122,28 @@ class Note extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  console.log("state", state)
+   return ({
+    Notes: state.Notes,
+ })
+ }
 
-export default Note;
+ function mapDispatchToProps(dispatch) {
+  return {
+    note(title, note) { 
+      dispatch({
+      type: 'note',
+      title : title,
+      note : note,
+    }) 
+   },
+    deleteNote(position) { 
+      dispatch({
+        type: 'deleteNote',
+        position : position,
+      }) 
+    },
+  }
+ }
+ export default connect(mapStateToProps, mapDispatchToProps)(Note);

@@ -14,10 +14,11 @@ import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.css';
 import './css/sb-admin.css';
 
-import Tables from './Composent/Reducer.js';
+import Tables from './Composent/Reducer/ReducerTables';
+import Notes from './Composent/Reducer/ReducerNotes';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
-const store = createStore(combineReducers({Tables}));
+const store = createStore(combineReducers({Tables, Notes}));
 
 
 export default class App extends React.Component {

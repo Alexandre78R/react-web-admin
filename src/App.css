@@ -268,8 +268,8 @@ html, body{
 }
 .note-page{
   margin-top: 20px; 
-  padding: 0 10px;
-  overflow: auto;
+  padding: 0 20px;
+  overflow-y: auto;
   height: 550px;
   width: 100%;
   margin-top: 15px;
@@ -304,8 +304,8 @@ html, body{
   font-weight: 500;
   margin-top : 1px;
 }
-.org {
-  background-color: orange;
+.bleuClaire {
+  background-color: #2196F3;
 }
 
 .note-body {

@@ -3,10 +3,16 @@ import '../App.css';
 import {
   Row,
   Container, 
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Form, 
+  FormGroup, 
+  Label, 
+  Input, 
+  FormText,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -16,11 +22,19 @@ import Draggable from 'react-draggable';
 
 class Note extends React.Component {
   
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      modal: false
     };
-    
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {
@@ -32,11 +46,11 @@ class Note extends React.Component {
             <SideBar/>
 
               <Container className="container-fluid">
-              <Button className = "note-button" color="success"><Link className="textBtnTableMessage" to={'#'}>Ajouté une note</Link></Button>
+              <Button className = "note-button" color="success" onClick={this.toggle}>Ajouté une note</Button>
                <Row className="note-page">
                <Draggable>
                <div className="note">
-                  <div className="note-topic org">
+                  <div className="note-topic bleuClaire">
                       My Project1
                       <span className="close"><i className="far fa-times-circle"></i></span>
                       <span className="close"><i className="far fa-edit"></i></span>
@@ -48,7 +62,7 @@ class Note extends React.Component {
               </Draggable>
               <Draggable>
                <div className="note">
-                  <div className="note-topic org">
+                  <div className="note-topic bleuClaire">
                       My Project1
                       <span className="close"><i className="far fa-times-circle"></i></span>
                       <span className="close"><i className="far fa-edit"></i></span>
@@ -60,7 +74,7 @@ class Note extends React.Component {
               </Draggable>
               <Draggable>
                <div className="note">
-                  <div className="note-topic org">
+                  <div className="note-topic bleuClaire">
                       My Project1
                       <span className="close"><i className="far fa-times-circle"></i></span>
                       <span className="close"><i className="far fa-edit"></i></span>
@@ -71,6 +85,30 @@ class Note extends React.Component {
               </div>
               </Draggable>
                </Row>
+               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                  <ModalHeader toggle={this.toggle}>Ajouté une note :</ModalHeader>
+                  <ModalBody>
+                   <Form>
+                   <FormGroup>
+                      <Label for="exampleTime">Titre :</Label>
+                      <Input
+                        type="text"
+                        name="titre"
+                        id="exampletext"
+                        placeholder="Titre"
+                      />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">Note :</Label>
+                        <Input type="textarea" name="text" id="exampleText" />
+                      </FormGroup>
+                   </Form>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="success" onClick={this.toggle}>Ajouté</Button>{' '}
+                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                  </ModalFooter>
+                </Modal>
              </Container>
              {/* <Footer/> */}
           </div>

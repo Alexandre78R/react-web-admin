@@ -60,12 +60,10 @@ class Message extends React.Component {
   
   componentWillMount(){
       
-   var message_boucle =   this.state.messageData.map(
+   var message_boucle = this.state.messageData.map(
         (message, i) => {
-
           // console.log("messageData2",message.object, message.expediteur, message.date)
            this.props.tab(message.key, message.object, message.expediteur, message.date, message.message)
-
           return (message_boucle)
         }
       );

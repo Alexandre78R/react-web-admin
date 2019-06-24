@@ -76,12 +76,12 @@ class Note extends React.Component {
         this.setState({ alertVide : false, alertCaractere : true })
       }else{
       this.props.addNote(this.state.title, this.state.note);
-      this.setState({ modal : false , alert : false, title : "", note : ""});
+      this.setState({ modal : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
      }
     }
 
     handleSubmitError(){
-      this.setState({ modal : false , alert : false, title : "", note : ""});
+      this.setState({ modal : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
       }
 
      render() {

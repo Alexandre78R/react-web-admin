@@ -86,8 +86,8 @@ class Message extends React.Component {
 
     this.dataSet = this.props.Tables.map(
       (message, i) => {
-// console.log("Posiotion Tables", i)
-// console.log(this.pagesCount)
+      // console.log("Posiotion Tables", i)
+      // console.log(this.pagesCount)
 
         return (
           // <div>
@@ -100,7 +100,7 @@ class Message extends React.Component {
             <td>{message.date}</td>
             <td>
               <Button className = "buttonTable" color="success"><Link className="textBtnTableMessage" to={'/messageView/' + (message.key)}>View</Link></Button>
-              <Button className = "buttonTable" color="danger" onClick= {() => this.props.deleteTab(i)}><Link className="textBtnTableMessage" to={'/message/#' + (message.key)}>Delete</Link></Button>
+              <Button className = "buttonTable" color="danger" ><Link className="textBtnTableMessage" to={'/message/#' + (message.key)}>Delete</Link></Button>
             </td>
             
             </tr>

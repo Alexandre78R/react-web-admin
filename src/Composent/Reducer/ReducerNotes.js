@@ -7,7 +7,7 @@ export default function(NoteContent = [], action){
           //   console.log("NoteContentCopy - deleteNote", NoteContentCopy)
             return NoteContentCopy
 
-        } else if(action.type === 'note'){
+        } else if(action.type === 'addNote'){
             
             NoteContentCopy.push({
               title : action.title,

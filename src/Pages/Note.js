@@ -68,8 +68,8 @@ class Note extends React.Component {
 
   handleSubmitAddNote(e){
     var ctx = this;
-      console.log("Click détecté")
-      console.log(this.state.title)
+      // console.log("Click détecté")
+      // console.log(this.state.title)
       if(this.state.title === "", this.state.note === ""){
         this.setState({ alertVide: true});
       }else if(this.state.title.length >= 19){

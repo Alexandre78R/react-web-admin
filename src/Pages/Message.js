@@ -126,7 +126,6 @@ class Message extends React.Component {
                     :                
                     <Breadcrumb className="breadcrumbBg">
                       <BreadcrumbItem active>Liste des messages</BreadcrumbItem>
-
                     </Breadcrumb>
                     }
 

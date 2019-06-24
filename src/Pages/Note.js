@@ -43,7 +43,8 @@ class Note extends React.Component {
       ],
       title : "",
       note : "",
-      alert : false,
+      alertVide : false,
+      alertCaractere : false,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -65,16 +66,20 @@ class Note extends React.Component {
      // return message_boucle;
      }
 
-  handleSubmitAddNote(){
+  handleSubmitAddNote(e){
     var ctx = this;
       console.log("Click détecté")
+      console.log(this.state.title)
       if(this.state.title === "", this.state.note === ""){
-        this.setState({ alert: true});
+        this.setState({ alertVide: true});
+      }else if(this.state.title.length >= 19){
+        this.setState({ alertVide : false, alertCaractere : true })
       }else{
       this.props.addNote(this.state.title, this.state.note);
       this.setState({ modal : false , alert : false, title : "", note : ""});
      }
     }
+
     handleSubmitError(){
       this.setState({ modal : false , alert : false, title : "", note : ""});
       }
@@ -116,8 +121,11 @@ class Note extends React.Component {
                   <ModalBody>
                    <Form>
                    <FormGroup>
-                     <Alert color="danger" isOpen={this.state.alert} >
+                     <Alert color="danger" isOpen={this.state.alertVide} >
                       Vous n'avez pas remplis tous les champs.
+                      </Alert>
+                      <Alert color="danger" isOpen={this.state.alertCaractere} >
+                      Pour le titre vous pouvez utiliser maximun 19 caractères.
                       </Alert>
                       <Label for="exampleTime">Titre :</Label>
                       <Input

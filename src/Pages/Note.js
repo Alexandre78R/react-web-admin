@@ -25,7 +25,8 @@ class Note extends React.Component {
   
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitAddNote = this.handleSubmitAddNote.bind(this);
+    this.handleSubmitError = this.handleSubmitError.bind(this);
     this.state = {
       modal: false,
       notes : [
@@ -64,7 +65,7 @@ class Note extends React.Component {
      // return message_boucle;
      }
 
-  handleSubmit(e){
+  handleSubmitAddNote(){
     var ctx = this;
       console.log("Click détecté")
       if(this.state.title === "", this.state.note === ""){
@@ -74,6 +75,9 @@ class Note extends React.Component {
       this.setState({ modal : false , alert : false, title : "", note : ""});
      }
     }
+    handleSubmitError(){
+      this.setState({ modal : false , alert : false, title : "", note : ""});
+      }
 
      render() {
     var notes_boucle = this.props.Notes.map(
@@ -108,7 +112,7 @@ class Note extends React.Component {
                </Row>
 
                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                  <ModalHeader toggle={this.toggle}>Ajouté une note :</ModalHeader>
+                  <ModalHeader toggle={this.handleSubmitError}>Ajouté une note :</ModalHeader>
                   <ModalBody>
                    <Form>
                    <FormGroup>
@@ -130,8 +134,8 @@ class Note extends React.Component {
                    </Form>
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="success" onClick={this.handleSubmit}>Ajouté</Button>{' '}
-                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    <Button color="success" onClick={this.handleSubmitAddNote}>Ajouté</Button>{' '}
+                    <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
              </Container>

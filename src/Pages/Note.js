@@ -12,6 +12,7 @@ import {
   FormGroup, 
   Label, 
   Input, 
+  Alert,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -40,7 +41,8 @@ class Note extends React.Component {
         // {title: "Project10", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
       ],
       title : "",
-      note : ""
+      note : "",
+      alert : false,
     };
 
     this.toggle = this.toggle.bind(this);
@@ -62,11 +64,16 @@ class Note extends React.Component {
      // return message_boucle;
      }
 
-  handleSubmit(){
+  handleSubmit(e){
     var ctx = this;
       console.log("Click détecté")
+      if(this.state.title === "", this.state.note === ""){
+        this.setState({ alert: true});
+      }else{
       this.props.addNote(this.state.title, this.state.note);
+      this.setState({ modal : false , alert : false, title : "", note : ""});
      }
+    }
 
      render() {
     var notes_boucle = this.props.Notes.map(
@@ -105,6 +112,9 @@ class Note extends React.Component {
                   <ModalBody>
                    <Form>
                    <FormGroup>
+                     <Alert color="danger" isOpen={this.state.alert} >
+                      Vous n'avez pas remplis tous les champs.
+                      </Alert>
                       <Label for="exampleTime">Titre :</Label>
                       <Input
                         type="text"

@@ -27,8 +27,10 @@ class Note extends React.Component {
     super(props);
     this.handleSubmitAddNote = this.handleSubmitAddNote.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
+    this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     this.state = {
-      modal: false,
+      modalAdd: false,
+      modalEdit : false,
       notes : [
         {title: "Project1", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
         {title: "Project2", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
@@ -47,12 +49,19 @@ class Note extends React.Component {
       alertCaractere : false,
     };
 
-    this.toggle = this.toggle.bind(this);
+    this.toggleAdd = this.toggleAdd.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
 
-  toggle() {
+  toggleAdd() {
     this.setState(prevState => ({
-      modal: !prevState.modal
+      modalAdd: !prevState.modalAdd
+    }));
+  }
+
+  toggleEdit() {
+    this.setState(prevState => ({
+      modalEdit: !prevState.modalEdit
     }));
   }
 
@@ -66,7 +75,7 @@ class Note extends React.Component {
      // return message_boucle;
      }
 
-  handleSubmitAddNote(e){
+  handleSubmitAddNote(){
     var ctx = this;
       // console.log("Click détecté")
       // console.log(this.state.title)
@@ -76,12 +85,32 @@ class Note extends React.Component {
         this.setState({ alertVide : false, alertCaractere : true })
       }else{
         this.props.addNote(this.state.title, this.state.note);
-        this.setState({ modal : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
+        this.setState({ modalAdd : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
      }
     }
 
     handleSubmitError(){
-      this.setState({ modal : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
+      this.setState({ modalAdd : false, modalEdit : false, alertVide : false, alertCaractere : false,  title : "", note : ""});
+      }
+
+    handleSubmitEdit(position) {
+        var list = this.props.Notes
+        for (var i = 0; i < list.length; i++) {
+          console.log("title",(list[position].title))
+          console.log("note", (list[position].note))
+          if (position === 0) {
+              this.setState({
+                title : list[position].title,
+                note : list[position].note,
+            })
+          }else {
+              this.setState({
+                title : list[position].title,
+                note : list[position].note,
+            }) 
+          }
+        }
+        this.toggleEdit(position)
       }
 
      render() {
@@ -93,14 +122,14 @@ class Note extends React.Component {
                <strong  className="note-topic bleuClaire cursor">
                    {note.title}
                    <span className="close" onClick= {() => this.props.deleteNote(i)}><i className="far fa-times-circle"></i></span>
-                   <span className="close"><i className="far fa-edit"></i></span>
+                   <span className="close" onClick= {() => this.handleSubmitEdit(i)}><i className="far fa-edit"></i></span>
                </strong>
                <div className="note-body">
                  <p>{note.note}</p>
                </div>
            </div>
           </Draggable>
-          )
+        )
       }
     );
     return (
@@ -111,7 +140,7 @@ class Note extends React.Component {
             <SideBar/>
 
               <Container className="container-fluid">
-              <Button className = "note-button" color="success" onClick={this.toggle}>Ajouté une note</Button>
+              <Button className = "note-button" color="success" onClick={this.toggleAdd}>Ajouté une note</Button>
               {
                 this.props.Notes.length === 0 ?
                 <Alert color="danger" className="bgAlert">
@@ -124,7 +153,7 @@ class Note extends React.Component {
                </Row>
               }
 
-               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+               <Modal isOpen={this.state.modalAdd} toggle={this.toggleAdd} className={this.props.className}>
                   <ModalHeader toggle={this.handleSubmitError}>Ajouté une note :</ModalHeader>
                   <ModalBody>
                    <Form>
@@ -151,6 +180,32 @@ class Note extends React.Component {
                   </ModalBody>
                   <ModalFooter>
                     <Button color="success" onClick={this.handleSubmitAddNote}>Ajouté</Button>{' '}
+                    <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
+                  </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.state.modalEdit} toggle={this.toggleEdit} className={this.props.className}>
+                  <ModalHeader toggle={this.handleSubmitError}>Modifier la note :</ModalHeader>
+                  <ModalBody>
+                  <Form>
+                  <FormGroup>
+                      <Label for="exampleTime">Titre :</Label>
+                      <Input
+                        type="text"
+                        name="titre"
+                        id="exampletext"
+                        value={this.state.title}
+                        onChange={e=>this.setState({title:e.target.value})}
+                      />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">Note :</Label>
+                        <Input type="textarea" name="note" id="exampleText2" value={this.state.note} onChange={e=>this.setState({note:e.target.value})}/>
+                      </FormGroup>
+                  </Form>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="success" >Ajouté</Button>{' '}
                     <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
@@ -183,7 +238,12 @@ function mapStateToProps(state) {
         position : position,
       }) 
     },
-
+    editNote(position){
+      dispatch({
+        type : 'editNote',
+        position : position,
+      })
+    },
   }
  }
  export default connect(mapStateToProps, mapDispatchToProps)(Note);

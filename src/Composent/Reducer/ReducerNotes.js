@@ -14,7 +14,10 @@ export default function(NoteContent = [], action){
               note : action.note,
               })
               return NoteContentCopy;
-          } else {
+          } else if(action.type === 'editNote'){
+            // console.log("position", action.position)
+            return NoteContentCopy
+          }else {
 
             return NoteContent;
           }

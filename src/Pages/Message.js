@@ -81,7 +81,7 @@ class Message extends React.Component {
   render() {
 
     const { currentPage } = this.state;
-    this.pageSize = 3
+    this.pageSize = 6
     this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
 
     this.dataSet = this.props.Tables.map(

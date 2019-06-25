@@ -26,7 +26,8 @@ class Note extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmitAddNote = this.handleSubmitAddNote.bind(this);
-    this.handleSubmitError = this.handleSubmitError.bind(this);
+    this.handleSubmitErrorAdd = this.handleSubmitErrorAdd.bind(this);
+    this.handleSubmitErrorEdit = this.handleSubmitErrorEdit.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     this.handleSubmitAddEdit = this.handleSubmitAddEdit.bind(this);
     this.state = {
@@ -47,7 +48,8 @@ class Note extends React.Component {
       position : 0,
       title : "",
       note : "",
-      alertBg : false,
+      alertBgAdd : false,
+      alertBgEdit : false,
       alertText : "",
     };
 
@@ -82,24 +84,24 @@ class Note extends React.Component {
       // console.log(this.state.title)
       if(this.state.title === ""){
         this.setState({
-          alertBg: true,
+          alertBgAdd: true,
           alertText: "Vous n'avez pas remplie le champ titre.",
         });
       }else if(this.state.note === ""){
         this.setState({
-          alertBg : true,
+          alertBgAdd : true,
           alertText : "Vous n'avez pas remplie le champ note.",
         })
       }else if(this.state.title.length >= 19){
         this.setState({
-          alertBg : true,
+          alertBgAdd : true,
           alertText : "Vous pouvez pas metre plus de 19 caractère pour le titre.",
         })
       }else{
         this.props.addNote(this.state.title, this.state.note);
         this.setState({
           modalAdd : false,
-          alertBg : false,
+          alertBgAdd : false,
           alertText : "",
           title : "",
           note : "",
@@ -107,47 +109,78 @@ class Note extends React.Component {
      }
     }
 
-    handleSubmitError(){
-      this.setState({ modalAdd : false, modalEdit : false, alertVide : false, alertCaractere : false,  title : "", note : ""});
-      }
+  handleSubmitErrorAdd(){
+    this.setState({
+      modalAdd : false,
+      alertBgAdd : false,
+      alertText : "",
+      title : "",
+      note : ""
+    });
+  }
 
-    handleSubmitEdit(position) {
+  handleSubmitEdit(position) {
 
-        var list = this.props.Notes
-        for (var i = 0; i < list.length; i++) {
-          // console.log("title",(list[position].title))
-          // console.log("note", (list[position].note))
-          if (position === 0) {
-              this.setState({
-                position : position,
-                title : list[position].title,
-                note : list[position].note,
-            })
-          }else {
-              this.setState({
-                position : position,
-                title : list[position].title,
-                note : list[position].note,
-            }) 
-          }
+      var list = this.props.Notes
+      for (var i = 0; i < list.length; i++) {
+        // console.log("title",(list[position].title))
+        // console.log("note", (list[position].note))
+        if (position === 0) {
+            this.setState({
+              position : position,
+              title : list[position].title,
+              note : list[position].note,
+          })
+        }else {
+            this.setState({
+              position : position,
+              title : list[position].title,
+              note : list[position].note,
+          }) 
         }
-        this.toggleEdit(position)
       }
+      this.toggleEdit(position)
+    }
 
-      handleSubmitAddEdit() {
+    handleSubmitAddEdit() {
 
+      if(this.state.title === ""){
+        this.setState({
+          alertBgEdit: true,
+          alertText: "Vous n'avez pas remplie le champ titre.",
+        });
+      }else if(this.state.note === ""){
+        this.setState({
+          alertBgEdit : true,
+          alertText : "Vous n'avez pas remplie le champ note.",
+        })
+      }else if(this.state.title.length >= 19){
+        this.setState({
+          alertBgEdit : true,
+          alertText : "Vous pouvez pas metre plus de 19 caractère pour le titre.",
+        })
+      }else{
+        this.props.editNote(this.state.position, this.state.title, this.state.note);
+        this.setState({
+          modalEdit : false,
+          alertBgEdit : false,
+          alertText : "",
+          title : "",
+          note : "",
+        });
+     }
 
-        if(this.state.title === "", this.state.note === ""){
-          this.setState({ alertVide: true});
-        }else if(this.state.title.length >= 19){
-          this.setState({ alertVide : false, alertCaractere : true })
-        }else{
-          this.props.editNote(this.state.position, this.state.title, this.state.note);
-          this.setState({ modalAdd : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
-       }
+    }
 
-
-      }
+    handleSubmitErrorEdit(){
+      this.setState({
+        modalEdit : false,
+        alertBgEdit : false,
+        alertText : "",
+        title : "",
+        note : ""
+      });
+    }
 
      render() {
     var notes_boucle = this.props.Notes.map(
@@ -194,7 +227,7 @@ class Note extends React.Component {
                   <ModalBody>
                    <Form>
                    <FormGroup>
-                     <Alert color="danger" isOpen={this.state.alertBg} >
+                     <Alert color="danger" isOpen={this.state.alertBgAdd}>
                       {this.state.alertText}
                       </Alert>
                       <Label for="exampleTime">Titre :</Label>
@@ -213,7 +246,7 @@ class Note extends React.Component {
                   </ModalBody>
                   <ModalFooter>
                     <Button color="success" onClick={this.handleSubmitAddNote}>Ajouté</Button>{' '}
-                    <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
+                    <Button color="secondary" onClick={this.handleSubmitErrorAdd}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
 
@@ -222,6 +255,9 @@ class Note extends React.Component {
                   <ModalBody>
                   <Form>
                   <FormGroup>
+                      <Alert color="danger" isOpen={this.state.alertBgEdit}>
+                      {this.state.alertText}
+                      </Alert>
                       <Label for="exampleTime">Titre :</Label>
                       <Input
                         type="text"
@@ -239,7 +275,7 @@ class Note extends React.Component {
                   </ModalBody>
                   <ModalFooter>
                     <Button color="success" onClick={this.handleSubmitAddEdit}>Ajouté</Button>{' '}
-                    <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
+                    <Button color="secondary" onClick={this.handleSubmitErrorEdit}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
              </Container>

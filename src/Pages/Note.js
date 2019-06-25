@@ -92,10 +92,10 @@ class Note extends React.Component {
           alertBgAdd : true,
           alertText : "Vous n'avez pas remplie le champ note.",
         })
-      }else if(this.state.title.length >= 19){
+      }else if(this.state.title.length >= 14){
         this.setState({
           alertBgAdd : true,
-          alertText : "Vous pouvez pas metre plus de 19 caractère pour le titre.",
+          alertText : "Vous pouvez pas metre plus de 14 caractère pour le titre.",
         })
       }else{
         this.props.addNote(this.state.title, this.state.note);
@@ -154,10 +154,10 @@ class Note extends React.Component {
           alertBgEdit : true,
           alertText : "Vous n'avez pas remplie le champ note.",
         })
-      }else if(this.state.title.length >= 19){
+      }else if(this.state.title.length >= 14){
         this.setState({
           alertBgEdit : true,
-          alertText : "Vous pouvez pas metre plus de 19 caractère pour le titre.",
+          alertText : "Vous pouvez pas metre plus de 14 caractère pour le titre.",
         })
       }else{
         this.props.editNote(this.state.position, this.state.title, this.state.note);

@@ -28,6 +28,7 @@ class Note extends React.Component {
     this.handleSubmitAddNote = this.handleSubmitAddNote.bind(this);
     this.handleSubmitError = this.handleSubmitError.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
+    this.handleSubmitAddEdit = this.handleSubmitAddEdit.bind(this);
     this.state = {
       modalAdd: false,
       modalEdit : false,
@@ -43,6 +44,7 @@ class Note extends React.Component {
         {title: "Project9", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
         {title: "Project10", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
       ],
+      position : 0,
       title : "",
       note : "",
       alertVide : false,
@@ -76,7 +78,6 @@ class Note extends React.Component {
      }
 
   handleSubmitAddNote(){
-    var ctx = this;
       // console.log("Click détecté")
       // console.log(this.state.title)
       if(this.state.title === "", this.state.note === ""){
@@ -94,23 +95,41 @@ class Note extends React.Component {
       }
 
     handleSubmitEdit(position) {
+
         var list = this.props.Notes
         for (var i = 0; i < list.length; i++) {
-          console.log("title",(list[position].title))
-          console.log("note", (list[position].note))
+          // console.log("title",(list[position].title))
+          // console.log("note", (list[position].note))
           if (position === 0) {
               this.setState({
+                position : position,
                 title : list[position].title,
                 note : list[position].note,
             })
           }else {
               this.setState({
+                position : position,
                 title : list[position].title,
                 note : list[position].note,
             }) 
           }
         }
         this.toggleEdit(position)
+      }
+
+      handleSubmitAddEdit() {
+
+
+        if(this.state.title === "", this.state.note === ""){
+          this.setState({ alertVide: true});
+        }else if(this.state.title.length >= 19){
+          this.setState({ alertVide : false, alertCaractere : true })
+        }else{
+          this.props.editNote(this.state.position,this.state.title, this.state.note);
+          this.setState({ modalAdd : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
+       }
+      
+        // this.toggleEdit();
       }
 
      render() {
@@ -205,7 +224,7 @@ class Note extends React.Component {
                   </Form>
                   </ModalBody>
                   <ModalFooter>
-                    <Button color="success" >Ajouté</Button>{' '}
+                    <Button color="success" onClick={this.handleSubmitAddEdit}>Ajouté</Button>{' '}
                     <Button color="secondary" onClick={this.handleSubmitError}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
@@ -238,10 +257,12 @@ function mapStateToProps(state) {
         position : position,
       }) 
     },
-    editNote(position){
+    editNote(position, title ,note){
       dispatch({
         type : 'editNote',
         position : position,
+        title : title,
+        note : note,
       })
     },
   }

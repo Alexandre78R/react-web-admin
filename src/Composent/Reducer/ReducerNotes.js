@@ -14,11 +14,23 @@ export default function(NoteContent = [], action){
               note : action.note,
               })
               return NoteContentCopy;
-          } else if(action.type === 'editNote'){
-            // console.log("position", action.position)
-            return NoteContentCopy
-          }else {
+                
+        } else if(action.type === 'editNote'){
+          console.log("position ::: ", action.position)
+          console.log("title :::", action.title)
+          console.log("note :::", action.note)
 
-            return NoteContent;
-          }
+          NoteContentCopy.splice(action.position, 1, ({
+            title : action.title,
+            note : action.note,
+            }))
+          // NoteContentCopy.push({
+          //   title : action.title,
+          //   note : action.note,
+          //   })
+          return NoteContentCopy
+        }else {
+          
+          return NoteContent;
         }
+      }

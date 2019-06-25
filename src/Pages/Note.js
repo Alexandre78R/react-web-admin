@@ -47,8 +47,8 @@ class Note extends React.Component {
       position : 0,
       title : "",
       note : "",
-      alertVide : false,
-      alertCaractere : false,
+      alertBg : false,
+      alertText : "",
     };
 
     this.toggleAdd = this.toggleAdd.bind(this);
@@ -80,13 +80,30 @@ class Note extends React.Component {
   handleSubmitAddNote(){
       // console.log("Click détecté")
       // console.log(this.state.title)
-      if(this.state.title === "", this.state.note === ""){
-        this.setState({ alertVide: true});
+      if(this.state.title === ""){
+        this.setState({
+          alertBg: true,
+          alertText: "Vous n'avez pas remplie le champ titre.",
+        });
+      }else if(this.state.note === ""){
+        this.setState({
+          alertBg : true,
+          alertText : "Vous n'avez pas remplie le champ note.",
+        })
       }else if(this.state.title.length >= 19){
-        this.setState({ alertVide : false, alertCaractere : true })
+        this.setState({
+          alertBg : true,
+          alertText : "Vous pouvez pas metre plus de 19 caractère pour le titre.",
+        })
       }else{
         this.props.addNote(this.state.title, this.state.note);
-        this.setState({ modalAdd : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
+        this.setState({
+          modalAdd : false,
+          alertBg : false,
+          alertText : "",
+          title : "",
+          note : "",
+        });
      }
     }
 
@@ -125,11 +142,11 @@ class Note extends React.Component {
         }else if(this.state.title.length >= 19){
           this.setState({ alertVide : false, alertCaractere : true })
         }else{
-          this.props.editNote(this.state.position,this.state.title, this.state.note);
+          this.props.editNote(this.state.position, this.state.title, this.state.note);
           this.setState({ modalAdd : false , alertVide : false, alertCaractere : false,  title : "", note : ""});
        }
-      
-        // this.toggleEdit();
+
+
       }
 
      render() {
@@ -177,11 +194,8 @@ class Note extends React.Component {
                   <ModalBody>
                    <Form>
                    <FormGroup>
-                     <Alert color="danger" isOpen={this.state.alertVide} >
-                      Vous n'avez pas remplis tous les champs.
-                      </Alert>
-                      <Alert color="danger" isOpen={this.state.alertCaractere} >
-                      Pour le titre vous pouvez utiliser maximun 19 caractères.
+                     <Alert color="danger" isOpen={this.state.alertBg} >
+                      {this.state.alertText}
                       </Alert>
                       <Label for="exampleTime">Titre :</Label>
                       <Input

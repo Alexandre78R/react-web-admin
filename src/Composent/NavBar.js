@@ -32,7 +32,7 @@ class NavBar extends React.Component {
   }
 
   componentWillMount() {
-    var list = this.props.Tables
+    var list = this.props.Messages
     console.log("Table", list)
     for (var i = 0; i < list.length; i++) {
           this.setState({
@@ -81,10 +81,9 @@ class NavBar extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log("Table::::", state) 
+    // console.log("Message::::", state.Messages) 
      return ({
-      Tables: state.Tables,
-   
+      Messages: state.Messages,
    })
    }
   

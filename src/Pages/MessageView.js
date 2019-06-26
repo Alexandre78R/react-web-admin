@@ -30,8 +30,9 @@ class MessageView extends React.Component {
         };
     }
 
+
     componentWillMount() {
-        var list = this.props.Tables
+        var list = this.props.Messages
         console.log("Table", list)
         for (var i = 0; i < list.length; i++) {
           if (this.state.key === list[i].key) {
@@ -44,7 +45,7 @@ class MessageView extends React.Component {
             })
           }
         }
-      }
+    }
 
   render() {
       
@@ -132,9 +133,9 @@ class MessageView extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log("Table::::", state) 
+    // console.log("Messages::::", state.Messages) 
      return ({
-      Tables: state.Tables,
+      Messages: state.Messages,
    
    })
    }

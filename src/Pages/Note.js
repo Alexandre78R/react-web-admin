@@ -223,7 +223,7 @@ class Note extends React.Component {
               }
 
                <Modal isOpen={this.state.modalAdd} toggle={this.toggleAdd} className={this.props.className}>
-                  <ModalHeader toggle={this.handleSubmitError}>Ajouté une note :</ModalHeader>
+                  <ModalHeader>Ajouté une note :</ModalHeader>
                   <ModalBody>
                    <Form>
                    <FormGroup>
@@ -251,7 +251,7 @@ class Note extends React.Component {
                 </Modal>
 
                 <Modal isOpen={this.state.modalEdit} toggle={this.toggleEdit} className={this.props.className}>
-                  <ModalHeader toggle={this.handleSubmitError}>Modifier la note :</ModalHeader>
+                  <ModalHeader >Modifier la Note :</ModalHeader>
                   <ModalBody>
                   <Form>
                   <FormGroup>

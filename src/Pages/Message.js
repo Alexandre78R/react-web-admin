@@ -60,11 +60,10 @@ class Message extends React.Component {
   
   componentWillMount(){
       
-   var message_boucle = this.state.messageData.map(
+   this.state.messageData.map(
         (message, i) => {
           // console.log("messageData2",message.object, message.expediteur, message.date)
-           this.props.tab(message.key, message.object, message.expediteur, message.date, message.message)
-          return (message_boucle)
+           this.props.addMessage(message.key, message.object, message.expediteur, message.date, message.message)
         }
       );
     // return message_boucle;
@@ -82,17 +81,14 @@ class Message extends React.Component {
 
     const { currentPage } = this.state;
     this.pageSize = 6
-    this.pagesCount = Math.ceil(this.props.Tables.length / this.pageSize);    
+    this.pagesCount = Math.ceil(this.props.Messages.length / this.pageSize);    
 
-    this.dataSet = this.props.Tables.map(
+    this.dataSet = this.props.Messages.map(
       (message, i) => {
-// console.log("Posiotion Tables", i)
+// console.log("Posiotion", i)
 // console.log(this.pagesCount)
 
         return (
-          // <div>
-          //   {console.log("PageSize", this.pagesCount, this.pageSize)}
-          //   {(this.pagesCount == currentPage - 1) ?
             <tr>
             <td><i className="fas fa-envelope"></i></td>
             <td>{message.object}</td>
@@ -100,14 +96,10 @@ class Message extends React.Component {
             <td>{message.date}</td>
             <td>
               <Button className = "buttonTable" color="success"><Link className="textBtnTableMessage" to={'/messageView/' + (message.key)}>View</Link></Button>
-              <Button className = "buttonTable" color="danger" onClick= {() => this.props.deleteTab(i)}><Link className="textBtnTableMessage" to={'/message/#' + (message.key)}>Delete</Link></Button>
+              <Button className = "buttonTable" color="danger" onClick= {() => this.props.deleteMessage(i)}><Link className="textBtnTableMessage" to={'/message/#' + (message.key)}>Delete</Link></Button>
             </td>
             
             </tr>
-            // :
-            // <td><Button color="danger" href = {'#' + (i + 1)} onClick= {() => this.props.deleteTab(i)}>Delete</Button></td>
-            // }
-            // </div>
         )
       }
     );    
@@ -185,18 +177,18 @@ class Message extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("Table::::",state.Tables) 
+  // console.log("Messages::::",state.Messages) 
   console.log("state", state)
    return ({
-    Tables: state.Tables,
+    Messages: state.Messages,
  })
  }
 
 function mapDispatchToProps(dispatch) {
   return {
-    tab(key, object, expediteur, date, message) { 
+    addMessage(key, object, expediteur, date, message) { 
       dispatch({
-      type: 'table',
+      type: 'addMessage',
       key : key,
       object : object,
       expediteur: expediteur,
@@ -204,9 +196,9 @@ function mapDispatchToProps(dispatch) {
       message : message,
     }) 
    },
-    deleteTab(position) { 
+    deleteMessage(position) { 
       dispatch({
-        type: 'deleteTable',
+        type: 'deleteMessage',
         position : position,
       }) 
     },

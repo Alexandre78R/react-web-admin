@@ -22,7 +22,7 @@ class NavBar extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      key : "",
+      messageCount : 0,
     };
   }
   toggle() {
@@ -32,13 +32,22 @@ class NavBar extends React.Component {
   }
 
   componentWillMount() {
-    var list = this.props.Messages
-    console.log("Table", list)
-    for (var i = 0; i < list.length; i++) {
-          this.setState({
-            key : i,
-        })
-    }
+    // console.log("message", this.props.Messages.length)
+    // for (var i = 0; i < this.props.Messages.length; i++) {
+    //   console.log("message", this.props.Messages.length)
+    //       this.setState({
+    //         messageCount : this.props.Messages.length,
+    //     })
+    // }
+        //   this.setState({
+        //     messageCount : this.props.Messages.length,
+        // })
+        this.props.Messages.map(
+          (message, i) => {
+             this.props.addCountMessage(i)
+          }
+        );    
+        console.log("Message :", this.props.Messages)  
   }
 
   render() {
@@ -57,7 +66,7 @@ class NavBar extends React.Component {
             </NavItem>
             <NavItem className="nav-item dropdown no-arrow mx-1">
             <Link className="nav-link" to={'/message/'}>
-              <span className="badge badge-danger">{this.state.key === "" ? 0 : this.state.key }</span>
+              <span className="badge badge-danger">{this.state.messageCount}</span>
               <i className="fas fa-envelope fa-fw"></i>
             </Link>
             </NavItem>
@@ -85,6 +94,17 @@ function mapStateToProps(state) {
      return ({
       Messages: state.Messages,
    })
-   }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addCountMessage(i) { 
+      dispatch({
+      type: 'addCountMessage',
+      i : i,
+    }) 
+  }
+ }
+}
   
-   export default connect(mapStateToProps, null)(NavBar);
+   export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

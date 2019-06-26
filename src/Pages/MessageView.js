@@ -33,7 +33,7 @@ class MessageView extends React.Component {
 
     componentWillMount() {
         var list = this.props.Messages
-        console.log("Table", list)
+        // console.log("Message", list)
         for (var i = 0; i < list.length; i++) {
           if (this.state.key === list[i].key) {
               this.setState({

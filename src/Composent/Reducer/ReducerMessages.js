@@ -1,9 +1,8 @@
 export default function(MessageContent = [], action){
         // console.log("Action Reducer -->",action)
         // console.log("TableContent -->",TableContent) 
-
+        
         var MessageContentCopy = [...MessageContent]
-
         if (action.type === 'deleteMessage') {
             // console.log("action.position", action.position)
           MessageContentCopy.splice(action.position,1);
@@ -19,7 +18,10 @@ export default function(MessageContent = [], action){
             return MessageContentCopy
           } else if(action.type === 'viewMessage'){
             return MessageContentCopy
-          } else {
+          } else if(action.type === 'addCountMessage'){
+            action.i++
+            return MessageContent
+          }else{
             return MessageContentCopy;
           }
         }

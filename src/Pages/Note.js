@@ -226,19 +226,19 @@ class Note extends React.Component {
                   <ModalHeader>Ajouté une note :</ModalHeader>
                   <ModalBody>
                    <Form>
-                   <FormGroup>
-                     <Alert color="danger" isOpen={this.state.alertBgAdd}>
-                      {this.state.alertText}
-                      </Alert>
-                      <Label for="exampleTime">Titre :</Label>
-                      <Input
-                        type="text"
-                        name="titre"
-                        id="exampletext"
-                        onChange={e=>this.setState({title:e.target.value})}
-                      />
-                      </FormGroup>
-                      <FormGroup>
+                    <FormGroup>
+                      <Alert color="danger" isOpen={this.state.alertBgAdd}>
+                        {this.state.alertText}
+                        </Alert>
+                        <Label for="exampleTime">Titre :</Label>
+                        <Input
+                          type="text"
+                          name="text"
+                          id="exampletext"
+                          onChange={e=>this.setState({title:e.target.value})}
+                        />
+                        </FormGroup>
+                        <FormGroup>
                         <Label for="exampleText">Note :</Label>
                         <Input type="textarea" name="note" id="exampleText2" onChange={e=>this.setState({note:e.target.value})}/>
                       </FormGroup>

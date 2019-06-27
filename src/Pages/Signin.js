@@ -28,24 +28,22 @@ class SignIn extends React.Component {
 
               <Container className="container-fluid page">
                <Row>
-                  <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }} className="text-center">
-                    <CardHeader tag="h5">Sign In</CardHeader>
-                    <CardBody>
-
-                      <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="email@mon-site.fr" />
-                      </FormGroup>
-
-                      <FormGroup>
-                        <Label for="examplePassword">Password</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="*******" />
-                      </FormGroup>
-                      <a href="/dashboard">
-                      <Button color = "success">Sign In</Button>
-                      </a>
-                    </CardBody>
-                  </Card>
+                  <div class="wrapper">
+                    <div id="formContent">
+                      <div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
+                        <h5>Connexion</h5>
+                      </div>                      
+                      <form>
+                        <input type="textLogin" id="login" class="fadeIn second" name="login" placeholder="Username"/>
+                        <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password"/>
+                        <input type="submit" class="fadeIn fourth" value="Log In"/>
+                      </form>
+                      <div id="formFooter">
+                        <a class="underlineHover" href="#">Mot de passe oublié?</a>
+                      </div>
+                    </div>
+                  </div>
                </Row>
              </Container>
              {/* <Footer/> */}

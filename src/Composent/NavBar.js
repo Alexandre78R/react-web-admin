@@ -42,11 +42,11 @@ class NavBar extends React.Component {
         //   this.setState({
         //     messageCount : this.props.Messages.length,
         // })
-        this.props.Messages.map(
-          (message, i) => {
-             this.props.addCountMessage(i)
-          }
-        );    
+        // this.props.Messages.map(
+        //   (message, i) => {
+        //      this.props.addCountMessage(i)
+        //   }
+        // );    
         console.log("Message :", this.props.Messages)  
   }
 

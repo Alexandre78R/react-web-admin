@@ -523,13 +523,34 @@ input[type=password]:placeholder {
 
 .CardMenuProfil{
   width: 20%;
-  margin-top: 3%;
+  margin-left: -4%;
+  margin-right: 2%;
 }
 
+.ContentProfil{
+  width: 100%;
+  /* margin-top: 30%; */
+
+}
 .fa-cogs{
   color : #555;
 }
 
+.fa-user{
+  color : #555;
+}
+.fa-cog{
+  color : #555;
+}
+.fa-info-circle{
+  color : #555;
+}
+.fa-key{
+  color : #555;
+}
+.fa-sign-out-alt{
+  color : #555;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -2,14 +2,12 @@ import React from 'react';
 import '../App.css';
 import {
   Row,
-  Container,  
+  Container, 
+  Col, 
   ListGroup,
   ListGroupItem,
-  TabContent,
   TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  TabContent,
   Card,
   Button,
   CardHeader,
@@ -25,8 +23,9 @@ class Setting extends React.Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    
     this.state = {
-      activeTab: '1'
+      activeTab: "1",
     };
   }
 
@@ -54,14 +53,66 @@ class Setting extends React.Component {
                   </CardHeader>
                   <CardBody>
                   <ListGroup>
-                      <ListGroupItem onClick={() => { this.toggle('1'); }}>Profils</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle('2'); }}>Setting</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle('3'); }}>Stats</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle('4'); }}>New Password</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle('5'); }}>Disconnection</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("1");}}>Profils</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("2");}}>Setting</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("3");}}>Stats</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("4");}}>New Password</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("5");}}>Disconnection</ListGroupItem>
                   </ListGroup>
                   </CardBody>
                 </Card>
+                <TabContent activeTab={this.state.activeTab}>
+                <TabPane tabId="1">
+                  <Card className="ContentProfil">
+                    <CardHeader>
+                      <i className="fas fa-user"></i> Profils 
+                    </CardHeader>
+                    <CardBody>
+                      <h4>Profils</h4>
+                    </CardBody>
+                  </Card>
+                </TabPane>
+                <TabPane tabId="2">
+                  <Card className="ContentProfil">
+                    <CardHeader>
+                      <i className="fas fa-cog"></i> Setting 
+                    </CardHeader>
+                    <CardBody>
+                      <h4>Setting</h4>
+                    </CardBody>
+                  </Card>
+                </TabPane>
+                <TabPane tabId="3">
+                  <Card className="ContentProfil">
+                    <CardHeader>
+                      <i className="fas fa-info-circle"></i> Stats 
+                    </CardHeader>
+                    <CardBody>
+                      <h4>Stats</h4>
+                    </CardBody>
+                  </Card>
+                </TabPane>
+                <TabPane tabId="4">
+                  <Card className="ContentProfil">
+                    <CardHeader>
+                      <i className="fas fa-key"></i> New Password 
+                    </CardHeader>
+                    <CardBody>
+                      <h4>New Password</h4>
+                    </CardBody>
+                  </Card>
+                </TabPane>
+                <TabPane tabId="5">
+                  <Card className="ContentProfil">
+                    <CardHeader>
+                     <i className="fas fa-sign-out-alt"></i> Disconnection
+                    </CardHeader>
+                    <CardBody>
+                      <h4>Disconnection</h4>
+                    </CardBody>
+                  </Card>
+                </TabPane>
+                </TabContent>
                </Row>
              </Container>
 

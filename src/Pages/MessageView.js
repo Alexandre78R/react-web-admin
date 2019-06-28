@@ -103,7 +103,7 @@ class MessageView extends React.Component {
                             <div className="cardBody">
                                 <div className="d-lfex justify-content-center flex-column">
                                     <div className="name_container">
-                                        <div className="name">Alexandre</div>
+                                        <div className="name">{this.state.expediteur}</div>
                                     </div>
                                     <div className="address">Description</div>
                                 </div>

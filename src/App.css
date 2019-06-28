@@ -507,6 +507,28 @@ input[type=password]:placeholder {
   margin-top: 3%;
 }
 
+/* Profils */
+.list-group-item{
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  color: #343A40
+}
+.list-group-item:hover {
+  color : #1D83D3;
+  width: 110%;
+  margin-left: 2%;
+  font-size: 110%;
+  background: #F0F0F0;
+}
+
+.CardMenuProfil{
+  width: 20%;
+  margin-top: 3%;
+}
+
+.fa-cogs{
+  color : #555;
+}
 
 @keyframes App-logo-spin {
   from {

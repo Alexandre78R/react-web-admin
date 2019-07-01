@@ -333,6 +333,11 @@ html, body{
   margin-top : 2%;
 }
 
+.note-footer{
+  background: #d6d6d6;
+  border-radius: 4px;
+  text-align: center;
+}
 .container {
   padding: 30px;
 }
@@ -513,6 +518,7 @@ input[type=password]:placeholder {
   border-top-right-radius: .25rem;
   color: #343A40
 }
+
 .list-group-item:hover {
   color : #1D83D3;
   width: 110%;

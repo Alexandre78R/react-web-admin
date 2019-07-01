@@ -12,6 +12,8 @@ export default function(NoteContent = [], action){
             NoteContentCopy.push({
               title : action.title,
               note : action.note,
+              date : action.date,
+              temps : action.temps
               })
               return NoteContentCopy;
                 
@@ -19,10 +21,11 @@ export default function(NoteContent = [], action){
           // console.log("position ::: ", action.position)
           // console.log("title :::", action.title)
           // console.log("note :::", action.note)
-
           NoteContentCopy.splice(action.position, 1, ({
             title : action.title,
             note : action.note,
+            date : action.date,
+            temps : action.temps,
             }))
 
           return NoteContentCopy

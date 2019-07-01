@@ -30,27 +30,35 @@ class Note extends React.Component {
     this.handleSubmitErrorEdit = this.handleSubmitErrorEdit.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     this.handleSubmitAddEdit = this.handleSubmitAddEdit.bind(this);
+    this.addDate = this.addDate.bind(this);
+    this.addTemps = this.addTemps.bind(this);  
+    
     this.state = {
       modalAdd: false,
       modalEdit : false,
       notes : [
-        {title: "Project1", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project2", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project3", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project4", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project5", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project6", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project7", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project8", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project9", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
-        {title: "Project10", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim."},
+        {title: "Project1", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        {title: "Project2", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        {title: "Project3", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project4", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project5", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project6", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project7", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project8", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project9", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+        // {title: "Project10", note: "Ipsum incididunt esse ex amet velit deserunt ea id et velit qui. Sit amet excepteur aute aliquip nulla ea reprehenderit ullamco sit. Ea exercitation cupidatat tempor aliqua ex sunt aliquip laboris occaecat velit occaecat non pariatur. Laborum cillum est ut esse enim excepteur eiusmod nulla nostrud excepteur labore nisi dolore. Ut sit excepteur nulla consequat magna proident consectetur amet magna id velit aute. Id amet eiusmod enim magna sint consectetur reprehenderit nisi ad et. Voluptate exercitation eiusmod qui nulla quis est sunt id consequat minim. Ut reprehenderit duis in nisi eiusmod non duis aliqua anim nulla qui. Ipsum quis velit amet laboris irure aliqua quis aliqua do veniam non ut laborum minim.", date : "01/07/2019", temps : "00H00"},
+      
       ],
       position : 0,
       title : "",
       note : "",
-      alertBgAdd : false,
-      alertBgEdit : false,
+      alertBgAddRed : false,
+      alertBgAddGreen : false,
+      alertBgEditRed : false,
+      alertBgEditGreen : false,
       alertText : "",
+      date : "",
+      temps : "",
     };
 
     this.toggleAdd = this.toggleAdd.bind(this);
@@ -73,46 +81,113 @@ class Note extends React.Component {
       
      this.state.notes.map(
          (note, i) => {
-            this.props.addNote(note.title, note.note)
+            this.props.addNote(note.title, note.note, note.date, note.temps)
          }
        );
      // return message_boucle;
      }
+     
+    addDate(){
+      // console.log("addDate")
+      var date = new Date();
+      var message = "";
+      if(date.getDate() < 10){
+        message += "0" + date.getDate() + "/"
+      }else{
+        message += date.getDate() + "/"
+      }
+
+      if(date.getMonth() <10){
+        message += "0" + (date.getMonth() + 1) + "/";
+      }else{
+        message += (date.getMonth() + 1) + "/"
+      }
+
+      message += date.getFullYear() + " ";
+      // console.log(message)
+
+      this.setState({
+        date : message,
+      });
+      // console.log("setStats (date)", this.state.date)
+  }
+
+  addTemps(){
+    // console.log("addTemps")
+    var date = new Date();
+    var message = "";
+
+    if(date.getHours() < 10){
+      message += "0" + date.getHours() + "h";
+    }else{
+      message += date.getHours() + "h";
+    }
+
+    if(date.getMinutes() < 10){
+    message += "0" + date.getMinutes();
+    }else{
+    message += date.getMinutes();
+  }
+    // console.log(message)
+    this.setState({
+      temps : message,
+    })
+    // console.log("setStats (temps)", this.state.temps)
+  }
 
   handleSubmitAddNote(){
       // console.log("Click détecté")
       // console.log(this.state.title)
       if(this.state.title === ""){
         this.setState({
-          alertBgAdd: true,
+          alertBgAddRed: true,
           alertText: "Vous n'avez pas remplie le champ titre.",
         });
       }else if(this.state.note === ""){
         this.setState({
-          alertBgAdd : true,
+          alertBgAddRed : true,
           alertText : "Vous n'avez pas remplie le champ note.",
         })
       }else if(this.state.title.length >= 14){
         this.setState({
-          alertBgAdd : true,
+          alertBgAddRed : true,
           alertText : "Vous pouvez pas metre plus de 13 caractère pour le titre.",
         })
       }else{
-        this.props.addNote(this.state.title, this.state.note);
+//      console.log("setStats (date) dans formulaire", this.state.date)
+        // var dateActuel = Date.now();
+        // var millis = Date.now() - dateActuel;
+        var ctx = this;
+        this.addDate();
+        this.addTemps();
+        // console.log("Début du timer...");
         this.setState({
-          modalAdd : false,
-          alertBgAdd : false,
-          alertText : "",
-          title : "",
-          note : "",
-        });
-     }
+          alertBgAddRed : false,
+          alertBgAddGreen : true,
+          alertText : "Merci de patienter quelques secondes...",
+        })
+        setTimeout(function() {
+          // console.log("Temps d'attente fini : " + Math.floor(millis/3000));
+          ctx.props.addNote(ctx.state.title, ctx.state.note, ctx.state.date, ctx.state.temps);
+          ctx.setState({
+            modalAdd : false,
+            alertBgAddRed : false,
+            alertBgAddGreen : false,
+            alertText : "",
+            title : "",
+            note : "",
+            date : "",
+            temps : "",
+          });
+        }, 3000);
+      }
     }
 
   handleSubmitErrorAdd(){
     this.setState({
       modalAdd : false,
-      alertBgAdd : false,
+      alertBgAddRed : false,
+      alertBgAddGreen : false,
       alertText : "",
       title : "",
       note : ""
@@ -146,28 +221,44 @@ class Note extends React.Component {
 
       if(this.state.title === ""){
         this.setState({
-          alertBgEdit: true,
+          alertBgEditRed: true,
           alertText: "Vous n'avez pas remplie le champ titre.",
         });
       }else if(this.state.note === ""){
         this.setState({
-          alertBgEdit : true,
+          alertBgEditRed : true,
           alertText : "Vous n'avez pas remplie le champ note.",
         })
       }else if(this.state.title.length >= 14){
         this.setState({
-          alertBgEdit : true,
+          alertBgEditRed : true,
           alertText : "Vous pouvez pas metre plus de 13 caractère pour le titre.",
         })
       }else{
-        this.props.editNote(this.state.position, this.state.title, this.state.note);
+        var ctx = this;
+        this.addDate();
+        this.addTemps();
+        // console.log("Début du timer...");
         this.setState({
-          modalEdit : false,
-          alertBgEdit : false,
-          alertText : "",
-          title : "",
-          note : "",
-        });
+          alertBgEditRed : false,
+          alertBgEditGreen : true,
+          alertText : "Merci de patienter quelques secondes...",
+        })
+        setTimeout(function() {
+          // console.log("Temps d'attente fini : " + Math.floor(millis/3000))
+          
+          ctx.props.editNote(ctx.state.position, ctx.state.title, ctx.state.note, ctx.state.date, ctx.state.temps);
+          ctx.setState({
+            modalEdit : false,
+            alertBgEditRed : false,
+            alertBgEditGreen : false,
+            alertText : "",
+            title : "",
+            note : "",
+            date : "",
+            temps : "",
+          });
+        }, 3000);
      }
 
     }
@@ -175,7 +266,8 @@ class Note extends React.Component {
     handleSubmitErrorEdit(){
       this.setState({
         modalEdit : false,
-        alertBgEdit : false,
+        alertBgEditRed : false,
+        alertBgEditGreen : false,
         alertText : "",
         title : "",
         note : ""
@@ -195,6 +287,9 @@ class Note extends React.Component {
                </strong>
                <div className="note-body">
                  <p>{note.note}</p>
+               </div>
+               <div className="note-footer">
+                 <p>{note.date} à {note.temps}</p>
                </div>
            </div>
           </Draggable>
@@ -227,9 +322,12 @@ class Note extends React.Component {
                   <ModalBody>
                    <Form>
                     <FormGroup>
-                      <Alert color="danger" isOpen={this.state.alertBgAdd}>
+                      <Alert color="danger" isOpen={this.state.alertBgAddRed}>
                         {this.state.alertText}
-                        </Alert>
+                      </Alert>
+                      <Alert color="success" isOpen={this.state.alertBgAddGreen}>
+                        {this.state.alertText}
+                      </Alert>
                         <Label for="exampleTime">Titre :</Label>
                         <Input
                           type="text"
@@ -255,7 +353,10 @@ class Note extends React.Component {
                   <ModalBody>
                   <Form>
                   <FormGroup>
-                      <Alert color="danger" isOpen={this.state.alertBgEdit}>
+                      <Alert color="danger" isOpen={this.state.alertBgEditRed}>
+                      {this.state.alertText}
+                      </Alert>
+                      <Alert color="success" isOpen={this.state.alertBgEditGreen}>
                       {this.state.alertText}
                       </Alert>
                       <Label for="exampleTime">Titre :</Label>
@@ -294,11 +395,13 @@ function mapStateToProps(state) {
 
  function mapDispatchToProps(dispatch) {
   return {
-    addNote(title, note) { 
+    addNote(title, note, date, temps) { 
       dispatch({
       type: 'addNote',
       title : title,
       note : note,
+      date : date,
+      temps : temps,
     }) 
    },
     deleteNote(position) { 
@@ -307,12 +410,14 @@ function mapStateToProps(state) {
         position : position,
       }) 
     },
-    editNote(position, title ,note){
+    editNote(position, title ,note, date, temps){
       dispatch({
         type : 'editNote',
         position : position,
         title : title,
         note : note,
+        date : date,
+        temps : temps,
       })
     },
   }

@@ -13,7 +13,8 @@ export default function(NoteContent = [], action){
               title : action.title,
               note : action.note,
               date : action.date,
-              temps : action.temps
+              temps : action.temps,
+              color : action.color,
               })
               return NoteContentCopy;
                 
@@ -26,6 +27,7 @@ export default function(NoteContent = [], action){
             note : action.note,
             date : action.date,
             temps : action.temps,
+            color : action.color,
             }))
 
           return NoteContentCopy

@@ -25,7 +25,7 @@ export default function(NoteContent = [], action){
           NoteContentCopy.splice(action.position, 1, ({
             title : action.title,
             note : action.note,
-            date : action.date,
+            date :  action.date,
             temps : action.temps,
             color : action.color,
             }))

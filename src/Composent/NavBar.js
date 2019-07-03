@@ -33,12 +33,14 @@ class NavBar extends React.Component {
 
   componentWillMount() {
     // console.log("message", this.props.Messages.length)
-    // for (var i = 0; i < this.props.Messages.length; i++) {
-    //   console.log("message", this.props.Messages.length)
-    //       this.setState({
-    //         messageCount : this.props.Messages.length,
-    //     })
-    // }
+    setTimeout(function() {
+      // console.log(this.props.Messages)
+      // for (var i = 0; i < this.props.Messages.length; i++) {
+        // console.log("message", this.props.Messages.length)
+          //   this.setState({
+          //     messageCount : this.props.Messages.length,
+          // })
+      // }
         //   this.setState({
         //     messageCount : this.props.Messages.length,
         // })
@@ -47,7 +49,8 @@ class NavBar extends React.Component {
         //      this.props.addCountMessage(i)
         //   }
         // );    
-        console.log("Message :", this.props.Messages)  
+        // console.log("Message :", this.props.Messages)  
+    },1000)
   }
 
   render() {
@@ -95,16 +98,5 @@ function mapStateToProps(state) {
       Messages: state.Messages,
    })
 }
-
-function mapDispatchToProps(dispatch) {
-  return {
-    addCountMessage(i) { 
-      dispatch({
-      type: 'addCountMessage',
-      i : i,
-    }) 
-  }
- }
-}
   
-   export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+   export default connect(mapStateToProps, null)(NavBar);

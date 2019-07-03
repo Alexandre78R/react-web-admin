@@ -174,12 +174,14 @@ class Note extends React.Component {
           alertBgAddRed : false,
           progressBar : true,
         })
+
         var tempsAttente = 1500;
+        var tempsChargement = 1;
 
         setTimeout(function() {
           var elem = document.getElementById("myBar");  
           var width = 1;
-          var id = setInterval(frame, (tempsAttente / 101));
+          var id = setInterval(frame, (tempsAttente / (100 + tempsChargement) ));
           function frame() {
             if (width >= 100) {
               clearInterval(id);
@@ -189,7 +191,7 @@ class Note extends React.Component {
               elem.innerHTML = width * 1  + '%';
             }
           }
-        }, 1);  
+        }, tempsChargement);  
         setTimeout(function() {
           // console.log("Temps d'attente fini : " + Math.floor(millis/3000));
           ctx.props.addNote(ctx.state.title, ctx.state.note, ctx.state.date, ctx.state.temps, ctx.state.color);
@@ -274,11 +276,12 @@ class Note extends React.Component {
           progressBar : true,
         })
         var tempsAttente =  1000;
+        var tempsChargement = 1;
 
         setTimeout(function() {
           var elem = document.getElementById("myBar");  
           var width = 1;
-          var id = setInterval(frame, (tempsAttente / 101));
+          var id = setInterval(frame, (tempsAttente / (100 + tempsChargement) ));
           function frame() {
             if (width >= 100) {
               clearInterval(id);
@@ -288,7 +291,7 @@ class Note extends React.Component {
               elem.innerHTML = width * 1  + '%';
             }
           }
-        }, 1);  
+        }, tempsChargement);  
 
         setTimeout(function() {
           // console.log("Temps d'attente fini : " + Math.floor(millis/3000))
@@ -419,7 +422,6 @@ class Note extends React.Component {
                         <Alert color="danger" isOpen={this.state.alertBgEditRed}>
                         {this.state.alertText}
                         </Alert>
-
                         {this.state.progressBar === false 
                         ?
                         ""

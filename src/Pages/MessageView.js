@@ -57,10 +57,11 @@ class MessageView extends React.Component {
     <SideBar/>
 
 <Container className="container-fluid page">
-    <Row>	
+    <Row>
 
+{/* Dans le Breadcrumb pas de Link (react-router-dom) a cause duplication message dans liste. */}
 <Breadcrumb className="breadcrumbBg">
-    <BreadcrumbItem><Link to={'/message/'} className="breadcrumbText">Liste des messages</Link></BreadcrumbItem>
+    <BreadcrumbItem className="breadcrumbText"><a href="/message/">Liste des messages</a></BreadcrumbItem>
     <BreadcrumbItem active>{this.state.object}</BreadcrumbItem>
 </Breadcrumb>
 

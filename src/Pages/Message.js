@@ -69,7 +69,7 @@ class Message extends React.Component {
     // return message_boucle;
     }
   
-  handleClick(e, index) {
+  handleClick(e, index){
     
     e.preventDefault();
     this.setState({
@@ -77,6 +77,7 @@ class Message extends React.Component {
     });
     
   }
+
   render() {
 
     const { currentPage } = this.state;

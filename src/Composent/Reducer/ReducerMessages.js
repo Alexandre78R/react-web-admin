@@ -16,8 +16,6 @@ export default function(MessageContent = [], action){
             message : action.message,
             })
             return MessageContentCopy
-          } else if(action.type === 'viewMessage'){
-            return MessageContentCopy
           } else if(action.type === 'addCountMessage'){
             action.i++
             return MessageContent

@@ -13,6 +13,7 @@ import {
   Label, 
   Input, 
   Alert,
+  Progress,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -54,9 +55,8 @@ class Note extends React.Component {
       title : "",
       note : "",
       alertBgAddRed : false,
-      alertBgAddGreen : false,
       alertBgEditRed : false,
-      alertBgEditGreen : false,
+      progressBar : false,
       alertText : "",
       date : "",
       temps : "",
@@ -138,7 +138,7 @@ class Note extends React.Component {
   }
 
   handleChangeColor = (color) => {
-    console.log("color",color.hex)
+    // console.log("color",color.hex)
     this.setState({ color: color.hex });
   };
 
@@ -161,33 +161,45 @@ class Note extends React.Component {
           alertText : "Vous pouvez pas metre plus de 13 caractère pour le titre.",
         })
       }else{
-//      console.log("setStats (date) dans formulaire", this.state.date)
-        // var dateActuel = Date.now();
-        // var millis = Date.now() - dateActuel;
         var ctx = this;
         this.addDate();
         this.addTemps();
         // console.log("Début du timer...");
         this.setState({
           alertBgAddRed : false,
-          alertBgAddGreen : true,
-          alertText : "Merci de patienter quelques secondes...",
+          progressBar : true,
         })
+        var sec = 3000;
+
+        setTimeout(function() {
+          var elem = document.getElementById("myBar");  
+          var width = 1;
+          var id = setInterval(frame, (sec / 101));
+          function frame() {
+            if (width >= 100) {
+              clearInterval(id);
+            } else {
+              width++; 
+              elem.style.width = width + '%'; 
+              elem.innerHTML = width * 1  + '%';
+            }
+          }
+        }, 1);  
         setTimeout(function() {
           // console.log("Temps d'attente fini : " + Math.floor(millis/3000));
           ctx.props.addNote(ctx.state.title, ctx.state.note, ctx.state.date, ctx.state.temps, ctx.state.color);
           ctx.setState({
             modalAdd : false,
             alertBgAddRed : false,
-            alertBgAddGreen : false,
             alertText : "",
             title : "",
             note : "",
             date : "",
             temps : "",
             color : "#2196F3",
+            progressBar : false,
           });
-        }, 3000);
+        }, sec);
       }
     }
 
@@ -195,13 +207,13 @@ class Note extends React.Component {
     this.setState({
       modalAdd : false,
       alertBgAddRed : false,
-      alertBgAddGreen : false,
       alertText : "",
       title : "",
       note : "",
       date : "",
       temps : "",
       color : "#2196F3",
+      progressBar : false,
     });
   }
 
@@ -247,32 +259,48 @@ class Note extends React.Component {
           alertBgEditRed : true,
           alertText : "Vous pouvez pas metre plus de 13 caractère pour le titre.",
         })
-      }else{
+      }else{ 
         var ctx = this;
         this.addDate();
         this.addTemps();
         // console.log("Début du timer...");
         this.setState({
           alertBgEditRed : false,
-          alertBgEditGreen : true,
-          alertText : "Merci de patienter quelques secondes...",
+          progressBar : true,
         })
+        var sec = 3000;
+
+        setTimeout(function() {
+          var elem = document.getElementById("myBar");  
+          var width = 1;
+          var id = setInterval(frame, (sec / 101));
+          function frame() {
+            if (width >= 100) {
+              clearInterval(id);
+            } else {
+              width++; 
+              elem.style.width = width + '%'; 
+              elem.innerHTML = width * 1  + '%';
+            }
+          }
+        }, 1);  
+
         setTimeout(function() {
           // console.log("Temps d'attente fini : " + Math.floor(millis/3000))
-          
+        
           ctx.props.editNote(ctx.state.position, ctx.state.title, ctx.state.note, ctx.state.date, ctx.state.temps, ctx.state.color);
           ctx.setState({
             modalEdit : false,
             alertBgEditRed : false,
-            alertBgEditGreen : false,
             alertText : "",
             title : "",
             note : "",
             date : "",
             temps : "",
             color : "#2196F3",
+            progressBar : false,
           });
-        }, 3000);
+        }, sec);
      }
 
     }
@@ -281,13 +309,13 @@ class Note extends React.Component {
       this.setState({
         modalEdit : false,
         alertBgEditRed : false,
-        alertBgEditGreen : false,
         alertText : "",
         title : "",
         note : "",
         date : "",
         temps : "",
         color : "#2196F3",
+        progressBar : false,
       });
     }
      render() {
@@ -341,9 +369,14 @@ class Note extends React.Component {
                       <Alert color="danger" isOpen={this.state.alertBgAddRed}>
                         {this.state.alertText}
                       </Alert>
-                      <Alert color="success" isOpen={this.state.alertBgAddGreen}>
-                        {this.state.alertText}
-                      </Alert>
+                      {this.state.progressBar === false 
+                      ?
+                      ""
+                      :
+                      <div id="myProgress">
+                        <div id="myBar">1%</div>
+                      </div>
+                      }
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleTime">Coleur :</Label>
@@ -381,9 +414,15 @@ class Note extends React.Component {
                         <Alert color="danger" isOpen={this.state.alertBgEditRed}>
                         {this.state.alertText}
                         </Alert>
-                        <Alert color="success" isOpen={this.state.alertBgEditGreen}>
-                        {this.state.alertText}
-                        </Alert>
+
+                        {this.state.progressBar === false 
+                        ?
+                        ""
+                        :
+                        <div id="myProgress">
+                          <div id="myBar">1%</div>
+                        </div>
+                        }
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleTime">Coleur :</Label>

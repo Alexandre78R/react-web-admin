@@ -60,7 +60,7 @@ class Note extends React.Component {
       alertText : "",
       date : "",
       temps : "",
-      color : "#2196F3",
+      color : "",
     };
 
     this.toggleAdd = this.toggleAdd.bind(this);
@@ -145,7 +145,12 @@ class Note extends React.Component {
   handleSubmitAddNote(){
       // console.log("Click détecté")
       // console.log(this.state.title)
-      if(this.state.title === ""){
+      if(this.state.color === ""){
+        this.setState({
+          alertBgAddRed: true,
+          alertText: "Vous n'avez pas choisis votre couleur.",
+        });
+      }else if(this.state.title === ""){
         this.setState({
           alertBgAddRed: true,
           alertText: "Vous n'avez pas remplie le champ titre.",
@@ -196,7 +201,7 @@ class Note extends React.Component {
             note : "",
             date : "",
             temps : "",
-            color : "#2196F3",
+            color : "",
             progressBar : false,
           });
         }, sec);
@@ -212,7 +217,7 @@ class Note extends React.Component {
       note : "",
       date : "",
       temps : "",
-      color : "#2196F3",
+      color : "",
       progressBar : false,
     });
   }
@@ -297,7 +302,7 @@ class Note extends React.Component {
             note : "",
             date : "",
             temps : "",
-            color : "#2196F3",
+            color : "",
             progressBar : false,
           });
         }, sec);
@@ -314,7 +319,7 @@ class Note extends React.Component {
         note : "",
         date : "",
         temps : "",
-        color : "#2196F3",
+        color : "",
         progressBar : false,
       });
     }
@@ -333,7 +338,7 @@ class Note extends React.Component {
                  <p>{note.note}</p>
                </div>
                <strong className="note-footer cursor" style={{backgroundColor : note.color,}}>
-                 <p>{note.date} à {note.temps}</p>
+                 <div className="noteFooterText">{note.date} à {note.temps}</div>
                </strong>
            </div>
           </Draggable>

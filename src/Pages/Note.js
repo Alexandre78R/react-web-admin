@@ -148,7 +148,7 @@ class Note extends React.Component {
       if(this.state.color === ""){
         this.setState({
           alertBgAddRed: true,
-          alertText: "Vous n'avez pas choisis votre couleur.",
+          alertText: "Vous n'avez pas choisis la couleur.",
         });
       }else if(this.state.title === ""){
         this.setState({
@@ -174,12 +174,12 @@ class Note extends React.Component {
           alertBgAddRed : false,
           progressBar : true,
         })
-        var sec = 3000;
+        var tempsAttente = 1500;
 
         setTimeout(function() {
           var elem = document.getElementById("myBar");  
           var width = 1;
-          var id = setInterval(frame, (sec / 101));
+          var id = setInterval(frame, (tempsAttente / 101));
           function frame() {
             if (width >= 100) {
               clearInterval(id);
@@ -204,7 +204,7 @@ class Note extends React.Component {
             color : "",
             progressBar : false,
           });
-        }, sec);
+        }, tempsAttente);
       }
     }
 
@@ -273,12 +273,12 @@ class Note extends React.Component {
           alertBgEditRed : false,
           progressBar : true,
         })
-        var sec = 3000;
+        var tempsAttente =  1000;
 
         setTimeout(function() {
           var elem = document.getElementById("myBar");  
           var width = 1;
-          var id = setInterval(frame, (sec / 101));
+          var id = setInterval(frame, (tempsAttente / 101));
           function frame() {
             if (width >= 100) {
               clearInterval(id);
@@ -305,7 +305,7 @@ class Note extends React.Component {
             color : "",
             progressBar : false,
           });
-        }, sec);
+        }, tempsAttente);
      }
 
     }

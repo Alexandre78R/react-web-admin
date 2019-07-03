@@ -304,7 +304,7 @@ class Note extends React.Component {
                <div className="note-body">
                  <p>{note.note}</p>
                </div>
-               <div className="note-footer">
+               <div className="note-footer" style={{backgroundColor : note.color,}}>
                  <p>{note.date} à {note.temps}</p>
                </div>
            </div>

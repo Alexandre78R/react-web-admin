@@ -334,9 +334,9 @@ html, body{
 }
 
 .note-footer{
-  background: #d6d6d6;
   border-radius: 4px;
   text-align: center;
+  color : #fff;
 }
 .container {
   padding: 30px;

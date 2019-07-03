@@ -20,7 +20,7 @@ import SideBar from '../Composent/SideBar';
 // import { Link } from "react-router-dom";
 import Draggable from 'react-draggable';
 import {connect} from 'react-redux';
-import { SketchPicker } from 'react-color';
+import { SliderPicker } from 'react-color';
 
 class Note extends React.Component {
   
@@ -138,6 +138,7 @@ class Note extends React.Component {
   }
 
   handleChangeColor = (color) => {
+      // console.log(color.hex)
     this.setState({ color: color.hex });
   };
 
@@ -215,12 +216,14 @@ class Note extends React.Component {
               position : position,
               title : list[position].title,
               note : list[position].note,
+              color : list[position].color,
           })
         }else {
             this.setState({
               position : position,
               title : list[position].title,
               note : list[position].note,
+              color : list[position].color,
           }) 
         }
       }
@@ -344,7 +347,7 @@ class Note extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleTime">Coleur :</Label>
-                        <SketchPicker
+                        <SliderPicker
                           color={ this.state.color }
                           onChangeComplete={ this.handleChangeColor }
                         />
@@ -374,20 +377,20 @@ class Note extends React.Component {
                   <ModalHeader >Modifier la Note :</ModalHeader>
                   <ModalBody>
                   <Form>
-                  <FormGroup>
-                      <Alert color="danger" isOpen={this.state.alertBgEditRed}>
-                      {this.state.alertText}
-                      </Alert>
-                      <Alert color="success" isOpen={this.state.alertBgEditGreen}>
-                      {this.state.alertText}
-                      </Alert>
-                  </FormGroup>
-                  <FormGroup>
-                        <Label for="exampleTime">Coleur :</Label>
-                        <SketchPicker
-                          color={ this.state.color }
-                          onChangeComplete={ this.handleChangeColor }
-                        />
+                    <FormGroup>
+                        <Alert color="danger" isOpen={this.state.alertBgEditRed}>
+                        {this.state.alertText}
+                        </Alert>
+                        <Alert color="success" isOpen={this.state.alertBgEditGreen}>
+                        {this.state.alertText}
+                        </Alert>
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="exampleTime">Coleur :</Label>
+                      <SliderPicker
+                        color={ this.state.color }
+                        onChangeComplete={ this.handleChangeColor }
+                      />
                   </FormGroup>
                   <FormGroup>
                       <Label for="exampleTime">Titre :</Label>
@@ -398,11 +401,11 @@ class Note extends React.Component {
                         value={this.state.title}
                         onChange={e=>this.setState({title:e.target.value})}
                       />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleText">Note :</Label>
-                        <Input type="textarea" name="note" id="exampleText2" value={this.state.note} onChange={e=>this.setState({note:e.target.value})}/>
-                      </FormGroup>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleText">Note :</Label>
+                    <Input type="textarea" name="note" id="exampleText2" value={this.state.note} onChange={e=>this.setState({note:e.target.value})}/>
+                  </FormGroup>
                   </Form>
                   </ModalBody>
                   <ModalFooter>

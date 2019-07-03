@@ -304,9 +304,9 @@ class Note extends React.Component {
                <div className="note-body">
                  <p>{note.note}</p>
                </div>
-               <div className="note-footer" style={{backgroundColor : note.color,}}>
+               <strong className="note-footer cursor" style={{backgroundColor : note.color,}}>
                  <p>{note.date} à {note.temps}</p>
-               </div>
+               </strong>
            </div>
           </Draggable>
         )

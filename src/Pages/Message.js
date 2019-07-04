@@ -19,8 +19,8 @@ import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
 
 class Message extends React.Component {
+ 
   constructor() {
-    
     super();
     this.state = {
       currentPage: 0,

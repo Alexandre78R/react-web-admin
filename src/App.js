@@ -16,9 +16,10 @@ import './css/sb-admin.css';
 
 import Messages from './Composent/Reducer/ReducerMessages';
 import Notes from './Composent/Reducer/ReducerNotes';
+import Users from './Composent/Reducer/ReducerUsers';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
-const store = createStore(combineReducers({Messages, Notes}));
+const store = createStore(combineReducers({Messages, Notes, Users}));
 
 
 export default class App extends React.Component {

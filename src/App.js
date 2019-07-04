@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import './App.css';
 import SignIn from './Pages/Signin';
+import SignUp from './Pages/Signup';
 import Note from './Pages/Note';
 import Message from './Pages/Message';
 import MessageView from './Pages/MessageView';
@@ -13,7 +14,6 @@ import './vendor/bootstrap/css/bootstrap.min.css';
 import './vendor/fontawesome-free/css/all.min.css';
 import './vendor/datatables/dataTables.bootstrap4.css';
 import './css/sb-admin.css';
-
 import Messages from './Composent/Reducer/ReducerMessages';
 import Notes from './Composent/Reducer/ReducerNotes';
 import Users from './Composent/Reducer/ReducerUsers';
@@ -30,6 +30,7 @@ export default class App extends React.Component {
         <Router>
           <Switch>
             <Route path="/" exact component={SignIn}/>
+            <Route path="/SignUp" exact component={SignUp}/>
             <Route path="/note" component={Note}/>
             <Route path="/message" component={Message}/>
             <Route path="/messageView/:key" component={MessageView}/>

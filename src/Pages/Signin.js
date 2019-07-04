@@ -2,14 +2,7 @@ import React from 'react';
 import '../App.css';
 import {
   Row,
-  Container,
-  Card,
-  CardHeader,
-  CardBody,
-  Button,
-  FormGroup,
-  Label, 
-  Input, 
+  Container, 
 
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
@@ -22,27 +15,29 @@ class SignIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      userData : [ 
-        {username : "dev", password : "dev", email : "dev@dev.dev", description : "C'est une description...", token : "0"},
-        {username : "dev1", password : "dev1", email : "dev1@dev.dev", description : "C'est une description...1", token : "1"},
-     ],
+    //   userData : [ 
+    //     {username : "dev", password : "dev", email : "dev@dev.dev", description : "C'est une description...", token : "0"},
+    //     {username : "dev1", password : "dev1", email : "dev1@dev.dev", description : "C'est une description...1", token : "1"},
+    //  ],
+    //  username : "",
+    //  password : "",
     };
     
   }
 
-  componentWillMount(){
-    this.state.userData.map(
-        (user, i) => {
-          //  console.log(user)
-        this.props.user(user.username, user.password, user.email, user.description, user.token)
-        }
-      );
-    }
+  // componentWillMount(){
+  //   this.state.userData.map(
+  //       (user, i) => {
+  //         //  console.log(user)
+  //       // this.props.user(user.username, user.password, user.email, user.description, user.token)
+  //       }
+  //     );
+  //   }
 
-  handleClick = () => {
-    console.log('click détecté !');
-
-  }
+  // handleClick = () => {
+  //   console.log('click détecté !');
+  //   // this.props.setUser(this.state.username, this.state.password)
+  // }
   render() {
     return (
       <div id="page-top">
@@ -60,9 +55,14 @@ class SignIn extends React.Component {
                         <h5>Connexion</h5>
                       </div>                      
                       <form>
+                        {/* <input type="textLogin" id="login" className="fadeIn second" placeholder="Username" onChange={e=>this.setState({username:e.target.value})}/>
+                        <input type="password" id="password" className="fadeIn third" placeholder="Password" onChange={e=>this.setState({password:e.target.value})}/>
+                        <input type="submit" onClick={this.handleClick} value="Log In"/> */}
+
                         <input type="textLogin" id="login" className="fadeIn second" placeholder="Username"/>
                         <input type="password" id="password" className="fadeIn third" placeholder="Password"/>
-                        <input type="submit" onClick={this.handleClick} value="Log In"/>
+                        <input type="submit" value="Log In"/>
+                        
                       </form>
                       <div id="formFooter">
                         <a className="underlineHover" href="#">Mot de passe oublié?</a>
@@ -96,6 +96,13 @@ function mapStateToProps(state) {
       token : token,
     }) 
    },
+   setUser(username, password,) { 
+    dispatch({
+    type: 'user',
+    username : username,
+    password : password,
+  }) 
+ },
   }
  }
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

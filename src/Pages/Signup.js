@@ -3,6 +3,7 @@ import '../App.css';
 import {
   Row,
   Container, 
+  Button,
 
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
@@ -23,18 +24,19 @@ class SignUp extends React.Component {
     };
     
     handleClick(){
-        console.log("Click détecté")
         console.log('Inscription en cours...');
 
         var signupData = JSON.stringify({
           username: this.state.username,
-          password: this.state.password,
           email: this.state.email,
+          password: this.state.password,
         });
-      
+        console.log("Username", this.state.username)
+        console.log("email", this.state.email)
+        console.log("password", this.state.password)
         const ctx = this;
       
-        fetch(`http://10.2.3.230:3000/signup`, {
+        fetch(`http://192.168.43.236:3000/signup`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: signupData
@@ -43,13 +45,13 @@ class SignUp extends React.Component {
           return res.json()
         }).then(function(data){
         //   console.log(ctx.state)
-          console.log("Data : ", data);
-        //   ctx.props.handleUserValid(data.user.user, data.user.first_name, data.user.email, data.user.token)
+          console.log("FETCH BACK (Data) : ", data);
+        //   ctx.props.setUser(data.user.username, data.user.email, data.user.password)
         }).catch(function(err){
-          console.log(err)
+          console.log("Err",err)
         })
       }
-
+ 
   render() {
     return (
       <div id="page-top">
@@ -67,10 +69,10 @@ class SignUp extends React.Component {
                         <h5>Enregistrez-vous</h5>
                       </div>                      
                       <form>
-                        <input type="textLogin" id="login" className="fadeIn second" placeholder="Username" onChange={e=>this.setState({username:e.target.value})}/>
-                        <input type="password" id="password" className="fadeIn third" placeholder="Password" onChange={e=>this.setState({password:e.target.value})}/>
-                        <input type="textLogin" id="login" className="fadeIn second" placeholder="Email" onChange={e=>this.setState({email:e.target.value})}/>
-                        <input type="submit" value="Register" onClick={this.handleClick}/>           
+                        <input type="login" id="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
+                        <input type="password" id="password" className="fadeIn third" placeholder="Password" onChange={event=>this.setState({password:event.target.value})}/>
+                        <input type="emails" id="email" className="fadeIn second" placeholder="Email" onChange={event=>this.setState({email:event.target.value})}/>
+                        <input type="submit" value="Register" onClick={this.handleClick}/>
                       </form>
                       <div id="formFooter">
                         <a className="underlineHover" href="#">Mot de passe oublié?</a>
@@ -94,23 +96,14 @@ function mapStateToProps(state) {
 
  function mapDispatchToProps(dispatch) {
   return {
-    user(username, password, email, description, token) { 
+    setUser(username, email, password) { 
       dispatch({
-      type: 'user',
+      type: 'setUser',
       username : username,
-      password : password,
       email : email,
-      description : description,
-      token : token,
+      password : password,
     }) 
    },
-   setUser(username, password,) { 
-    dispatch({
-    type: 'user',
-    username : username,
-    password : password,
-  }) 
- },
   }
  }
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

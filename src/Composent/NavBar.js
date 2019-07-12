@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import API from '../utils/API.js';
 import {
   Collapse,
   Navbar,
@@ -11,6 +12,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button,
 } from 'reactstrap';
 import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
@@ -18,7 +20,7 @@ import { Link } from "react-router-dom";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-
+    this.disconnect.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
@@ -29,6 +31,11 @@ class NavBar extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+  disconnect (event){
+    API.logout();
+    window.location = "/";
   }
 
   componentWillMount() {
@@ -82,6 +89,19 @@ class NavBar extends React.Component {
               <DropdownItem>
               <a className="dropdown-item" href="/setting">Settings Admin</a>
               </DropdownItem>
+              <DropdownItem>
+              {
+                API.isAuth()===true ? 
+                <Button
+                onClick={this.disconnect}
+                color="danger"
+                >
+                Se déconnecter
+                </Button>
+                :
+                ""
+              }
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import './App.css';
-import SignIn from './Pages/Signin';
-import SignUp from './Pages/Signup';
+import Login from './Pages/Login';
+import SignUp from './Pages/SignUp';
 import Note from './Pages/Note';
 import Message from './Pages/Message';
 import MessageView from './Pages/MessageView';
@@ -19,6 +19,7 @@ import Notes from './Composent/Reducer/ReducerNotes';
 import Users from './Composent/Reducer/ReducerUsers';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
+import { PrivateRoute } from './Composent/PrivateRoute.js';
 const store = createStore(combineReducers({Messages, Notes, Users}));
 
 
@@ -27,18 +28,18 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <Switch>
-            <Route path="/" exact component={SignIn}/>
-            <Route path="/SignUp" exact component={SignUp}/>
-            <Route path="/note" component={Note}/>
-            <Route path="/message" component={Message}/>
-            <Route path="/messageView/:key" component={MessageView}/>
-            <Route path="/setting" component={Setting}/>
-            <Route path="/user" component={User}/>
-            <Route path="/dashboard" component={Dashboard}/>
+        {/* <Router> */}
+          <Switch>  
+            <Route exact path="/" component={Login}/>
+            <Route exact path ="/signup" component={SignUp}/>
+            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <PrivateRoute path="/note" component={Note}/>
+            <PrivateRoute path="/message" component={Message}/>
+            <PrivateRoute path="/messageView/:key" component={MessageView}/>
+            <PrivateRoute path="/setting" component={Setting}/>
+            <PrivateRoute path="/user" component={User}/>
           </Switch>
-        </Router>
+        {/* </Router> */}
       </Provider>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.css';
 import {
   Row,
   Col,
@@ -8,6 +7,7 @@ import {
   CardBody,
   CardText,
   CardFooter,
+  Button,
   
 } from 'reactstrap';
 
@@ -16,7 +16,6 @@ import SideBar from '../Composent/SideBar';
 // import Footer from '../Composent/Footer';
 
 class Dashboard extends React.Component {
-
   render() {
     return (
 
@@ -104,7 +103,6 @@ class Dashboard extends React.Component {
                     </CardFooter>
                   </Card>
                 </Col>
-
           </Row>
         </Container>
         {/* <Footer/> */}

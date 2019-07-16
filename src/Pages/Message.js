@@ -23,7 +23,9 @@ class Message extends React.Component {
   constructor() {
     super();
     this.state = {
+      //State  de nombre de page dans la pagination
       currentPage: 0,
+      //State de la liste des messages
       messageData : [ 
         {key : "1", object : "Object1", expediteur : "Username", date : "jj/mm/yyyy", message : "message1"},
         {key : "2", object : "Object2", expediteur : "Username", date : "jj/mm/yyyy", message : "message2"},

@@ -196,7 +196,7 @@ function mapStateToProps(state) {
  })
  }
 
- //Listes des fonction dispatch pour les messages
+//Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {
   return {
     // Ajout d'un message (Plutôt affichage actuellement.)

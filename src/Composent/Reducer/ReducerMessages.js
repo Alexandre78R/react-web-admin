@@ -2,12 +2,21 @@ export default function(MessageContent = [], action){
         // console.log("Action Reducer -->",action)
         // console.log("TableContent -->",TableContent) 
         
+        //On une copie  des messages.
         var MessageContentCopy = [...MessageContent]
+        
+        //Action suppression du messgae sélectionné.
         if (action.type === 'deleteMessage') {
-            // console.log("action.position", action.position)
+          // console.log("action.position", action.position)
+          
+          //Suppression du message de la positon que on reçois.
           MessageContentCopy.splice(action.position,1);
           return MessageContentCopy
+
+          //Action d'ajout de message (Sutout affichage pour l'instant)
         } else if(action.type === 'addMessage'){
+
+            // Copy des messages que on envois.
             MessageContentCopy.push({
             key : action.key,
             object : action.object,
@@ -17,9 +26,11 @@ export default function(MessageContent = [], action){
             })
             return MessageContentCopy
 
+            //Action qui n'est pas utilisé pour l'instant.
           } else if(action.type === 'addCountMessage'){
-            action.i++
+            // action.i++
             return MessageContent
+            
           }else{
             return MessageContentCopy;
           }

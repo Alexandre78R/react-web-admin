@@ -57,7 +57,7 @@ class Message extends React.Component {
     };
     
   }
-  
+  // Dés que la page est charger il exucute cette boucle pour lire les messages et surtout d'envoyer à Redux
   componentWillMount(){
       
    this.state.messageData.map(
@@ -69,6 +69,7 @@ class Message extends React.Component {
     // return message_boucle;
     }
   
+  //Fonction pour la Pagination
   handleClick(e, index){
     
     e.preventDefault();
@@ -81,14 +82,17 @@ class Message extends React.Component {
   render() {
 
     const { currentPage } = this.state;
+    // PageSize limité le nombre de message par page.
     this.pageSize = 6
+    // PagesCount prend la totalité du nombre des messages dans la boucle et le divise.
+    // Pour afficher le nombre de pagination qui à créer.
     this.pagesCount = Math.ceil(this.props.Messages.length / this.pageSize);    
 
+    // Pour afficher les messages.
     this.dataSet = this.props.Messages.map(
       (message, i) => {
 // console.log("Posiotion", i)
 // console.log(this.pagesCount)
-
         return (
             <tr>
             <td><i className="fas fa-envelope"></i></td>
@@ -114,6 +118,7 @@ class Message extends React.Component {
 
               <Container className="container-fluid page ">
                <Row>
+                    {/* Si il n'a pas de message tu me retirele titre */}
                     {this.pagesCount === 0 ? 
                     ""
                     :                
@@ -123,6 +128,8 @@ class Message extends React.Component {
                     }
 
                   <Table className="table table-hover listMessage">
+                    {/* Si il n'a pas de messages tu m'affiche le message "Vous n'avez pas de messages" */}
+                    {/* Et si il y a des message tu m'afiche le tableau des messages. */}
                   {this.pagesCount === 0 ? 
                     <tbody>
                       <Alert color="danger" className = "bgAlert">
@@ -139,7 +146,8 @@ class Message extends React.Component {
                         <th scope="col">Date</th>
                         <th scope="col">Action</th>
                       </tr>
-                    </thead>       
+                    </thead>      
+                    // Récupération des messages  pour la mise en place de la pagination. + affichage des message par la data.
                     }
                     {this.dataSet
                     .slice(
@@ -154,9 +162,10 @@ class Message extends React.Component {
                 </Table>
             
                 <Pagination aria-label="Page navigation example">
-                  
+                  {/* Affichage de la pagination */}
                   {[...Array(this.pagesCount)].map((page, i) => 
                     <PaginationItem  active={i === currentPage} key={i}>
+                      {/* Condition si on dépase de 29 pages de la pagination on ne r'ajoute plus de pagination */}
                     { i >= 29 ? 
                     ""
                     :
@@ -176,7 +185,7 @@ class Message extends React.Component {
     );
   }
 }
-
+ //Réccupération des Messages par Redux.
 function mapStateToProps(state) {
   // console.log("Messages::::",state.Messages) 
   console.log("state", state)
@@ -185,8 +194,10 @@ function mapStateToProps(state) {
  })
  }
 
+ //Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {
   return {
+    // Ajout d'un message (Plutôt affichage actuellement.)
     addMessage(key, object, expediteur, date, message) { 
       dispatch({
       type: 'addMessage',
@@ -197,6 +208,7 @@ function mapDispatchToProps(dispatch) {
       message : message,
     }) 
    },
+   //Funtion suppresision de message.
     deleteMessage(position) { 
       dispatch({
         type: 'deleteMessage',

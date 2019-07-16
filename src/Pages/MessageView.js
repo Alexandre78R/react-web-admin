@@ -30,12 +30,13 @@ class MessageView extends React.Component {
         };
     }
 
-
+    //Au chargement de la page on récupére les infos via à Redux du message précis sélectionné.
     componentWillMount() {
         var list = this.props.Messages
         // console.log("Message", list)
         for (var i = 0; i < list.length; i++) {
           if (this.state.key === list[i].key) {
+              //Metre à jour les states du message sélectionné.
               this.setState({
                 key : list[i].key,
                 object : list[i].object,
@@ -132,7 +133,7 @@ class MessageView extends React.Component {
     );
   }
 }
-
+ //Récupération des messages dans Redux.
 function mapStateToProps(state) {
     // console.log("Messages::::", state.Messages) 
      return ({

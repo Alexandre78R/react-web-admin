@@ -17,21 +17,27 @@ class SignIn extends React.Component {
   
   constructor() {
     super();
+
     this.state = {
+     //State de username.
      username : "",
+     //State de password.
      password : "",
     };
     
   }
 
   handleClick = () => {
+
     console.log('click détecté !');
-    
     console.log('Connexion en cours...');
 
+    //On ne retourne rien si le champs username est vide.
     if(this.state.username.length === 0){
       return;
     }
+
+    //On ne retourne rien si le champs password est vide.
     if(this.state.password.length === 0){
         return;
     }
@@ -39,15 +45,24 @@ class SignIn extends React.Component {
     console.log("Username :", this.state.username)
     console.log("Password :", this.state.password)
 
+    //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
     API.login(this.state.username, this.state.password).then(function(data){
+
         console.log("Data :", data.data)
         console.log("Data config :", data.data.config)
+
+        //Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
+
+        //Redirection vers le dashboard.
         window.location = "/dashboard"
+
     },function(error){
         console.log(error);
         return;
     })
+    
+    //Code non utilisé.
     // var signinData = JSON.stringify({
     //   username: this.state.username,
     //   password: this.state.password,
@@ -105,33 +120,5 @@ class SignIn extends React.Component {
     );
   }
 }
-// function mapStateToProps(state) {
-//   console.log("User (state)", state)
-//    return ({
-//     Users: state.Users,
-//  })
-//  }
 
-//  function mapDispatchToProps(dispatch) {
-//   return {
-//     user(username, password, email, description, token) { 
-//       dispatch({
-//       type: 'user',
-//       username : username,
-//       password : password,
-//       email : email,
-//       description : description,
-//       token : token,
-//     }) 
-//    },
-//    setUser(username, password,) { 
-//     dispatch({
-//     type: 'user',
-//     username : username,
-//     password : password,
-//   }) 
-//  },
-//   }
-//  }
-// export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 export default SignIn;

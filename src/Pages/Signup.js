@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 import API from '../utils/API';
 // import Footer from '../Composent/Footer';
 
@@ -16,25 +16,42 @@ class SignUp extends React.Component {
   
     constructor() {
         super();
+
+        //On blind la function handleClick pour l'utilisé partout avec this.
         this.handleClick = this.handleClick.bind(this)
+
         this.state = {
+            //State de l'username
             username: '',
+            //State du password
             password: '',
+            //State de l'email
             email: '',
         }
     };
     
+    //Fonction qui se déclanche à la validation du formulaire d'enregistrement.
+
     handleClick(){
+
         console.log('Inscription en cours...');
+
+        //Condition s'il y n'a rien dans le champ username on envois rien.
         if(this.state.username.length === 0){
             return;
         }
+
+        //Condition s'il y n'a rien dans le champ password on envois rien.
         if(this.state.password.length === 0){
             return;
         }
+
+        //Condition s'il y n'a rien dans le champ email on envois rien.
         if(this.state.email.length === 0){
             return;
         }
+
+        //On stock les données des stats dans la variable _send.
         var _send = {
             username: this.state.username,
             password: this.state.password,
@@ -45,15 +62,23 @@ class SignUp extends React.Component {
         console.log("Password :", this.state.password)
         console.log("Email :", this.state.email)
 
+        //Utulisation de note API pour envoyer vers le backend les informations du compte.
         API.signup(_send).then(function(data){
             // console.log("Data :", data.data)
             // console.log("Data config :", data.data.config)
+
+            //On récupére le token que le backend nous s'a envoyé.
             localStorage.setItem('token', data.data.token);
+
+            //Redirection vers le dashboard.
             window.location = "/dashboard"
         },function(error){
             console.log(error);
             return;
         })
+        
+        //Code non utulisé 
+
         // var signupData = JSON.stringify({
         //   username: this.state.username,
         //   email: this.state.email,

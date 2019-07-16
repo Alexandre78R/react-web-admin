@@ -30,14 +30,18 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Router>
           <Switch>  
+            {/* On peut accèder partout même si on n'est pas connecté. */}
             <Route exact path="/" component={Login}/>
             <Route exact path ="/signup" component={SignUp}/>
+
+            {/* Par contre la si tu n'est pas connecté sa ne marcheras pas. */}
             <PrivateRoute path='/dashboard' component={Dashboard} />
             <PrivateRoute path="/note" component={Note}/>
             <PrivateRoute path="/message" component={Message}/>
             <PrivateRoute path="/messageView/:key" component={MessageView}/>
             <PrivateRoute path="/setting" component={Setting}/>
             <PrivateRoute path="/user" component={User}/>
+            
           </Switch>
         </Router>
       </Provider>

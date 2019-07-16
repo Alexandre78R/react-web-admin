@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import './App.css';
 import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
+import SignUp from './Pages/Signup';
 import Note from './Pages/Note';
 import Message from './Pages/Message';
 import MessageView from './Pages/MessageView';
@@ -28,7 +28,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <Router> */}
+        <Router>
           <Switch>  
             <Route exact path="/" component={Login}/>
             <Route exact path ="/signup" component={SignUp}/>
@@ -39,7 +39,7 @@ export default class App extends React.Component {
             <PrivateRoute path="/setting" component={Setting}/>
             <PrivateRoute path="/user" component={User}/>
           </Switch>
-        {/* </Router> */}
+        </Router>
       </Provider>
     );
   }

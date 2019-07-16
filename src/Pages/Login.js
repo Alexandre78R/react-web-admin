@@ -1,7 +1,10 @@
 import React from 'react';
 import {
   Row,
-  Container, 
+  Container,
+  Input,
+  InputGroup,
+  InputGroupAddon
 
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
@@ -82,15 +85,16 @@ class SignIn extends React.Component {
                       <div>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
                         <h5>Connexion</h5>
-                      </div>                      
-                      <form>
-                        <input type="login" id="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
-                        <input type="password" id="password" className="fadeIn third" placeholder="Password" onChange={event=>this.setState({password:event.target.value})}/>
-                        <input type="submit" value="Log In" onClick={this.handleClick}/>      
-                      </form>
-                      <div id="formFooter">
-                        <a className="underlineHover" href="#">Mot de passe oublié?</a>
                       </div>
+                        <InputGroup>
+                          <input type="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
+                        </InputGroup>
+                        <br />
+                        <InputGroup>
+                          <input type="password" className="fadeIn second" placeholder="Password" onChange={event=>this.setState({password:event.target.value})} />
+                        </InputGroup>
+                        <br />
+                        <input type="submit" value="Signin" onClick={this.handleClick}/>
                     </div>
                   </div>
                </Row>

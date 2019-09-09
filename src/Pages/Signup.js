@@ -4,7 +4,7 @@ import {
   Row,
   Container, 
   InputGroup,
-
+  Alert,
 } from 'reactstrap';
 import NavBar from '../Composent/NavBar'
 import SideBar from '../Composent/SideBar';
@@ -27,6 +27,10 @@ class SignUp extends React.Component {
             password: '',
             //State de l'email
             email: '',
+            //State Alert Error
+            bgAlert : false,
+            //State Text Error
+            text : "",
         }
     };
     
@@ -38,17 +42,29 @@ class SignUp extends React.Component {
 
         //Condition s'il y n'a rien dans le champ username on envois rien.
         if(this.state.username.length === 0){
-            return;
+          this.setState({
+            bgAlert: true,
+            text : "Vous n'avez pas remplie la case username."
+          });
+          return;
         }
 
         //Condition s'il y n'a rien dans le champ password on envois rien.
         if(this.state.password.length === 0){
-            return;
+          this.setState({
+            bgAlert: true,
+            text : "Vous n'avez pas remplie la case password."
+          });
+          return;
         }
 
         //Condition s'il y n'a rien dans le champ email on envois rien.
         if(this.state.email.length === 0){
-            return;
+          this.setState({
+            bgAlert: true,
+            text : "Vous n'avez pas remplie la case email."
+          });
+          return;
         }
 
         //On stock les données des stats dans la variable _send.
@@ -72,8 +88,17 @@ class SignUp extends React.Component {
 
             //Redirection vers le dashboard.
             window.location = "/dashboard"
+
+            this.setState({
+              bgAlert: false,
+              text : ""
+            });
         },function(error){
             console.log(error);
+            this.setState({
+              bgAlert: true,
+              text : "."
+            });
             return;
         })
         
@@ -121,6 +146,9 @@ class SignUp extends React.Component {
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
                         <h5>Enregistrez-vous</h5>
                       </div>
+                        <Alert color="danger" isOpen={this.state.bgAlert}>
+                          <h6>{this.state.text}</h6>
+                        </Alert>
                         <InputGroup>
                           <input type="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
                         </InputGroup>

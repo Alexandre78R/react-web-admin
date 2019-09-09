@@ -20,7 +20,7 @@ export default {
             headers: headers
         })
     },
-
+    
     //Fonction d'enregistrement 
     signup : function(send){
         //Envois des informations de l'enregistrement vers le backend.
@@ -33,7 +33,7 @@ export default {
         return (localStorage.getItem('token') !== null);
     },
 
-    //Fonction décconnexion.
+    //Fonction déconnexion.
     logout : function() {
         //A la déconnection on clear tous  qui se retrouve sans informations du compte.
         localStorage.clear();

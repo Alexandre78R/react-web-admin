@@ -53,30 +53,43 @@ class SignIn extends React.Component {
     
     console.log("Username :", this.state.username)
     console.log("Password :", this.state.password)
-
+    var ctx = this;
     //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
     API.login(this.state.username, this.state.password)
     .then(function(data){
         console.log("Data :", data)
-        console.log("Status : ", data.status)
         console.log("data dans data", data.data)
         // console.log("Text :", data)
-
+        if (data.data.code === 401){
+          ctx.setState({
+            bgAlert: true,
+            text : data.data.text
+          });
+        }else if (data.data.code === 402){
+          ctx.setState({
+            bgAlert: true,
+            text : data.data.text
+          });
+        }else{
+          ctx.setState({
+            bgAlert: false,
+            text : ""
+          });
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
-        this.setState({
-          bgAlert: false,
-          text : ""
-        });
+
+        console.log(data.data)
         // Redirection vers le dashboard.
         window.location = "/dashboard"
+        }
         
     })
     .catch((err) => {
-      this.setState({
-        bgAlert: true,
-        text : "L'username ou le password est incorrect !"
-      });
+      // this.setState({
+      //   bgAlert: true,
+      //   text : "L'username ou le password est incorrect !"
+      // });
+      console.log(err)
     })
 
     

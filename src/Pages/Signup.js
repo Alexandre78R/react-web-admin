@@ -77,22 +77,24 @@ class SignUp extends React.Component {
         console.log("Username :", this.state.username)
         console.log("Password :", this.state.password)
         console.log("Email :", this.state.email)
-
+        var ctx = this
         //Utulisation de note API pour envoyer vers le backend les informations du compte.
         API.signup(_send).then(function(data){
-            // console.log("Data :", data.data)
-            // console.log("Data config :", data.data.config)
+            console.log("Data :", data.data)
 
-            //On récupére le token que le backend nous s'a envoyé.
-            localStorage.setItem('token', data.data.token);
+            if (data.data.code === 403){
+              ctx.setState({
+                bgAlert: true,
+                text : data.data.text
+              });   
+              console.log(ctx.state.username)     
+            }else{
+              //On récupére le token que le backend nous s'a envoyé.
+              localStorage.setItem('token', data.data.token);
+              //Redirection vers le dashboard.
+              window.location = "/dashboard"
+            }
 
-            //Redirection vers le dashboard.
-            window.location = "/dashboard"
-
-            this.setState({
-              bgAlert: false,
-              text : ""
-            });
         },function(error){
             console.log(error);
             this.setState({
@@ -101,33 +103,6 @@ class SignUp extends React.Component {
             });
             return;
         })
-        
-        //Code non utulisé 
-
-        // var signupData = JSON.stringify({
-        //   username: this.state.username,
-        //   email: this.state.email,
-        //   password: this.state.password,
-        // });
-        // console.log("Username", this.state.username)
-        // console.log("email", this.state.email)
-        // console.log("password", this.state.password)
-        // const ctx = this;
-      
-        // fetch(`http://192.168.43.236:3000/signup`, {
-        //   method: 'POST',
-        //   headers: {'Content-Type': 'application/json'},
-        //   body: signupData
-        // }
-        // ).then(function(res, err){
-        //   return res.json()
-        // }).then(function(data){
-        // //   console.log(ctx.state)
-        //   console.log("FETCH BACK (Data) : ", data);
-        // //   ctx.props.setUser(data.user.username, data.user.email, data.user.password)
-        // }).catch(function(err){
-        //   console.log("Err",err)
-        // })
       }
  
   render() {

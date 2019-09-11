@@ -1,5 +1,7 @@
+//Import de React
 import React from 'react';
-import '../App.css';
+
+//Import de la liste composent de reactstrap
 import {
   Row,
   Container, 
@@ -13,14 +15,27 @@ import {
   Label, 
   Input, 
   Alert,
-  Progress,
 } from 'reactstrap';
+
+//Import du composent NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent Footer 
 // import Footer from '../Composent/Footer';
+
+//Import du composent Link de react-router-dom
 // import { Link } from "react-router-dom";
+
+//Import de React-draggable
 import Draggable from 'react-draggable';
+
+//Import du composent connect de react-redux
 import {connect} from 'react-redux';
+
+//Import du composent circlePiker de react-color
 import { CirclePicker } from 'react-color';
 
 class Note extends React.Component {

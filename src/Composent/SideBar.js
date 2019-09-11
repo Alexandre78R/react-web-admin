@@ -1,5 +1,7 @@
+//Import de React
 import React from 'react';
 
+//Import des composents de reactstraps
 import {
     NavItem,
   } from 'reactstrap';

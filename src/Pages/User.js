@@ -1,11 +1,19 @@
+//Import de React
 import React from 'react';
-import '../App.css';
+
+//Import de la liste des composent de reactstraps
 import {
   Row,
   Container,  
 } from 'reactstrap';
+
+//Import du composent NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
 class User extends React.Component {

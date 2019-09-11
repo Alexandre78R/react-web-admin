@@ -1,4 +1,7 @@
+//Import de React
 import React from 'react';
+
+//Import de la liste des composents pour reactstrap
 import {
   Row,
   Col,
@@ -11,8 +14,13 @@ import {
   
 } from 'reactstrap';
 
+//Import du composent de la NavBar 
 import NavBar from '../Composent/NavBar'
+
+//Import du composent de la SideBar 
 import SideBar from '../Composent/SideBar';
+
+//Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
 class Dashboard extends React.Component {

@@ -1,14 +1,27 @@
+//Import de React
 import React from 'react';
+
+//Import de la liste des composents pour reactstraps
 import {
   Row,
   Container,
   Alert,
   InputGroup,
 } from 'reactstrap';
+
+//Import du composent NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent connect de react-redux
 import {connect} from 'react-redux';
+
+//Import du composent footer
 // import Footer from '../Composent/Footer';
+
+//Import du composent API
 import API from '../utils/API';
 
 class SignIn extends React.Component {
@@ -60,16 +73,20 @@ class SignIn extends React.Component {
         console.log("Data :", data)
         console.log("data dans data", data.data)
         // console.log("Text :", data)
+
+        //Si l'username n'existe pas on lui met un message d'erreur
         if (data.data.code === 401){
           ctx.setState({
             bgAlert: true,
             text : data.data.text
           });
+        //Si le mot de passe n'est pas correct, on lui met un message d'erreur
         }else if (data.data.code === 402){
           ctx.setState({
             bgAlert: true,
             text : data.data.text
           });
+          //Et sit tous est bon on le connecte 
         }else{
           ctx.setState({
             bgAlert: false,
@@ -82,26 +99,15 @@ class SignIn extends React.Component {
         // Redirection vers le dashboard.
         window.location = "/dashboard"
         }
-        
     })
+    //En cas d'erreur un message s'affiche 
     .catch((err) => {
-      // this.setState({
-      //   bgAlert: true,
-      //   text : "L'username ou le password est incorrect !"
-      // });
       console.log(err)
+      ctx.setState({
+        bgAlert: true,
+        text : "Problème interne, merci de réessayer plus tard !"
+      });
     })
-
-    
-    //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
-  //   API.login(this.state.username, this.state.password)
-  //   .then(res => res.json())
-  //   .then(() => {
-  //     console.log("test");
-  //   })  
-  //   .catch(function(err){
-  //     console.log(err)
-  //   })
   }
   render() {
     return (

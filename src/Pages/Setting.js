@@ -1,5 +1,7 @@
+//Import de React
 import React from 'react';
-import '../App.css';
+
+//Import de la liste des composent pour reactstrap
 import {
   Row,
   Container, 
@@ -13,22 +15,30 @@ import {
   CardHeader,
   CardBody,
 } from 'reactstrap';
+
+//Import du composent de NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent de SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
 class Setting extends React.Component {
 
   constructor(props) {
     super(props);
-
+    //On blind le toggle
     this.toggle = this.toggle.bind(this);
     
+    //State pour activé la section visible par défault la première 
     this.state = {
       activeTab: "1",
     };
   }
 
+  //Gestion d'affichage de la tap pour le toggle
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({

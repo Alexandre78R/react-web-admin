@@ -1,5 +1,7 @@
+//Import de React
 import React from 'react';
-import '../App.css';
+
+//Import de la liste des composents de reactstrap
 import {
   Row,
   Container,  
@@ -12,10 +14,20 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
+
+//Import du composent de la NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent de la SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent du Footer
 // import Footer from '../Composent/Footer';
+
+//Import du composent de connect de react-redux
 import {connect} from 'react-redux';
+
+//import du composent de Link de react-router-dom
 import { Link } from "react-router-dom";
 
 class Message extends React.Component {

@@ -1,6 +1,10 @@
+//Import de React
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+//Import du composent API
 import API from '../utils/API.js';
+
+//Import de la liste de scomposents pour reactstrap
 import {
   Collapse,
   Navbar,
@@ -14,7 +18,11 @@ import {
   DropdownItem,
   Button,
 } from 'reactstrap';
+
+//Import du composent connect de react-redux
 import {connect} from 'react-redux';
+
+//Import du composent Link de react-router-dom
 import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
@@ -90,9 +98,9 @@ class NavBar extends React.Component {
               <i className="fas fa-user-circle fa-fw"></i> 
               </DropdownToggle>
               <DropdownMenu right>
-              <h6 className="dropdown-header">Hi Mike Doe</h6>
+              <h6 className="dropdown-header">Bonjour ......,</h6>
               <DropdownItem>
-              <a className="dropdown-item" href="/setting">Settings Admin</a>
+              <a className="dropdown-item" href="/setting">Paramètre</a>
               </DropdownItem>
               <DropdownItem>
               {/* Si un utilisateur est connecté on affiche le button déconnexion et s'il n'est pas co on lui affiche rien. */}

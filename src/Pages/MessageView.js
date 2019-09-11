@@ -1,5 +1,7 @@
+//Import de React
 import React from 'react';
-import '../App.css';
+
+//Import de la liste des composents de reactstrap
 import {
   Row,
   Container,  
@@ -10,10 +12,20 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
+
+//Import du composents NavBar
 import NavBar from '../Composent/NavBar'
+
+//Import du composent SideBar
 import SideBar from '../Composent/SideBar';
+
+//Import du composent Footer
 // import Footer from '../Composent/Footer';
+
+//Import du composent connect de react-redux
 import {connect} from 'react-redux';
+
+//Import des composent de react-router-dom
 import { Link, Redirect  } from "react-router-dom";
 
 

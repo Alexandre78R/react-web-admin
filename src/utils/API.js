@@ -1,3 +1,4 @@
+//Import du module axios
 import axios from 'axios';
 
 //Stockage du Content-Type dans une variable.(Headers)

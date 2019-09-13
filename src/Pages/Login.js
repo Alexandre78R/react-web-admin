@@ -24,19 +24,25 @@ import {connect} from 'react-redux';
 //Import du composent API
 import API from '../utils/API';
 
+//Import des composent de react-router-dom
+import { Link, Redirect  } from "react-router-dom";
+
 class SignIn extends React.Component {
   
   constructor() {
     super();
 
     this.state = {
-     //State de username.
-     username : "",
-     //State de password.
-     password : "",
-     //State Alert error
-     bgAlert : false,
-    //State Text Error
+      //State de username.
+      username : "",
+      //State de password.
+      password : "",
+      //State Alert error
+      bgAlert : false,
+      //State Text Error
+      text : "",
+      //State Redirection
+      redirect: false,
     };
     
   }
@@ -72,6 +78,7 @@ class SignIn extends React.Component {
     .then(function(data){
         console.log("Data :", data)
         console.log("data dans data", data.data)
+        console.log("user", data.data.user)
         // console.log("Text :", data)
 
         //Si l'username n'existe pas on lui met un message d'erreur
@@ -88,16 +95,28 @@ class SignIn extends React.Component {
           });
           //Et sit tous est bon on le connecte 
         }else{
-          ctx.setState({
-            bgAlert: false,
-            text : ""
-          });
+
+        //Envoi des infos dans redux
+        ctx.props.setUser(data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
+      
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
+        // localStorage.setItem('id', data.data.user._id);
+        // localStorage.setItem('username', data.data.data.data.user.username);
+        // localStorage.setItem('password', data.data.user.password);
+        // localStorage.setItem('email', data.data.user.email);
+        // localStorage.setItem('description', data.data.user.description);
 
-        console.log(data.data)
+        // console.log("LocalStorage", localStorage)
+
         // Redirection vers le dashboard.
-        window.location = "/dashboard"
+        // window.location = "/dashboard"
+
+        ctx.setState({
+          bgAlert: false,
+          text : "",
+          redirect : true,
+        });
         }
     })
     //En cas d'erreur un message s'affiche 
@@ -105,11 +124,16 @@ class SignIn extends React.Component {
       console.log(err)
       ctx.setState({
         bgAlert: true,
-        text : "Problème interne, merci de réessayer plus tard !"
+        text : "Problème interne, merci de réessayer plus tard !",
       });
     })
   }
   render() {
+    const { redirect } = this.state;
+
+    if (redirect === true) {
+      return <Redirect to='/dashboard'/>;
+    }
     return (
       <div id="page-top">
         <NavBar/>
@@ -136,6 +160,7 @@ class SignIn extends React.Component {
                           <input type="password" className="fadeIn second" placeholder="Password" onChange={event=>this.setState({password:event.target.value})} />
                         </InputGroup>
                         <br />
+                        {/* <Link type="submit" value="Signin" onClick={this.handleClick}>test connexion</Link> */}
                         <input type="submit" value="Signin" onClick={this.handleClick}/>
                     </div>
                   </div>
@@ -147,5 +172,29 @@ class SignIn extends React.Component {
     );
   }
 }
+ //Réccupération des Messages par Redux.
+ function mapStateToProps(state) {
+  // console.log("Messages::::",state.Messages) 
+  console.log("state", state)
+   return ({
+    Users: state.Users,
+ })
+ }
 
-export default SignIn;
+//Listes des fonction dispatch pour les messages
+function mapDispatchToProps(dispatch) {
+  return {
+    // User
+    setUser(username, password, email, description) { 
+      dispatch({
+      type: 'setUser',
+      username : username,
+      password: password,
+      email: email,
+      description : description,
+    }) 
+   },
+  }
+ }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -148,7 +148,6 @@ class Message extends React.Component {
                     <tbody>
                       <Alert color="danger" className = "bgAlert">
                         <p className = "textAlert"> Vous n'avez pas de messages !</p>
-                        <a href="/message/" className="alert-link"> Refresh Page</a>
                       </Alert>
                     </tbody>
                     :                

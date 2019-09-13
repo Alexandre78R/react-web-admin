@@ -51,7 +51,7 @@ class NavBar extends React.Component {
     window.location = "/";
   }
 
-  componentWillMount() {
+  // componentWillMount() {
     // console.log("message", this.props.Messages.length)
     // setTimeout(function() {
       // console.log(this.props.Messages)
@@ -71,8 +71,7 @@ class NavBar extends React.Component {
         // );    
         // console.log("Message :", this.props.Messages)  
     // },1000)
-  }
-
+  // }
   render() {
     return (
       <div>
@@ -98,9 +97,20 @@ class NavBar extends React.Component {
               <i className="fas fa-user-circle fa-fw"></i> 
               </DropdownToggle>
               <DropdownMenu right>
-              <h6 className="dropdown-header">Bonjour ......,</h6>
+              {
+                API.isAuth()===true ? 
+                <h6 className="dropdown-header">Bonjour {this.props.Users.username},</h6>
+                :
+                <h6 className="dropdown-header">Pas encore inscrit ?</h6>
+              }
               <DropdownItem>
-              <a className="dropdown-item" href="/setting">Paramètre</a>
+              {/* <a className="dropdown-item" href="/setting">Paramètre</a> */}
+              {
+                API.isAuth()===true ? 
+                <Link to='/setting'>Paramètre</Link>
+                :
+                <Link to='/signup'>Inscription</Link>
+              }
               </DropdownItem>
               <DropdownItem>
               {/* Si un utilisateur est connecté on affiche le button déconnexion et s'il n'est pas co on lui affiche rien. */}
@@ -110,10 +120,11 @@ class NavBar extends React.Component {
                 onClick={this.disconnect}
                 color="danger"
                 >
-                Se déconnecter
+                {/* <Link to='/'>Se déconnecter</Link> */}
+                Déconnexion
                 </Button>
                 :
-                ""
+                null
               }
                 </DropdownItem>
               </DropdownMenu>
@@ -126,12 +137,14 @@ class NavBar extends React.Component {
   }
 }
 
-//Récupération des liste de messages avec Redux.
+//Récupération des infos avec Redux.
 function mapStateToProps(state) {
-    // console.log("Message::::", state.Messages) 
+    // console.log("NavBar Message props", state.Messages)
+    // console.log("NavBar User props", state.Users)
      return ({
       Messages: state.Messages,
+      Users: state.Users,
    })
 }
   
-   export default connect(mapStateToProps, null)(NavBar);
+export default connect(mapStateToProps, null)(NavBar);

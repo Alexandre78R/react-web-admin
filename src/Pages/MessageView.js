@@ -76,7 +76,7 @@ class MessageView extends React.Component {
 
 {/* Dans le Breadcrumb pas de Link (react-router-dom) a cause duplication message dans liste. */}
 <Breadcrumb className="breadcrumbBg">
-    <BreadcrumbItem className="breadcrumbText"><a href="/message/">Liste des messages</a></BreadcrumbItem>
+    <BreadcrumbItem className="breadcrumbText"><Link className="text-white" to='/message'>Liste des messages</Link></BreadcrumbItem>
     <BreadcrumbItem active>{this.state.object}</BreadcrumbItem>
 </Breadcrumb>
 
@@ -149,11 +149,11 @@ class MessageView extends React.Component {
 }
  //Récupération des messages dans Redux.
 function mapStateToProps(state) {
-    // console.log("Messages::::", state.Messages) 
+    console.log("MessageViews Message props", state.Messages) 
      return ({
       Messages: state.Messages,
    
    })
-   }
+}
   
    export default connect(mapStateToProps, null)(MessageView);

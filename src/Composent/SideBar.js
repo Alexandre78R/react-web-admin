@@ -6,6 +6,9 @@ import {
     NavItem,
   } from 'reactstrap';
 
+//Import du composent Link de react-router-dom
+import { Link } from "react-router-dom";
+
 class SideBar extends React.Component {
   render() {
     return (
@@ -13,16 +16,16 @@ class SideBar extends React.Component {
           {/* <!-- Sidebar --> */}
         <ul className="sidebar navbar-nav">
         <NavItem active>
-            <a className="nav-link" href="/dashboard">
-                <i className="fas fa-fw fa-tachometer-alt"></i>
-                <span> Dashboard</span>
-            </a>
+          <Link to='/dashboard' className="nav-link">
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span> Dashboard</span>
+          </Link>
         </NavItem>
         <NavItem>
-        <a className="nav-link" href="/user">
+        <Link to='/user' className="nav-link">
             <i className="fas fa-fw fa-users"></i>
             <span> User</span>
-        </a>
+        </Link>
         </NavItem>
         </ul>
     </div>

@@ -8,6 +8,10 @@
   pointer-events: none;
 }
 
+
+.alertDashboard {
+  width: 100%;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -570,8 +574,8 @@ Input[type=emails]:placeholder {
 .ContentProfil{
   width: 100%;
   /* margin-top: 30%; */
-
 }
+
 .fa-cogs{
   color : #555;
 }

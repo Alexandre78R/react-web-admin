@@ -10,7 +10,7 @@ import {
   CardBody,
   CardText,
   CardFooter,
-  Button,
+  Alert,
   
 } from 'reactstrap';
 
@@ -19,6 +19,12 @@ import NavBar from '../Composent/NavBar'
 
 //Import du composent de la SideBar 
 import SideBar from '../Composent/SideBar';
+
+//Import du composent connect de react-redux
+import {connect} from 'react-redux';
+
+//Import du composent Link de react-router-dom
+import { Link } from "react-router-dom";
 
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
@@ -35,7 +41,9 @@ class Dashboard extends React.Component {
 
               <Container className="container-fluid page">
                <Row>
-
+               <Alert color="secondary" className="alertDashboard">
+                Bonjour {this.props.Users.username}
+                </Alert>
                 <Col xs="12" sm="6" xl="3">
                  <Card className="card text-white bg-primary o-hidden ">
                    <CardBody>
@@ -45,12 +53,12 @@ class Dashboard extends React.Component {
                       <CardText>0 Messages</CardText>
                       </CardBody>
                       <CardFooter>
-                        <a className="text-white" href="/message">
+                        <Link className="text-white" to='/message'>
                           <span>View Details</span>
                           <span className="float-right">
                           <i className="fas fa-angle-right"></i>
                           </span>
-                        </a>
+                        </Link>
                       </CardFooter>
                     </Card>
                   </Col>
@@ -64,12 +72,12 @@ class Dashboard extends React.Component {
                       <CardText>0 Clients</CardText>
                       </CardBody>
                       <CardFooter>
-                      <a className="text-white" href="/user">
+                      <Link className="text-white" to='/user'>
                         <span>View Details</span>
                         <span className="float-right">
                         <i className="fas fa-angle-right"></i>
                         </span>
-                     </a>
+                     </Link>
                     </CardFooter>
                   </Card>
                 </Col>
@@ -83,12 +91,12 @@ class Dashboard extends React.Component {
                       <CardText>0 Notes</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a className="text-white" href="/note">
+                    <Link className="text-white" to='/note'>
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>
                       </span>
-                    </a>
+                    </Link>
                     </CardFooter>
                   </Card>
                 </Col>
@@ -102,12 +110,12 @@ class Dashboard extends React.Component {
                       <CardText>0 Tchat Online</CardText>
                     </CardBody>
                     <CardFooter>
-                    <a className="text-white" href="/dashboard#Fake">
+                    <Link className="text-white" to='/dashboard#Fake'>
                       <span>View Details</span>
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>
                       </span>
-                    </a>
+                    </Link>
                     </CardFooter>
                   </Card>
                 </Col>
@@ -120,4 +128,14 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+//Récupération des infos avec Redux.
+function mapStateToProps(state) {
+  // console.log("NavBar Message props", state.Messages)
+  // console.log("NavBar User props", state.Users)
+   return ({
+    Messages: state.Messages,
+    Users: state.Users,
+ })
+}
+
+export default connect(mapStateToProps, null)(Dashboard);

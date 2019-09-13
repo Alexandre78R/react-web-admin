@@ -25,6 +25,9 @@ import SideBar from '../Composent/SideBar';
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
+//Import du composent connect de react-redux
+import {connect} from 'react-redux';
+
 class Setting extends React.Component {
 
   constructor(props) {
@@ -63,11 +66,11 @@ class Setting extends React.Component {
                   </CardHeader>
                   <CardBody>
                   <ListGroup>
-                      <ListGroupItem onClick={() => { this.toggle("1");}}>Profils</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle("2");}}>Setting</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle("3");}}>Stats</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle("4");}}>New Password</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle("5");}}>Disconnection</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("1");}}>Profil</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("2");}}>Paramètre</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("3");}}>Vos Stats</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("4");}}>Nouveau mot de passe</ListGroupItem>
+                      <ListGroupItem onClick={() => { this.toggle("5");}}>Déconnexion</ListGroupItem>
                   </ListGroup>
                   </CardBody>
                 </Card>
@@ -75,27 +78,27 @@ class Setting extends React.Component {
                 <TabPane tabId="1">
                   <Card className="ContentProfil">
                     <CardHeader>
-                      <i className="fas fa-user"></i> Profils 
+                      <i className="fas fa-user"></i> Profil {this.props.Users.username}
                     </CardHeader>
                     <CardBody>
-                      <h4>Profils</h4>
+                      <h4>Profil</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="2">
                   <Card className="ContentProfil">
                     <CardHeader>
-                      <i className="fas fa-cog"></i> Setting 
+                      <i className="fas fa-cog"></i> Paramètre 
                     </CardHeader>
                     <CardBody>
-                      <h4>Setting</h4>
+                      <h4>Paramètre</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="3">
                   <Card className="ContentProfil">
                     <CardHeader>
-                      <i className="fas fa-info-circle"></i> Stats 
+                      <i className="fas fa-info-circle"></i> Vos stats 
                     </CardHeader>
                     <CardBody>
                       <h4>Stats</h4>
@@ -105,20 +108,20 @@ class Setting extends React.Component {
                 <TabPane tabId="4">
                   <Card className="ContentProfil">
                     <CardHeader>
-                      <i className="fas fa-key"></i> New Password 
+                      <i className="fas fa-key"></i> Nouveau mot de passe
                     </CardHeader>
                     <CardBody>
-                      <h4>New Password</h4>
+                      <h4>Nouveau mot de passe</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="5">
                   <Card className="ContentProfil">
                     <CardHeader>
-                     <i className="fas fa-sign-out-alt"></i> Disconnection
+                     <i className="fas fa-sign-out-alt"></i> Déconnexion
                     </CardHeader>
                     <CardBody>
-                      <h4>Disconnection</h4>
+                      <h4>Déconnexion</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
@@ -133,4 +136,12 @@ class Setting extends React.Component {
   }
 }
 
-export default Setting;
+//Récupération des infos avec Redux.
+function mapStateToProps(state) {
+  console.log("Paramètre User props", state.Users)
+   return ({
+    Users: state.Users,
+ })
+}
+
+export default connect(mapStateToProps, null)(Setting);

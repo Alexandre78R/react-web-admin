@@ -37,6 +37,7 @@ export default {
     //Fonction déconnexion.
     logout : function() {
         //A la déconnection on clear tous  qui se retrouve sans informations du compte.
-        localStorage.clear();
-    }
+        // localStorage.clear();
+        localStorage.removeItem('token');
+    },
 }

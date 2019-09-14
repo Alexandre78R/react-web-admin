@@ -47,6 +47,12 @@ class SignIn extends React.Component {
     
   }
 
+  //A l'arrivé sur la  page on vide bien le localstorage
+  componentWillMount() {
+    //Apelle de la funtion logout qui se trouve dans le fichier API.
+    API.logout();
+  }
+
   handleClick = () => {
 
     console.log('click détecté !');
@@ -97,20 +103,10 @@ class SignIn extends React.Component {
         }else{
 
         //Envoi des infos dans redux
-        ctx.props.setUser(data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
+        ctx.props.setUser(data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
       
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
-        // localStorage.setItem('id', data.data.user._id);
-        // localStorage.setItem('username', data.data.data.data.user.username);
-        // localStorage.setItem('password', data.data.user.password);
-        // localStorage.setItem('email', data.data.user.email);
-        // localStorage.setItem('description', data.data.user.description);
-
-        // console.log("LocalStorage", localStorage)
-
-        // Redirection vers le dashboard.
-        // window.location = "/dashboard"
 
         ctx.setState({
           bgAlert: false,
@@ -160,7 +156,6 @@ class SignIn extends React.Component {
                           <input type="password" className="fadeIn second" placeholder="Password" onChange={event=>this.setState({password:event.target.value})} />
                         </InputGroup>
                         <br />
-                        {/* <Link type="submit" value="Signin" onClick={this.handleClick}>test connexion</Link> */}
                         <input type="submit" value="Signin" onClick={this.handleClick}/>
                     </div>
                   </div>
@@ -185,9 +180,10 @@ class SignIn extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     // User
-    setUser(username, password, email, description) { 
+    setUser(text, username, password, email, description) { 
       dispatch({
       type: 'setUser',
+      text : text,
       username : username,
       password: password,
       email: email,

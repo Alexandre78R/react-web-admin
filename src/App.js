@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Import de la liste des composents de react-router-dom
-import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 //Import du CSS
 import './App.css';
@@ -40,13 +40,42 @@ import {createStore, combineReducers}  from 'redux';
 //Import du composent PrivateRoute
 import { PrivateRoute } from './Composent/PrivateRoute.js';
 
+//Import du composent API
+import API from './utils/API';
+
 //Store de Redux
 const store = createStore(combineReducers({Messages, Notes, Users}));
 
-
 export default class App extends React.Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      redirect: "",
+    };
+    
+  }
+  //! Désactiv pour le momment
+  //Fonction de redirection sur la connexion si tu refresh la page
+  // componentWillMount() {
+  //   var ctx = this;
+  //   console.log("refresh")
+
+  //     // if(API.isAuth()===false){
+  //     //   ctx.setState({
+  //     //     redirect : true,
+  //     //   });
+  //     // }  
+  // }
+
   render() {
+    //!Désactivé pour le moment !
+    // const { redirect } = this.state;
+
+    // if (redirect === true) {
+    //   return <Redirect to='/'/>;
+    // }
     return (
       <Provider store={store}>
         <Router>

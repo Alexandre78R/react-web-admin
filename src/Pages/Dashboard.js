@@ -40,10 +40,10 @@ class Dashboard extends React.Component {
             <SideBar/>
 
               <Container className="container-fluid page">
-               <Row>
-               <Alert color="secondary" className="alertDashboard">
-                Bonjour {this.props.Users.username}
-                </Alert>
+              <Row>
+              <Alert color="secondary" className="alertDashboard">
+                {this.props.Users.text}
+              </Alert>
                 <Col xs="12" sm="6" xl="3">
                  <Card className="card text-white bg-primary o-hidden ">
                    <CardBody>

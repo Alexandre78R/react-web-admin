@@ -4,6 +4,7 @@ export default function(UserContent = [], action){
     if (action.type === 'setUser') {
         console.log("Action (UserReducers)", action)
         var UserCopy = {
+            text : action.text,
             username : action.username,
             password : action.password,
             email : action.email,

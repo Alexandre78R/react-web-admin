@@ -22,6 +22,12 @@ import SideBar from '../Composent/SideBar';
 import API from '../utils/API';
 // import Footer from '../Composent/Footer';
 
+//Import des composent de react-router-dom
+import { Link, Redirect  } from "react-router-dom";
+
+//Import du composent connect de react-redux
+import {connect} from 'react-redux';
+
 class SignUp extends React.Component {
   
     constructor() {
@@ -41,11 +47,17 @@ class SignUp extends React.Component {
             bgAlert : false,
             //State Text Error
             text : "",
+            //State Redirection
+            redirect: false,
         }
     };
-    
-    //Fonction qui se déclanche à la validation du formulaire d'enregistrement.
 
+  //A l'arrivé sur la  page on vide bien le localstorage
+  componentWillMount() {
+    //Apelle de la funtion logout qui se trouve dans le fichier API.
+    API.logout();
+  }
+  //Fonction qui se déclanche à la validation du formulaire d'enregistrement.
   handleClick(){
 
       console.log('Inscription en cours...');
@@ -100,10 +112,16 @@ class SignUp extends React.Component {
             console.log(ctx.state.username)     
           // Si tous est good on accepte son incription e ton le connect 
           }else{
+            //Envoi des infos dans redux
+            ctx.props.setUser(data.data.text,data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
             //On récupére le token que le backend nous s'a envoyé.
             localStorage.setItem('token', data.data.token);
             //Redirection vers le dashboard.
-            window.location = "/dashboard"
+            ctx.setState({
+              bgAlert: false,
+              text : "",
+              redirect : true,
+            });
           }
           //En cas d'erreur un message s'affiche 
       },function(error){
@@ -117,6 +135,12 @@ class SignUp extends React.Component {
     }
  
   render() {
+    var ctx = this;
+    const { redirect } = ctx.state;
+
+    if (redirect === true) {
+      return <Redirect to='/dashboard'/>;
+    }
     return (
       <div id="page-top">
         <NavBar/>
@@ -161,4 +185,31 @@ class SignUp extends React.Component {
     );
   }
 }
-export default SignUp;
+
+ //Réccupération des Messages par Redux.
+ function mapStateToProps(state) {
+  // console.log("Messages::::",state.Messages) 
+  console.log("state", state)
+   return ({
+    Users: state.Users,
+ })
+ }
+
+//Listes des fonction dispatch pour les messages
+function mapDispatchToProps(dispatch) {
+  return {
+    // User
+    setUser(text, username, password, email, description) { 
+      dispatch({
+      type: 'setUser',
+      text : text,
+      username : username,
+      password: password,
+      email: email,
+      description : description,
+    }) 
+   },
+  }
+ }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

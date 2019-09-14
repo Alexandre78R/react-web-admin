@@ -51,16 +51,8 @@ class NavBar extends React.Component {
     //Puis redirection sur la page de login.
     window.location = "/";
   }
-  componentWillMount() {
-  console.log("NavBar state user", this.props.Users.text)
-
-  if (this.props.Users.text === undefined){
-    this.setState({
-    redirect : true,
-    });
-  }
   
-  }
+// }
   // componentWillMount() {
     // console.log("message", this.props.Messages.length)
     // setTimeout(function() {
@@ -83,11 +75,6 @@ class NavBar extends React.Component {
     // },1000)
   // }
   render() {
-    const { redirect } = this.state;
-
-    if (redirect === true) {
-      return <Redirect to='/'/>;
-    }
     return (
       <div>
       <Navbar color="dark" dark expand="md">
@@ -96,16 +83,26 @@ class NavBar extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="nav-item dropdown no-arrow mx-1">
-              <Link className="nav-link" to={'#'}>
-                <span className="badge badge-danger">0</span>
-                <i className="fas fa-bell fa-fw"></i>
-              </Link>
+              {
+                API.isAuth()===true ? 
+                <Link className="nav-link" to={'#'}>
+                  <span className="badge badge-danger">0</span>
+                  <i className="fas fa-bell fa-fw"></i>
+                </Link>
+                :
+                ""
+              }
             </NavItem>
             <NavItem className="nav-item dropdown no-arrow mx-1">
-            <Link className="nav-link" to={'/message/'}>
-              <span className="badge badge-danger">{this.state.messageCount}</span>
-              <i className="fas fa-envelope fa-fw"></i>
-            </Link>
+            {
+              API.isAuth()===true ? 
+              <Link className="nav-link" to={'/message/'}>
+                <span className="badge badge-danger">{this.state.messageCount}</span>
+                <i className="fas fa-envelope fa-fw"></i>
+              </Link>
+              :
+              ""
+            }
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav >
@@ -119,7 +116,6 @@ class NavBar extends React.Component {
                 <h6 className="dropdown-header">Pas encore inscrit ?</h6>
               }
               <DropdownItem>
-              {/* <a className="dropdown-item" href="/setting">Paramètre</a> */}
               {
                 API.isAuth()===true ? 
                 <Link to='/setting'>Paramètre</Link>

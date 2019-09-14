@@ -38,6 +38,9 @@ import {connect} from 'react-redux';
 //Import du composent circlePiker de react-color
 import { CirclePicker } from 'react-color';
 
+//Import du composent Link de react-router-dom
+import { Redirect } from "react-router-dom";
+
 class Note extends React.Component {
   
   constructor(props) {
@@ -93,6 +96,8 @@ class Note extends React.Component {
       temps : "",
       //State de la couleur pour la note.
       color : "",
+      //State Redirection
+      redirect: false,
     };
   }
 
@@ -112,7 +117,16 @@ class Note extends React.Component {
 
   // Dés que la page charge on lient les notes dans les states pour les envoyer à Redux.
   componentWillMount(){
-      
+      var ctx = this;
+      //Vérif si la personne est bien connecté
+      if (ctx.props.Users.text === undefined){
+        ctx.setState({
+          bgAlert: false,
+          text : "",
+          redirect : true,
+        });
+      }
+    
      this.state.notes.map(
          (note, i) => {
             this.props.addNote(note.title, note.note, note.date, note.temps, note.color)
@@ -434,6 +448,12 @@ class Note extends React.Component {
 
      render() {
 
+      const { redirect } = this.state;
+
+      if (redirect === true) {
+        return <Redirect to='/'/>;
+      }
+
     //On stock les infos de redux (des notes) dans la variabe de notes_boucles
     var notes_boucle = this.props.Notes.map(
       (note, i) => {
@@ -592,6 +612,7 @@ function mapStateToProps(state) {
   console.log("state", state)
    return ({
     Notes: state.Notes,
+    Users : state.Users,
  })
 }
 

@@ -28,7 +28,7 @@ import SideBar from '../Composent/SideBar';
 import {connect} from 'react-redux';
 
 //import du composent de Link de react-router-dom
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Message extends React.Component {
  
@@ -68,13 +68,22 @@ class Message extends React.Component {
         {key : "27", object : "Object27", expediteur : "Username", date : "jj/mm/yyyy", message : "message27"},
      ],
      Alertvisible: true,
+     redirect : false,
     };
     
   }
   // Dés que la page est charger il exucute cette boucle pour lire les messages et surtout d'envoyer à Redux
   componentWillMount(){
-      
-   this.state.messageData.map(
+    var ctx = this;
+    //Vérif si la personne est bien connecté
+    if (ctx.props.Users.text === undefined){
+      ctx.setState({
+        bgAlert: false,
+        text : "",
+        redirect : true,
+      });
+    }
+    this.state.messageData.map(
         (message, i) => {
           // console.log("messageData2",message.object, message.expediteur, message.date)
            this.props.addMessage(message.key, message.object, message.expediteur, message.date, message.message)
@@ -94,6 +103,11 @@ class Message extends React.Component {
   }
 
   render() {
+    const { redirect } = this.state;
+
+    if (redirect === true) {
+      return <Redirect to='/'/>;
+    }
 
     const { currentPage } = this.state;
     // PageSize limité le nombre de message par page.
@@ -204,6 +218,7 @@ function mapStateToProps(state) {
   console.log("state", state)
    return ({
     Messages: state.Messages,
+    Users : state.Users,
  })
  }
 

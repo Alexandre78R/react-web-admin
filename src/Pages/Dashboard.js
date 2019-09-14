@@ -24,13 +24,41 @@ import SideBar from '../Composent/SideBar';
 import {connect} from 'react-redux';
 
 //Import du composent Link de react-router-dom
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
 class Dashboard extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      //State Redirection
+      redirect: false,
+    };
+    
+  }
+
+  componentWillMount(){
+    var ctx = this;
+    //Vérif si la personne est bien connecté
+    if (ctx.props.Users.text === undefined){
+    ctx.setState({
+      bgAlert: false,
+      text : "",
+      redirect : true,
+    });
+    }
+  }
+  
   render() {
+    const { redirect } = this.state;
+
+    if (redirect === true) {
+      return <Redirect to='/'/>;
+    }
     return (
 
       <div id="page-top">

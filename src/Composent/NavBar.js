@@ -23,7 +23,7 @@ import {
 import {connect} from 'react-redux';
 
 //Import du composent Link de react-router-dom
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -35,6 +35,7 @@ class NavBar extends React.Component {
     this.state = {
       isOpen: false,
       messageCount : 0,
+      redirect: false,
     };
   }
   toggle() {
@@ -50,7 +51,16 @@ class NavBar extends React.Component {
     //Puis redirection sur la page de login.
     window.location = "/";
   }
+  componentWillMount() {
+  console.log("NavBar state user", this.props.Users.text)
 
+  if (this.props.Users.text === undefined){
+    this.setState({
+    redirect : true,
+    });
+  }
+  
+  }
   // componentWillMount() {
     // console.log("message", this.props.Messages.length)
     // setTimeout(function() {
@@ -73,6 +83,11 @@ class NavBar extends React.Component {
     // },1000)
   // }
   render() {
+    const { redirect } = this.state;
+
+    if (redirect === true) {
+      return <Redirect to='/'/>;
+    }
     return (
       <div>
       <Navbar color="dark" dark expand="md">

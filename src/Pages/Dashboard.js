@@ -131,7 +131,7 @@ class Dashboard extends React.Component {
 //Récupération des infos avec Redux.
 function mapStateToProps(state) {
   // console.log("NavBar Message props", state.Messages)
-  // console.log("NavBar User props", state.Users)
+  console.log("NavBar User props", state.Users)
    return ({
     Messages: state.Messages,
     Users: state.Users,

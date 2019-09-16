@@ -48,7 +48,7 @@ class User extends React.Component {
 
   render() {
     const { redirect } = this.state;
-
+    //Si le state redirect est true on leredirige de force sur la page connexion
     if (redirect === true) {
       return <Redirect to='/'/>;
     }

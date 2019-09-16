@@ -43,6 +43,7 @@ class NavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+  
   //Fonction décconnexion quand on appuis sur le button déconnectin.
   disconnect (event){
     //Apelle de la funtion logout qui se trouve dans le fichier API.
@@ -78,11 +79,18 @@ class NavBar extends React.Component {
     return (
       <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">En Développement</NavbarBrand>
+        {/* On vérifie si la personne est bien connecté */}
+        {
+          API.isAuth()===true ? 
+          <NavbarBrand className="titleNavBar"><Link className="titleNavBar" to={'/dashboard'}>En Développement</Link></NavbarBrand>
+          :
+          <NavbarBrand className="titleNavBar"><Link className="titleNavBar" to={'/'}>En Développement </Link></NavbarBrand>
+        }
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="nav-item dropdown no-arrow mx-1">
+              {/* On vérifie si la personne est bien connecté */}
               {
                 API.isAuth()===true ? 
                 <Link className="nav-link" to={'#'}>
@@ -94,6 +102,7 @@ class NavBar extends React.Component {
               }
             </NavItem>
             <NavItem className="nav-item dropdown no-arrow mx-1">
+            {/* On vérifie si la personne est bien connecté */}
             {
               API.isAuth()===true ? 
               <Link className="nav-link" to={'/message/'}>
@@ -109,6 +118,7 @@ class NavBar extends React.Component {
               <i className="fas fa-user-circle fa-fw"></i> 
               </DropdownToggle>
               <DropdownMenu right>
+              {/* On vérifie si la personne est bien connecté */}
               {
                 API.isAuth()===true ? 
                 <h6 className="dropdown-header">Bonjour {this.props.Users.username},</h6>
@@ -116,22 +126,22 @@ class NavBar extends React.Component {
                 <h6 className="dropdown-header">Pas encore inscrit ?</h6>
               }
               <DropdownItem>
+              {/* On vérifie si la personne est bien connecté */}
               {
                 API.isAuth()===true ? 
-                <Link to='/setting'>Paramètre</Link>
+                <Link className="link-navbar-profil" to='/setting'>Paramètre</Link>
                 :
-                <Link to='/signup'>Inscription</Link>
+                <Link className="link-navbar-profil" to='/signup'>Inscription</Link>
               }
               </DropdownItem>
               <DropdownItem>
-              {/* Si un utilisateur est connecté on affiche le button déconnexion et s'il n'est pas co on lui affiche rien. */}
+              {/* On vérifie si la personne est bien connecté */}
               {
                 API.isAuth()===true ? 
                 <Button
                 onClick={this.disconnect}
                 color="danger"
                 >
-                {/* <Link to='/'>Se déconnecter</Link> */}
                 Déconnexion
                 </Button>
                 :

@@ -119,6 +119,7 @@ class Note extends React.Component {
   componentWillMount(){
       var ctx = this;
       //Vérif si la personne est bien connecté
+      //Sinon sa acative le state redirect true pour rediriger sur la page connexion
       if (ctx.props.Users.text === undefined){
         ctx.setState({
           bgAlert: false,
@@ -449,7 +450,7 @@ class Note extends React.Component {
      render() {
 
       const { redirect } = this.state;
-
+      //Si le state redirect est true on le redirige sur la page connexion
       if (redirect === true) {
         return <Redirect to='/'/>;
       }

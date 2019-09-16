@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
 
   componentWillMount(){
     var ctx = this;
-    //Vérif si la personne est bien connecté
+    //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
     if (ctx.props.Users.text === undefined){
     ctx.setState({
       bgAlert: false,
@@ -55,7 +55,8 @@ class Dashboard extends React.Component {
   
   render() {
     const { redirect } = this.state;
-
+    
+    //Si le state redirect est true on redirige de force sur la page connexion
     if (redirect === true) {
       return <Redirect to='/'/>;
     }

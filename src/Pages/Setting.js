@@ -28,6 +28,10 @@ import SideBar from '../Composent/SideBar';
 //Import du composent connect de react-redux
 import {connect} from 'react-redux';
 
+//Import du composent Link de react-router-dom
+import { Link, Redirect } from "react-router-dom";
+
+
 class Setting extends React.Component {
 
   constructor(props) {
@@ -50,7 +54,26 @@ class Setting extends React.Component {
     }
   }
   
+  componentWillMount(){
+    var ctx = this;
+    //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
+    if (ctx.props.Users.text === undefined){
+    ctx.setState({
+      bgAlert: false,
+      text : "",
+      redirect : true,
+    });
+    }
+  }
+
   render() {
+    const { redirect } = this.state;
+    
+    //Si le state redirect est true on redirige de force sur la page connexion
+    if (redirect === true) {
+      return <Redirect to='/'/>;
+    }
+
     return (
       <div id="page-top">
         <NavBar/>

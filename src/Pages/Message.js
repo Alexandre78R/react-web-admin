@@ -104,7 +104,7 @@ class Message extends React.Component {
 
   render() {
     const { redirect } = this.state;
-
+    //Si elle n'est pas co on le redirige sur la page de connexion
     if (redirect === true) {
       return <Redirect to='/'/>;
     }

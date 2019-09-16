@@ -8,7 +8,6 @@
   pointer-events: none;
 }
 
-
 .alertDashboard {
   width: 100%;
 }
@@ -31,10 +30,39 @@
   margin-top: 1%;
 }
 
+#page-top{
+  height: 100%;
+  background-color: #F5F5F5;
+}
 body {
   text-align: center;
 }
 
+.titleNavBar{
+  color : #fff;
+}
+
+.titleNavBar :hover{
+  color : #fff;
+  text-decoration : none;
+}
+
+.link-navbar-profil{
+  color : black;
+}
+
+.dropdown-item :hover {
+  text-decoration: none;
+}
+
+.dropdown-item :active {
+  color: white;
+}
+
+.link-navbar-profil :hover{
+  color : black;
+  text-decoration: none;
+}
 .pagination-wrapper {
   overflow-x:auto;
 }
@@ -139,7 +167,6 @@ html, body{
 .name_container{
   display: flex;
   justify-content: center;
-
 }
 .name{
   font-size: 20px;
@@ -384,11 +411,11 @@ body {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
   justify-content: center;
   width: 100%;
-  min-height: 100%;
-  padding: 20px;
+  /* min-height: 100%; */
+  /* padding: 20px; */
+  height: 100%;
 }
 
 #formContent {
@@ -609,6 +636,9 @@ Input[type=emails]:placeholder {
   line-height: 20px;
   color: white;
 }
+.sidebar{
+  height: 100%;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -618,5 +648,4 @@ Input[type=emails]:placeholder {
     transform: rotate(360deg);
   }
 }
-
 

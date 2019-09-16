@@ -9,7 +9,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => {
-        var path = props.location.pathname;
         //Si tu n'est pas connecté tu ne peut pas accéder aux pages. (A par celle de connexion et d'inscription)
         if(API.isAuth()===true){
             return( <Component {...props} /> )

@@ -3,6 +3,7 @@ export default function(UserContent = [], action){
     // var UserContentCopy = [...UserContent]
     if (action.type === 'setUser') {
         console.log("Action (UserReducers)", action)
+        //On fait une copie des données de l'utilisateur
         var UserCopy = {
             text : action.text,
             username : action.username,

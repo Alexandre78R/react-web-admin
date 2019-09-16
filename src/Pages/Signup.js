@@ -20,7 +20,9 @@ import SideBar from '../Composent/SideBar';
 
 //Import du composent API 
 import API from '../utils/API';
-// import Footer from '../Composent/Footer';
+
+//Import du composent footer
+import Footer from '../Composent/Footer';
 
 //Import des composent de react-router-dom
 import { Link, Redirect  } from "react-router-dom";
@@ -137,14 +139,13 @@ class SignUp extends React.Component {
   render() {
     var ctx = this;
     const { redirect } = ctx.state;
-
+    //Si le state redirect est true on le redirige sur le dashboard
     if (redirect === true) {
       return <Redirect to='/dashboard'/>;
     }
     return (
       <div id="page-top">
         <NavBar/>
-
           <div id="wrapper">
             <SideBar/>
 
@@ -178,8 +179,8 @@ class SignUp extends React.Component {
                   </div>
                 </div>
                </Row>
+               {/* <Footer/> */}
              </Container>
-             {/* <Footer/> */}
           </div>
     </div>
     );

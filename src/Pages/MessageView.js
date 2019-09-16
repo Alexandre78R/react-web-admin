@@ -37,7 +37,7 @@ class MessageView extends React.Component {
           //State récupération du nombre de key afficher dans l'url.
           key : props.match.params.key,
           //Par défaut en cas ou si une personne refresh la page pour le remetre dans la page des messages.
-          object : <Redirect to="/"/>,
+          object : <Redirect to="/message"/>,
           expediteur : "Alexandre",
           date : "jj/mm/yyyy",
           message : "",

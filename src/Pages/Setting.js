@@ -55,15 +55,15 @@ class Setting extends React.Component {
   }
   
   componentWillMount(){
-    var ctx = this;
-    //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
-    if (ctx.props.Users.text === undefined){
-    ctx.setState({
-      bgAlert: false,
-      text : "",
-      redirect : true,
-    });
-    }
+    // var ctx = this;
+    // //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
+    // if (ctx.props.Users.text === undefined){
+    // ctx.setState({
+    //   bgAlert: false,
+    //   text : "",
+    //   redirect : true,
+    // });
+    // }
   }
 
   render() {
@@ -129,11 +129,11 @@ class Setting extends React.Component {
                   </Card>
                 </TabPane>
                 <TabPane tabId="4">
-                  <Card className="ContentProfil">
-                    <CardHeader>
+                  <Card>
+                    <CardHeader className="panel-title">
                       <i className="fas fa-key"></i> Nouveau mot de passe
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="panel-body">
                       <h4>Nouveau mot de passe</h4>
                     </CardBody>
                   </Card>
@@ -149,6 +149,7 @@ class Setting extends React.Component {
                   </Card>
                 </TabPane>
                 </TabContent>
+
                </Row>
              </Container>
 

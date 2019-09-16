@@ -29,6 +29,9 @@ import { Link, Redirect } from "react-router-dom";
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
+//Import du composent API
+import API from '../utils/API';
+
 class Dashboard extends React.Component {
 
   constructor() {
@@ -37,6 +40,7 @@ class Dashboard extends React.Component {
     this.state = {
       //State Redirection
       redirect: false,
+      userCount : 0,
     };
     
   }
@@ -49,8 +53,21 @@ class Dashboard extends React.Component {
       bgAlert: false,
       text : "",
       redirect : true,
-    });
+    });    
     }
+
+    //On utilisate la fonction userCount pour savoir le nombr d'user que on a dans la BDD
+    API.userCount()
+    .then(function(data){
+      // console.log(data.data.UserCount)
+      ctx.setState({
+        userCount : data.data.UserCount
+      }); 
+    })
+    //En cas d'erreur un message dans la console
+    .catch((err) => {
+      console.log(err)
+    })
   }
   
   render() {
@@ -98,7 +115,15 @@ class Dashboard extends React.Component {
                        <div className="card-body-icon">
                         <i className="fas fa-fw fa-users"></i>
                       </div>
-                      <CardText>0 Clients</CardText>
+                      <CardText>
+                        {/* Si le nombre d'utilisateur égale à 1 on mais en singulier sinon si c'est en pluriel */}
+                      {
+                        this.state.userCount === 1 ?
+                        `${this.state.userCount} User`
+                        :
+                        `${this.state.userCount} Users`
+                      }
+                      </CardText>
                       </CardBody>
                       <CardFooter>
                       <Link className="text-white" to='/user'>

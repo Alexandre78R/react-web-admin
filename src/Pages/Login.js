@@ -86,6 +86,7 @@ class SignIn extends React.Component {
         console.log("Data :", data)
         console.log("data dans data", data.data)
         console.log("user", data.data.user)
+        console.log("Counts", data.data.user)
         // console.log("Text :", data)
 
         //Si l'username n'existe pas on lui met un message d'erreur

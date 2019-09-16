@@ -603,6 +603,11 @@ Input[type=emails]:placeholder {
   /* margin-top: 30%; */
 }
 
+.ContentProfil2{
+  width: 100%;
+  /* margin-top: 30%; */
+}
+
 .fa-cogs{
   color : #555;
 }
@@ -640,6 +645,9 @@ Input[type=emails]:placeholder {
   height: 100%;
 }
 
+.card {
+  background-color: red;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

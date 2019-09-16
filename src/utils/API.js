@@ -27,6 +27,12 @@ export default {
         //Envois des informations de l'enregistrement vers le backend.
         return axios.post(burl + '/user/signup',send,{headers: headers})
     },
+
+    //Fonction counter user
+    userCount : function(){
+        //Envois des informations de l'enregistrement vers le backend.
+        return axios.post(burl + '/user/count',{headers: headers})
+    },
     
     //Fonction pour voir si on est bien co avec le token.
     isAuth : function() {

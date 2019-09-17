@@ -1,29 +1,29 @@
 export default function(NoteContent = [], action){
 
         //On fait une copie des Note qu'on stock dans une variable "NoteContentCopy".
-        var NoteContentCopy = [...NoteContent]
+        // var NoteContentCopy = [...NoteContent]
 
         //Action suppression de la note
         if (action.type === 'deleteNote') {
 
-          //Action suppression de la note avec la position.
-          NoteContentCopy.splice(action.position,1);
+          // //Action suppression de la note avec la position.
+          // NoteContentCopy.splice(action.position,1);
 
-          //   console.log("NoteContentCopy - deleteNote", NoteContentCopy)
-            return NoteContentCopy
+          // //   console.log("NoteContentCopy - deleteNote", NoteContentCopy)
+          //   return NoteContentCopy
 
         //Action d'une nouvelle note.
         } else if(action.type === 'addNote'){
             
-            //On envoie les infomations de la note.
-            NoteContentCopy.push({
-              title : action.title,
-              note : action.note,
-              date : action.date,
-              temps : action.temps,
-              color : action.color,
-              })
-              return NoteContentCopy;
+            // //On envoie les infomations de la note.
+            // NoteContentCopy.push({
+            //   title : action.title,
+            //   note : action.note,
+            //   date : action.date,
+            //   temps : action.temps,
+            //   color : action.color,
+            //   })
+            //   return NoteContentCopy;
         }else if (action.type === 'setNotes') {
             // console.log("Action (NotesReducers)", action)
             //On fait une copie des données de l'utilisateur
@@ -39,15 +39,15 @@ export default function(NoteContent = [], action){
           // console.log("note :::", action.note)
           
           //On supprime l'ancienne note avec la possition et on la renplace directement par les nouvelles informations.
-          NoteContentCopy.splice(action.position, 1, ({
-            title : action.title,
-            note : action.note,
-            date :  action.date,
-            temps : action.temps,
-            color : action.color,
-            }))
+          // NoteContentCopy.splice(action.position, 1, ({
+          //   title : action.title,
+          //   note : action.note,
+          //   date :  action.date,
+          //   temps : action.temps,
+          //   color : action.color,
+          //   }))
 
-          return NoteContentCopy
+          // return NoteContentCopy
         }else {
           
           return NoteContent;

@@ -8,10 +8,10 @@ import {
 } from 'reactstrap';
 
 //Import du composent NavBar
-import NavBar from '../Composent/NavBar'
+import NavBar from '../../Composent/NavBar'
 
 //Import du composent SideBar
-import SideBar from '../Composent/SideBar';
+import SideBar from '../../Composent/SideBar';
 
 //Import du composent Link de react-router-dom
 import { Redirect } from "react-router-dom";

@@ -8,14 +8,14 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import './App.css';
 
 //Import des Pages 
-import Login from './Pages/Login';
-import SignUp from './Pages/Signup';
-import Note from './Pages/Note';
-import Message from './Pages/Message';
-import MessageView from './Pages/MessageView';
-import Setting from './Pages/Setting';
-import Dashboard from './Pages/Dashboard';
-import User from './Pages/User';
+import Login from './Pages/Auth/Login';
+import SignUp from './Pages/Auth/Signup';
+import Note from './Pages/Note/Note';
+import Message from './Pages/Message/Message';
+import MessageView from './Pages/Message/MessageView';
+import Setting from './Pages/User/Setting';
+import Dashboard from './Pages/User/Dashboard';
+import User from './Pages/User/User';
 
 //Import de Bootstrap (version non react donc standard)
 import 'bootstrap/dist/css/bootstrap.min.css';

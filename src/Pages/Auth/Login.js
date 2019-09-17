@@ -10,10 +10,10 @@ import {
 } from 'reactstrap';
 
 //Import du composent NavBar
-import NavBar from '../Composent/NavBar'
+import NavBar from '../../Composent/NavBar'
 
 //Import du composent SideBar
-import SideBar from '../Composent/SideBar';
+import SideBar from '../../Composent/SideBar';
 
 //Import du composent connect de react-redux
 import {connect} from 'react-redux';
@@ -22,7 +22,7 @@ import {connect} from 'react-redux';
 // import Footer from '../Composent/Footer';
 
 //Import du composent API
-import API from '../utils/API';
+import API from '../../utils/API';
 
 //Import des composent de react-router-dom
 import { Link, Redirect  } from "react-router-dom";

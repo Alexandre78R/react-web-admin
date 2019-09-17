@@ -14,10 +14,10 @@ import {
 } from 'reactstrap';
 
 //Import du composents NavBar
-import NavBar from '../Composent/NavBar'
+import NavBar from '../../Composent/NavBar'
 
 //Import du composent SideBar
-import SideBar from '../Composent/SideBar';
+import SideBar from '../../Composent/SideBar';
 
 //Import du composent Footer
 // import Footer from '../Composent/Footer';

@@ -1,8 +1,5 @@
 export default function(NoteContent = [], action){
 
-        //On fait une copie des Note qu'on stock dans une variable "NoteContentCopy".
-        // var NoteContentCopy = [...NoteContent]
-
         //Action suppression de la note
         if (action.type === 'deleteNote') {
 
@@ -10,7 +7,7 @@ export default function(NoteContent = [], action){
           // NoteContentCopy.splice(action.position,1);
 
           // //   console.log("NoteContentCopy - deleteNote", NoteContentCopy)
-          //   return NoteContentCopy
+            // return NoteContentCopy
         //Action d'une nouvelle note.
         } else if(action.type === 'addNote'){
             
@@ -25,12 +22,15 @@ export default function(NoteContent = [], action){
             //   return NoteContentCopy;
         }else if (action.type === 'setNotes') {
             // console.log("Action (NotesReducers)", action)
+
+            //On fait une copie des Note qu'on stock dans une variable "NoteContentCopy".
+            var NoteContentCopy = [...NoteContent]
             //On fait une copie des données de l'utilisateur
-            var NotesCopy = {
+              NoteContentCopy = {
                 notes : action.notes,
               }
-              console.log("NotesCopy", NotesCopy)
-            return NotesCopy
+              console.log("NotesCopy", NoteContentCopy)
+            return NoteContentCopy
         //Action de la modification de la note.
         } else if(action.type === 'editNote'){
           // console.log("position ::: ", action.position)

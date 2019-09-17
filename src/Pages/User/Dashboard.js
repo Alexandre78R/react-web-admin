@@ -15,10 +15,10 @@ import {
 } from 'reactstrap';
 
 //Import du composent de la NavBar 
-import NavBar from '../Composent/NavBar'
+import NavBar from '../../Composent/NavBar'
 
 //Import du composent de la SideBar 
-import SideBar from '../Composent/SideBar';
+import SideBar from '../../Composent/SideBar';
 
 //Import du composent connect de react-redux
 import {connect} from 'react-redux';
@@ -30,7 +30,7 @@ import { Link, Redirect } from "react-router-dom";
 // import Footer from '../Composent/Footer';
 
 //Import du composent API
-import API from '../utils/API';
+import API from '../../utils/API';
 
 class Dashboard extends React.Component {
 

@@ -87,6 +87,7 @@ class SignIn extends React.Component {
         console.log("data dans data", data.data)
         console.log("user", data.data.user)
         console.log("Counts", data.data.user)
+        console.log("Notes", data.data.user.notes)
         // console.log("Text :", data)
 
         //Si l'username n'existe pas on lui met un message d'erreur
@@ -104,9 +105,10 @@ class SignIn extends React.Component {
           //Et sit tous est bon on le connecte 
         }else{
 
-        //Envoi des infos dans redux
+        //Envoi des infos user dans redux
         ctx.props.setUser(data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
-      
+        
+        ctx.props.setNotes(data.data.user.notes)
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
 
@@ -181,7 +183,7 @@ class SignIn extends React.Component {
 //Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {
   return {
-    // User
+    // Récupération des infos de l'User
     setUser(text, username, password, email, description) { 
       dispatch({
       type: 'setUser',
@@ -192,6 +194,13 @@ function mapDispatchToProps(dispatch) {
       description : description,
     }) 
    },
+      // Récupération des infos de l'User
+      setNotes(notes) { 
+      dispatch({
+      type: 'setNotes',
+      notes : notes,
+    }) 
+    },
   }
  }
 

@@ -24,7 +24,14 @@ export default function(NoteContent = [], action){
               color : action.color,
               })
               return NoteContentCopy;
-        
+        }else if (action.type === 'setNotes') {
+            // console.log("Action (NotesReducers)", action)
+            //On fait une copie des données de l'utilisateur
+            var NotesCopy = {
+                notes : action.notes,
+              }
+              console.log("NotesCopy", NotesCopy)
+            return NotesCopy
         //Action de la modification de la note.
         } else if(action.type === 'editNote'){
           // console.log("position ::: ", action.position)

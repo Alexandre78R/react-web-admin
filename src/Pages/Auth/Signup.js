@@ -114,8 +114,12 @@ class SignUp extends React.Component {
             console.log(ctx.state.username)     
           // Si tous est good on accepte son incription e ton le connect 
           }else{
-            //Envoi des infos dans redux
+            //Envoi des infos de l'user dans redux
             ctx.props.setUser(data.data.text,data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
+            
+            //Envoi des infos des notes de l'user dans redux
+            ctx.props.setNotes(data.data.user.notes)
+
             //On récupére le token que le backend nous s'a envoyé.
             localStorage.setItem('token', data.data.token);
             //Redirection vers le dashboard.
@@ -210,7 +214,14 @@ function mapDispatchToProps(dispatch) {
       description : description,
     }) 
    },
+      // Récupération des infos de l'User
+      setNotes(notes) { 
+        dispatch({
+        type: 'setNotes',
+        notes : notes,
+      }) 
+    },
   }
- }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

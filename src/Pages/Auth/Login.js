@@ -108,7 +108,9 @@ class SignIn extends React.Component {
         //Envoi des infos user dans redux
         ctx.props.setUser(data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
         
+        //Envoi des infos des notes de l'user dans redux
         ctx.props.setNotes(data.data.user.notes)
+
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
 
@@ -194,8 +196,8 @@ function mapDispatchToProps(dispatch) {
       description : description,
     }) 
    },
-      // Récupération des infos de l'User
-      setNotes(notes) { 
+    // Récupération des infos de l'User
+    setNotes(notes) { 
       dispatch({
       type: 'setNotes',
       notes : notes,

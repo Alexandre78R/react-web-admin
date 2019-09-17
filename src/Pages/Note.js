@@ -104,7 +104,6 @@ class Note extends React.Component {
       if (redirect === true) {
         return <Redirect to='/'/>;
       }
-
     //On stock les infos de redux (des notes) dans la variabe de notes_boucles
     var notes_boucle = this.props.Notes.notes.map(
       (note, i) => {

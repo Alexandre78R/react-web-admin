@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
     //On utilisate la fonction userCount pour savoir le nombr d'user que on a dans la BDD
     API.userCount()
     .then(function(data){
-      // console.log(data.data.UserCount)
+      console.log(data.data)
       ctx.setState({
         userCount : data.data.UserCount
       }); 
@@ -119,15 +119,15 @@ class Dashboard extends React.Component {
                         {/* Si le nombre d'utilisateur égale à 1 on mais en singulier sinon si c'est en pluriel */}
                       {
                         this.state.userCount === 1 ?
-                        `${this.state.userCount} User`
+                        `${this.state.userCount} Utilisateur`
                         :
-                        `${this.state.userCount} Users`
+                        `${this.state.userCount} Utilisateurs`
                       }
                       </CardText>
                       </CardBody>
                       <CardFooter>
                       <Link className="text-white" to='/user'>
-                        <span>View Details</span>
+                        <span>Liste des utilisateurs </span>
                         <span className="float-right">
                         <i className="fas fa-angle-right"></i>
                         </span>
@@ -142,11 +142,21 @@ class Dashboard extends React.Component {
                       <div className="card-body-icon">
                         <i className="fas fa-fw fa-list"></i>
                       </div>
-                      <CardText>0 Notes</CardText>
+                      <CardText>
+                        { this.props.Notes.notes.length <= 1 ?
+                          `${this.props.Notes.notes.length} Note`
+                          :
+                          `${this.props.Notes.notes.length} Notes`
+                        }
+                      </CardText>
                     </CardBody>
                     <CardFooter>
                     <Link className="text-white" to='/note'>
-                      <span>View Details</span>
+                    { this.props.Notes.notes.length <= 1 ?
+                      <span>Regarder votre note </span>
+                      :
+                      <span>Regarder vos notes</span>
+                    }
                       <span className="float-right">
                         <i className="fas fa-angle-right"></i>
                       </span>
@@ -189,6 +199,7 @@ function mapStateToProps(state) {
    return ({
     Messages: state.Messages,
     Users: state.Users,
+    Notes : state.Notes,
  })
 }
 

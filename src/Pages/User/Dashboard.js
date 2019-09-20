@@ -58,17 +58,17 @@ class Dashboard extends React.Component {
 
     //On utilisate la fonction userCount pour savoir le nombr d'user que on a dans la BDD
     API.userCount()
-    .then(function(data){
-      console.log(data.data)
-      ctx.setState({
-        userCount : data.data.UserCount
-      }); 
-    })
-    //En cas d'erreur un message dans la console
-    .catch((err) => {
-      console.log(err)
-    })
-  }
+      .then(function(data){
+        console.log(data.data)
+        ctx.setState({
+          userCount : data.data.UserCount
+        }); 
+      })
+      //En cas d'erreur un message dans la console
+      .catch((err) => {
+        console.log(err)
+      })
+    }
   
   render() {
     const { redirect } = this.state;
@@ -143,16 +143,16 @@ class Dashboard extends React.Component {
                         <i className="fas fa-fw fa-list"></i>
                       </div>
                       <CardText>
-                        { this.props.Notes.notes.length <= 1 ?
-                          `${this.props.Notes.notes.length} Note`
+                        { this.props.Notes.length <= 1 ?
+                          `${this.props.Notes.length} Note`
                           :
-                          `${this.props.Notes.notes.length} Notes`
+                          `${this.props.Notes.length} Notes`
                         }
                       </CardText>
                     </CardBody>
                     <CardFooter>
                     <Link className="text-white" to='/note'>
-                    { this.props.Notes.notes.length <= 1 ?
+                    { this.props.Notes.length <= 1 ?
                       <span>Regarder votre note </span>
                       :
                       <span>Regarder vos notes</span>

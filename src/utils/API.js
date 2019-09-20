@@ -11,6 +11,8 @@ const burl = "http://192.168.43.236:3000"
 
 export default {
 
+    //! Les functions pour l'utilisation des infos sur l'user
+
     //Fonction login 
     login : function(username,password) {
         //Envois des information de connexion aux backend (username, password).
@@ -46,4 +48,21 @@ export default {
         localStorage.clear();
         //localStorage.removeItem('token');
     },
+
+    //! Fin des functions pour l'utilisation des infos sur l'user
+
+    //! Les functions pour l'utilisation des infos sur les notes
+
+    //Fonction del Note 
+    delNote : function(idUser, position) {
+        //Envois des information pour del la note
+        return axios.post(burl + '/note/del',{
+            'idUser' : idUser,
+            'position' : position,
+        },{
+            headers: headers
+        })
+    },
+
+    //! Fin des functions pour l'utilisation des infos sur les notes
 }

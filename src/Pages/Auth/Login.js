@@ -106,10 +106,27 @@ class SignIn extends React.Component {
         }else{
 
         //Envoi des infos user dans redux
-        ctx.props.setUser(data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
+        ctx.props.setUser(data.data.user._id, data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
+       
+        //On stock dans la variable les notes reçus du back
+        var Notes = data.data.user.notes;
         
-        //Envoi des infos des notes de l'user dans redux
-        ctx.props.setNotes(data.data.user.notes)
+        //On stock dans la variable un map des notes
+        var NoteBDD = Notes.map(notes => {
+          //Sa nous retourne les informations
+          return {
+            id : notes._id,
+            title : notes.title,
+            note : notes.note,
+            date : notes.date,
+            temps : notes.temps,
+            color : notes.color
+          }
+        })
+        console.log("NoteBDD", NoteBDD)
+
+        //Envoi des infos des notes dans redux + fonctionnement de la variable
+        ctx.props.setNotes(NoteBDD)
 
         // Récupération du token que le backend nous envois.
         localStorage.setItem('token', data.data.token);
@@ -173,22 +190,23 @@ class SignIn extends React.Component {
     );
   }
 }
- //Réccupération des Messages par Redux.
- function mapStateToProps(state) {
+//Réccupération des Messages par Redux.
+function mapStateToProps(state) {
   // console.log("Messages::::",state.Messages) 
   console.log("state", state)
    return ({
     Users: state.Users,
- })
- }
+  })
+}
 
 //Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {
   return {
-    // Récupération des infos de l'User
-    setUser(text, username, password, email, description) { 
+    // Récupération des infos de l'User pour envoyerà redux
+    setUser(id, text, username, password, email, description) { 
       dispatch({
       type: 'setUser',
+      id : id,
       text : text,
       username : username,
       password: password,
@@ -196,13 +214,13 @@ function mapDispatchToProps(dispatch) {
       description : description,
     }) 
    },
-    // Récupération des infos de l'User
-    setNotes(notes) { 
-      dispatch({
-      type: 'setNotes',
-      notes : notes,
-    }) 
-    },
+   //Recupération des infos des notes pour envoyer à redux
+   setNotes(notes){
+     dispatch({
+       type : 'setNotes',
+       notes : notes,
+     })
+   },
   }
  }
 

@@ -1,9 +1,9 @@
-export default function(MessageContent = [], action){
+export default function(Messages = [], action){
         // console.log("Action Reducer -->",action)
         // console.log("TableContent -->",TableContent) 
         
         //On une copie  des messages.
-        var MessageContentCopy = [...MessageContent]
+        var MessageContentCopy = [...Messages]
         
         //Action suppression du messgae sélectionné.
         if (action.type === 'deleteMessage') {
@@ -29,9 +29,9 @@ export default function(MessageContent = [], action){
             //Action qui n'est pas utilisé pour l'instant.
           } else if(action.type === 'addCountMessage'){
             // action.i++
-            return MessageContent
+            return Messages
             
           }else{
-            return MessageContentCopy;
+            return Messages;
           }
         }

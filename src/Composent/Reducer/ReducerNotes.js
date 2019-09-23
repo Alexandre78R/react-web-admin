@@ -21,6 +21,18 @@ export default function(Notes = [], action){
     }
 
     return NoteContentCopy;
+  //Action d'une nouvelle note.
+  } else if(action.type === 'addNote'){
+    //On envoie les infomations de la note.
+    NoteContentCopy.push({
+      title : action.title,
+      note : action.note,
+      date : action.date,
+      temps : action.temps,
+      color : action.color,
+      })
+      return NoteContentCopy;
+
   }else {
     return Notes;
   }

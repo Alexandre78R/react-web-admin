@@ -11,6 +11,8 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Label,
+  Input,
 } from 'reactstrap';
 
 //Import du composent NavBar
@@ -37,16 +39,12 @@ import { Redirect } from "react-router-dom";
 //Import du composent API
 import API from '../../utils/API.js';
 
+//Import du compoent NoteAdd
+import NoteAdd from './NoteAdd.js'
 class Note extends React.Component {
   
   constructor(props) {
     super(props);
-    
-    //On bind les functions pour les utilisés partout avec this.
-    this.handleSubmitDel = this.handleSubmitDel.bind(this)
-    this.noteDel = this.noteDel.bind(this);
-    this.toggleDel = this.toggleDel.bind(this);
-    this.noteDelError = this.noteDelError.bind(this);
 
     this.state = {
       //State du background de l'alert
@@ -63,23 +61,21 @@ class Note extends React.Component {
       modalDel: false,
       //Stat de la position
       position : "",
-      //Stat du titre 
-      title : "",
     };
   }
 
   //Fonction d'affichage du modal delete
-  toggleDel() {
+  toggleDel = () => {
     this.setState(prevState => ({
       modalDel: !prevState.modalDel
     }));
   }
 
   // Dés que la page charge on lient les notes dans les states pour les envoyer à Redux.
-  componentWillMount(){
+  componentWillMount = () =>{
     var ctx = this;
     //Vérif si la personne est bien connecté
-    //Sinon sa acative le state redirect true pour rediriger sur la page connexion
+    //Sinon sa active le state redirect true pour rediriger sur la page connexion
     if (ctx.props.Users.text === undefined){
       ctx.setState({
         modalDel: false,
@@ -96,7 +92,7 @@ class Note extends React.Component {
 
   //! Les fonctions pour supprimer une note !
 
-  handleSubmitDel (position){
+  handleSubmitDel = (position) => {
     //On stock les notes dans la variable
     var list = this.props.Notes
 
@@ -104,7 +100,7 @@ class Note extends React.Component {
     for (var i = 0; i < list.length; i++) {
         // console.log("position", position)
         // console.log("title",(list[position].title))
-        
+
         //On force pour la premère dans le tableau (donc 0) pour que la suppression marche bien.
         if (position === 0) {
           this.setState({
@@ -126,10 +122,13 @@ class Note extends React.Component {
   }
   
   //Fonction suppression de la note
-  noteDel (){
+  noteDel = () => {
     var ctx = this;
+
     // Utulisation de note API pour envoyer vers le backend les informations du compte.
-    API.delNote(this.props.Users.id, this.state.position).then(function(data){
+    API.delNote(this.props.Users.id, this.state.position)
+    .then(function(data){
+
     },function(error){
       console.log(error);
       ctx.setState({
@@ -154,7 +153,7 @@ class Note extends React.Component {
   }
 
   //Function Cancel la modal de la suppression des notes.
-  noteDelError(){
+  noteDelError = () => {
     this.setState({
       bgAlertModal : false,
       textModal : "",
@@ -176,13 +175,13 @@ class Note extends React.Component {
     //On stock les infos de redux (des notes) dans la variabe de notes_boucles
     var notes_boucle = this.props.Notes.map(
       (note, i) => {
-        console.log("note_boucle", note)
+        // console.log("note_boucle", note)
         return (
            <Draggable handle="strong">
             <div className="note no-cursor">
                <strong  className='note-topic cursor' style={{backgroundColor : note.color,}}>
-                   {note.title}
-                   <span className="close" onClick= {() => this.handleSubmitDel(i)}><i className="far fa-times-circle"></i></span>
+                  {note.title}
+                  <span className="close" onClick= {() => this.handleSubmitDel(i)}><i className="far fa-times-circle"></i></span>
                </strong>
                <div className="note-body">
                  <p>{note.note}</p>
@@ -205,7 +204,7 @@ class Note extends React.Component {
             <SideBar/>
 
               <Container className="container-fluid">
-
+                <NoteAdd/>
               {/* S'il n'y a pas de note affiche "Vous n'avez pas de note". */}
               {
                 this.props.Notes.length === 0 ?
@@ -216,8 +215,8 @@ class Note extends React.Component {
                 <Row className="note-page">
                   {notes_boucle}
                 </Row>
-              } 
 
+              } 
               {/* Modal suppression de la note */}
               <Modal isOpen={this.state.modalDel} toggle={this.toggleDel} className={this.props.className}>
                 <ModalHeader toggle={this.toggleDel}>Suppresion de {this.state.title}</ModalHeader>
@@ -261,17 +260,6 @@ function mapDispatchToProps(dispatch) {
       position : position,
     }) 
    },
-   setNotes(id, title, note, date, temps, color) { 
-    dispatch({
-    type: 'setNotes',
-    id : id,
-    title : title,
-    note : note,
-    date : date,
-    temps :temps,
-    color : color,
-  }) 
- },
   }
  }
 

@@ -35,9 +35,6 @@ class SignUp extends React.Component {
     constructor() {
         super();
 
-        //On blind la function handleClick pour l'utilisé partout avec this.
-        this.handleClick = this.handleClick.bind(this)
-
         this.state = {
             //State de l'username
             username: '',
@@ -55,12 +52,12 @@ class SignUp extends React.Component {
     };
 
   //A l'arrivé sur la  page on vide bien le localstorage
-  componentWillMount() {
+  componentWillMount = () => {
     //Apelle de la funtion logout qui se trouve dans le fichier API.
     API.logout();
   }
   //Fonction qui se déclanche à la validation du formulaire d'enregistrement.
-  handleClick(){
+  handleClick = () => {
 
       console.log('Inscription en cours...');
 

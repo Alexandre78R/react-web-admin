@@ -34,7 +34,7 @@ class User extends React.Component {
     
   }
 
-  componentWillMount(){
+  componentWillMount = () =>{
     var ctx = this;
     //Vérif si la personne est bien connecté
     if (ctx.props.Users.text === undefined){

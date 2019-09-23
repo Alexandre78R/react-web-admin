@@ -48,7 +48,7 @@ class SignIn extends React.Component {
   }
 
   //A l'arrivé sur la  page on vide bien le localstorage
-  componentWillMount() {
+  componentWillMount = () => {
     //Apelle de la funtion logout qui se trouve dans le fichier API.
     //Pour forcer la déconnexion de la dernière session 
     API.logout();

@@ -46,7 +46,7 @@ class Setting extends React.Component {
   }
 
   //Gestion d'affichage de la tap pour le toggle
-  toggle(tab) {
+  toggle = (tab) => {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab
@@ -54,7 +54,7 @@ class Setting extends React.Component {
     }
   }
   
-  componentWillMount(){
+  componentWillMount = () => {
     // var ctx = this;
     // //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
     // if (ctx.props.Users.text === undefined){

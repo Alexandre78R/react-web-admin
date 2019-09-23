@@ -73,7 +73,7 @@ class Message extends React.Component {
     
   }
   // Dés que la page est charger il exucute cette boucle pour lire les messages et surtout d'envoyer à Redux
-  componentWillMount(){
+  componentWillMount = () => {
     var ctx = this;
     //Vérif si la personne est bien connecté
     if (ctx.props.Users.text === undefined){
@@ -93,7 +93,7 @@ class Message extends React.Component {
     }
   
   //Fonction pour la Pagination
-  handleClick(e, index){
+  handleClick = (e, index) => {
     
     e.preventDefault();
     this.setState({

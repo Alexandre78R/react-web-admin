@@ -45,7 +45,7 @@ class MessageView extends React.Component {
     }
 
     //Au chargement de la page on récupére les infos via à Redux du message précis sélectionné.
-    componentWillMount() {
+    componentWillMount = () => {
         var list = this.props.Messages
         // console.log("Message", list)
         for (var i = 0; i < list.length; i++) {

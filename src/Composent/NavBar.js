@@ -28,9 +28,6 @@ import { Link, Redirect } from "react-router-dom";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    //On blind les fonctions pour utilisé partout this.
-    this.disconnect.bind(this);
-    this.toggle = this.toggle.bind(this);
 
     this.state = {
       isOpen: false,
@@ -38,14 +35,14 @@ class NavBar extends React.Component {
       redirect: false,
     };
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
   
   //Fonction décconnexion quand on appuis sur le button déconnectin.
-  disconnect (event){
+  disconnect = (event) => {
     //Apelle de la funtion logout qui se trouve dans le fichier API.
     API.logout();
 
@@ -54,7 +51,7 @@ class NavBar extends React.Component {
   }
   
 // }
-  // componentWillMount() {
+  // componentWillMount = () => {
     // console.log("message", this.props.Messages.length)
     // setTimeout(function() {
       // console.log(this.props.Messages)

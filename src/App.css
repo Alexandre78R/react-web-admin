@@ -313,29 +313,89 @@ html, body{
 .note-page{
   margin-top: 20px; 
   padding: 0 20px;
-  overflow-x: auto;
-  height: 550px;
-  width: 100%;
+  overflow: auto;
+  height: 100%;
+  width: 110%;
+
   margin-top: 15px;
   /* box-shadow: 0 -1px 9px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,0.1); */
-  position: relative;
-  margin-right: 5px;
+  /* position: relative; */
+  /* margin-right: 5px; */
+}
+
+.noteAdd {
+  margin-top: 68px; 
+  margin-right: 10px;
+}
+
+/* .testNoteAdd{
+  margin-left: 100%;
+  margin-top: -98%;
+} */
+
+.addNote {
+  font-style: bold;
+  margin-left: 5%;
+  font-size: 20px;
+}
+
+.noteAddRow {
+  margin-top: -3%;
+}
+
+.noteAddTitleColor{
+  font-style: bold;
+  margin-top: 7%;
+  font-size: 20px;
+}
+.addNotePreview {
+  font-style: bold;
+  margin-left: 12%;
+  font-size: 20px;
 }
 
 .note {
   border: 1px solid #ddd;
-  width: 223px;
-  height: 223px;
+  width: 220px;
+  height: 220px;
+  position: relative;
+  margin-right: 5px;
+  box-shadow: 0 -1px 9px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,0.1);
+  margin-top:  3%;
+  background-color: #fff;
+}
+
+.noteAddPreview {
+  border: 1px solid #ddd;
+  width: 220px;
+  height: 220px;
+  position: relative;
+  margin-right: 7px;
+  box-shadow: 0 -1px 9px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,0.1);
+  margin-top:  7%;
+  background-color: #fff;
+}
+
+.noteAdd {
+  border: 1px solid #ddd;
+  width: 220px;
+  height: 220px;
   position: relative;
   margin-right: 5px;
   box-shadow: 0 -1px 9px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,0.1);
   margin-top:  7%;
   background-color: #fff;
+  margin-left: 5%;
+}
+
+#exampleTextNoteADD {
+  height: 95%; 
 }
 .note-pagination {
   margin-top : 3%;
   text-align: center;
 }
+
 .note-topic {
   width: calc(100% - 20px);
   height: 35px;
@@ -350,6 +410,19 @@ html, body{
   margin-top : 1px;
 }
 
+#note-topic {
+  width: calc(100% - 20px);
+  height: 35px;
+  border-radius: 5px;
+  position: absolute;
+  top: -25px;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 500;
+  margin-top : 1px;
+  color : #fff;
+}
 .note-body {
   margin-top: 20px;
   padding: 0 10px;
@@ -369,6 +442,7 @@ html, body{
   color : #fff;
   position: absolute;
   width: 100%;
+  margin-top: -1%;
 }
 
 .container {
@@ -501,10 +575,13 @@ Input[type=login]:focus {
   border-bottom: 2px solid #343A40;
 }
 
-Input[type=login]:placeholder {
+Input[type=login]::placeholder {
   color: #cccccc;
 }
 
+Input[type=textTitre]::placeholder {
+  color: #fff;
+}
 
 Input[type=password] {
   background-color: #f6f6f6;

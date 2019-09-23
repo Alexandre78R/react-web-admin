@@ -497,8 +497,7 @@ class Note extends React.Component {
                 </Alert>
                  :
                <Row className="note-page">
-                 {notes_boucle}
-                
+                 {notes_boucle}         
                </Row>
               }
                {/* Modal de l'ajout de note  */}

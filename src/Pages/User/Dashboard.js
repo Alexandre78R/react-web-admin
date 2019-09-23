@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
     
   }
 
-  componentWillMount(){
+  componentWillMount = () => {
     var ctx = this;
     //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
     if (ctx.props.Users.text === undefined){

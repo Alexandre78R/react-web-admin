@@ -136,7 +136,7 @@ class Note extends React.Component {
      // return message_boucle;
      }
 
-     //Fonction de récupération de la date du jour.
+    //Fonction de récupération de la date du jour.
     addDate(){
       // console.log("addDate")
       var date = new Date();

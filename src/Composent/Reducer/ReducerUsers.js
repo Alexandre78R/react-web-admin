@@ -9,7 +9,6 @@ export default function(Users = [], action){
           password : action.password,
           email : action.email,
           description : action.description,
-          notes : action.notes,
         }
         console.log("UserCopy", UserCopy)
       return UserCopy

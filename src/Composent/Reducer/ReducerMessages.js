@@ -14,23 +14,20 @@ export default function(Messages = [], action){
           return MessageContentCopy
 
           //Action d'ajout de message (Sutout affichage pour l'instant)
-        } else if(action.type === 'addMessage'){
+        } else if(action.type === 'setMessage'){
+          console.log("Action", action)
+    
+          //On stock dans la variable les infos de l'action
+          var results = action.messages
+      
+          //On boucle l'action
+          for (var i = 0; i < results.length; i++) {
+            //On envois la copy
+            MessageContentCopy.push(results[i])
+          }
+      
+          return MessageContentCopy;
 
-            // Copy des messages que on envois.
-            MessageContentCopy.push({
-            key : action.key,
-            object : action.object,
-            expediteur: action.expediteur,
-            date: action.date,
-            message : action.message,
-            })
-            return MessageContentCopy
-
-            //Action qui n'est pas utilisé pour l'instant.
-          } else if(action.type === 'addCountMessage'){
-            // action.i++
-            return Messages
-            
           }else{
             return Messages;
           }

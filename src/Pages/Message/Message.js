@@ -83,12 +83,31 @@ class Message extends React.Component {
         redirect : true,
       });
     }
-    this.state.messageData.map(
-        (message, i) => {
-          // console.log("messageData2",message.object, message.expediteur, message.date)
-           this.props.addMessage(message.key, message.object, message.expediteur, message.date, message.message)
+      //On stock dans la variable les messages
+      var Messages = this.state.messageData;
+  
+      //On stock dans la variable un map des message
+      var messagesData = Messages.map(message => {
+        //Sa nous retourne les informations
+        return {
+          key : message.key,
+          object : message.object,
+          expediteur : message.expediteur,
+          date : message.date,
+          message : message.message,
         }
-      );
+      })
+      console.log("NoteBDD", messagesData)
+
+      //Envoi des infos des notes dans redux + fonctionnement de la variable
+      ctx.props.setMessage(messagesData)
+
+    // this.state.messageData.map(
+    //     (message, i) => {
+    //       // console.log("messageData2",message.object, message.expediteur, message.date)
+    //        this.props.setMessage(message.key, message.object, message.expediteur, message.date, message.message)
+    //     }
+    //   );
     // return message_boucle;
     }
   
@@ -225,14 +244,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     // Ajout d'un message (Plutôt affichage actuellement.)
-    addMessage(key, object, expediteur, date, message) { 
+    setMessage(messages) { 
       dispatch({
-      type: 'addMessage',
-      key : key,
-      object : object,
-      expediteur: expediteur,
-      date: date,
-      message : message,
+      type: 'setMessage',
+      messages : messages,
     }) 
    },
    //Funtion suppresision de message.

@@ -11,10 +11,12 @@ export default function(Notes = [], action){
 
   //Action d'une nouvelle note.
   } else if(action.type === 'setNotes'){
+    console.log("Action", action)
+    
     //On stock dans la variable les infos de l'action
     var results = action.notes
 
-    //On bouucle l'action
+    //On boucle l'action
     for (var i = 0; i < results.length; i++) {
       //On envois la copy
       NoteContentCopy.push(results[i])

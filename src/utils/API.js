@@ -64,5 +64,11 @@ export default {
         })
     },
 
+    //Fonction d'enregistrement 
+    addNote : function(send){
+        //Envois des informations de l'enregistrement vers le backend.
+        return axios.post(burl + '/note/add',send,{headers: headers})
+    },
+
     //! Fin des functions pour l'utilisation des infos sur les notes
 }

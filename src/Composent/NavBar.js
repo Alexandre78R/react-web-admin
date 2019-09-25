@@ -110,6 +110,18 @@ class NavBar extends React.Component {
               ""
             }
             </NavItem>
+            <NavItem className="nav-item dropdown no-arrow mx-1">
+            {/* On vérifie si la personne est bien connecté */}
+            {
+              API.isAuth()===true ? 
+              <Link className="nav-link" to={'/note'}>
+                <span className="badge badge-danger">{this.props.Notes.length}</span>
+                <i className="far fa-clipboard"></i>
+              </Link>
+              :
+              ""
+            }
+            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav >
               <i className="fas fa-user-circle fa-fw"></i> 
@@ -162,6 +174,7 @@ function mapStateToProps(state) {
      return ({
       Messages: state.Messages,
       Users: state.Users,
+      Notes: state.Notes,
    })
 }
   

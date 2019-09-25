@@ -61,13 +61,25 @@ class Note extends React.Component {
       modalDel: false,
       //Stat de la position
       position : "",
+      //Stat du titre
+      title : "",
+      //State affichage progresse bar
+      progressBar : false,
     };
   }
 
   //Fonction d'affichage du modal delete
   toggleDel = () => {
     this.setState(prevState => ({
-      modalDel: !prevState.modalDel
+      modalDel: !prevState.modalDel,
+      bgAlert: false,
+      text : "",
+      bgAlertModal: false,
+      textModal : "",
+      redirect: false,
+      position : "",
+      title : "",
+      progressBar : false,
     }));
   }
 
@@ -79,13 +91,14 @@ class Note extends React.Component {
     if (ctx.props.Users.text === undefined){
       ctx.setState({
         modalDel: false,
-        position : "",
-        title : "",
         bgAlert: false,
         text : "",
-        bgAlertModal : false,
+        bgAlertModal: false,
         textModal : "",
-        redirect : true,
+        redirect: true,
+        position : "",
+        title : "",
+        progressBar : false,
       });
     }
   }
@@ -123,33 +136,58 @@ class Note extends React.Component {
   
   //Fonction suppression de la note
   noteDel = () => {
-    var ctx = this;
+      var ctx = this;
 
-    // Utulisation de note API pour envoyer vers le backend les informations du compte.
-    API.delNote(this.props.Users.id, this.state.position)
-    .then(function(data){
+      //Changement des states surtout pour afficher la progresseBar.
+      this.setState({
+        bgAlertModal : false,
+        progressBar : true,
+      })
 
-    },function(error){
-      console.log(error);
-      ctx.setState({
-        textModal : "Erreur Interne !",
-        modalDel : false,
-        position : "",
-        title : "",
-      });
-    })
+      //On stock le temps d'attente de la progresseBar
+      var tempsAttente = 1500;
 
-    //On metà jour les states
-    ctx.setState({
-      bgAlertModal : false,
-      textModal : "",
-      modalDel : false,
-      position : "",
-      title : "",
-    });
+      // Mini décalage entre les 2 fonciton timmer pour bien qui prend en compte des states.
+      var tempsChargement = 1;
 
-    //On envois dans redux
-    ctx.props.deleteNote(ctx.state.position)
+      //Première fonction timer pour metre en place la progresseBar 
+      setTimeout(function() {
+        var elem = document.getElementById("myBar");  
+        var width = 1;
+        var id = setInterval(frame, (tempsAttente / (100 + tempsChargement) ));
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+          } else {
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1  + '%';
+          }
+        }
+      }, tempsChargement);
+
+      setTimeout(function() {
+      // Utulisation de note API pour envoyer vers le backend les informations du compte.
+      API.delNote(ctx.props.Users.id, ctx.state.position)
+      .then(function(data){
+        console.log("Data Position", data.data.position)
+
+        //On envois dans redux
+        ctx.props.deleteNote(data.data.position)
+
+        // On metà jour les states
+        ctx.setState({
+          modalDel : false,
+        });
+      },function(error){
+        console.log("Error Del Note",error);
+        ctx.setState({
+          bgAlertModal: true,
+          textModal : "Problème interne, merci de réessayer plus tard !",
+          progressBar : false,
+        });
+      })
+    }, tempsAttente);
   }
 
   //Function Cancel la modal de la suppression des notes.
@@ -226,6 +264,15 @@ class Note extends React.Component {
                   {/* Si la proggresseBarest est false on ne l'affiche pas. */}
                   {this.state.textModal}
                   </Alert>
+                  {/* Si la proggresseBarest est false on ne l'affiche pas. */}
+                  {this.state.progressBar === false 
+                  ?
+                  ""
+                  :
+                  <div id="myProgress">
+                    <div id="myBar">1%</div>
+                  </div>
+                  }
                   Vous êtes sûr de supprimer la note " {this.state.title} " définitivement ?
                 </ModalBody>
                 <ModalFooter>
@@ -240,6 +287,7 @@ class Note extends React.Component {
     );
   }
 }
+
 //Fonction pour récupérer les notes dans Redux
 function mapStateToProps(state) {
   // console.log("state", state.Users)
@@ -248,7 +296,6 @@ function mapStateToProps(state) {
     Users : state.Users,
  })
 }
-
 
 //Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {

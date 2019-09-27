@@ -49,6 +49,20 @@ export default {
         //localStorage.removeItem('token');
     },
 
+    //Fonction  changement status de l'email vérification 
+    emailVerifSatut : function(idUser) {
+        return axios.post(burl + '/status/emailVerif',{
+            'idUser' : idUser,
+        },{
+            headers: headers
+        })
+    },
+
+    //Fonction  changement status de l'email vérification 
+    emailVerif : function(send) {
+        return axios.post(burl + '/user/emailVerif',send,{headers: headers})
+    },
+
     //! Fin des functions pour l'utilisation des infos sur l'user
 
     //! Les functions pour l'utilisation des infos sur les notes

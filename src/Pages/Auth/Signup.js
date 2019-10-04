@@ -311,31 +311,28 @@ class SignUp extends React.Component {
 
                 <Container className="container-fluid page">
                 <Row>
-                <div className="wrapper">
-                      <div id="formContent">
-                        <div>
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
-                          <h5>Enregistrez-vous</h5>
-                        </div>
-                          <Alert color="danger" isOpen={this.state.bgAlert}>
-                            <h6>{this.state.text}</h6>
-                          </Alert>
-                          <InputGroup>
-                            <input type="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
-                          </InputGroup>
-                          <br />
-                          <InputGroup>
-                            <input type="password" className="fadeIn second" placeholder="Password" onChange={event=>this.setState({password:event.target.value})} />
-                          </InputGroup>
-                          <br />
-                          <InputGroup>
-                            <input type="emails" className="fadeIn second" placeholder="Email" onChange={event=>this.setState({email:event.target.value})} />
-                          </InputGroup>
-                          <br />
-                          <input type="submit" value="Signin" onClick={this.handleClick}/>
-                        <div id="formFooter">
-                          <a className="underlineHover" href="#">Mot de passe oublié?</a>
-                        </div>
+                  <div className="wrapper">
+                    <div id="formContent">
+                      <div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
+                        <h5>Enregistrez-vous</h5>
+                      </div>
+                        <Alert color="danger" isOpen={this.state.bgAlert}>
+                          <h6>{this.state.text}</h6>
+                        </Alert>
+                        <InputGroup>
+                          <input type="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
+                        </InputGroup>
+                        <br />
+                        <InputGroup>
+                          <input type="password" className="fadeIn second" placeholder="Password" onChange={event=>this.setState({password:event.target.value})} />
+                        </InputGroup>
+                        <br />
+                        <InputGroup>
+                          <input type="emails" className="fadeIn second" placeholder="Email" onChange={event=>this.setState({email:event.target.value})} />
+                        </InputGroup>
+                        <br />
+                        <input type="submit" value="Signin" onClick={this.handleClick}/>
                     </div>
                   </div>
                 </Row>

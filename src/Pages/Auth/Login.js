@@ -39,13 +39,16 @@ class SignIn extends React.Component {
       password : "",
       //State Alert error
       bgAlert : false,
+      //State Alert chargement
+      bgAlertBlue : false,
       //State Text Error
       text : "",
       //State Redirection
       redirect: false,
       //State visible des champs pour la connexion si c'est false c'est pour mettre le code vérif de l'email
       viewFrom : true,
-      //! Les states suivant c'est pour garder les informations de l'user si il doit vérifier l'adresse mail
+      viewFromChangeMdp : false,
+      //! Les states suivant c'est pour garder les informations de l'user si il doit vérifier l'adresse mail ou changer le mot de passe
       emailData : "",
       codeData : "",
       usernameData: "",
@@ -55,13 +58,19 @@ class SignIn extends React.Component {
       textData : "",
       notesData : "",
       tokenData : "",
-      //! Fin des states pour les informations à garder en cas si il doit vérifier l'adresse mail
+      //Pour le nouveau mot de passe seulement
+      saltData :  "",
+      //! Fin des states pour les informations à garder en cas si il doit vérifier l'adresse mail ou changer le mot de passe
       //State code champs
       codeText : "",
       //State  Alerte verte
       bgAlertGreen : false,
       //State text alert green
       textGreen : "",
+      //State nouveau mot de passe
+      passwordNew : "",
+      //State nouveau mot de passe confirmation
+      passwordNewConfirm : "",
     };
     
   }
@@ -99,30 +108,41 @@ class SignIn extends React.Component {
     console.log("Username :", this.state.username)
     console.log("Password :", this.state.password)
     var ctx = this;
+
+    //Stats d'attente
+    this.setState({
+      bgAlertRed: false,
+      bgAlertBlue : true,
+      text : "En cours de chargement, merci de patienter !"
+    });
+
     //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
     API.login(this.state.username, this.state.password)
     .then(function(data){
         console.log("Data :", data)
-        console.log("data dans data", data.data)
-        console.log("user", data.data.user)
-        console.log("Counts", data.data.user)
-        console.log("Notes", data.data.user.notes)
+        // console.log("data dans data", data.data)
+        // console.log("user", data.data.user)
+        // console.log("Counts", data.data.user)
+        // console.log("Notes", data.data.user.notes)
         // console.log("Text :", data)
 
         //Si l'username n'existe pas on lui met un message d'erreur
         if (data.data.code === 401){
           ctx.setState({
+            bgAlertBlue : false,
             bgAlert: true,
             text : data.data.text
           });
         //Si le mot de passe n'est pas correct, on lui met un message d'erreur
         }else if (data.data.code === 402){
           ctx.setState({
+            bgAlertBlue : false,
             bgAlert: true,
             text : data.data.text
           });
           //Et sit tous est bon on le connecte 
         }else{
+
           //On vérifie si son adresse email est vérifier 
           if (data.data.user.emailVerif === false){
             //On récupère les informations utile pour le mail de vérification
@@ -137,6 +157,7 @@ class SignIn extends React.Component {
             .then(function(info){
               // console.log(info.data)
               ctx.setState({
+                bgAlertBlue : false,
                 bgAlert: false,
                 text : "",
                 viewFrom : false,
@@ -157,9 +178,30 @@ class SignIn extends React.Component {
             .catch((err) => {
               console.log(err)
               ctx.setState({
+                bgAlertBlue : false,
                 bgAlert: true,
-                text : "Problème interne l'email n'a pas était envoyer !",
+                viewFrom : false,
+                text : "",
               })
+            })
+          }else if(data.data.user.changePassword === true){
+            // console.log("Je suis dans changePassword true")
+            ctx.setState({
+              bgAlertBlue : false,
+              bgAlert: false,
+              text : "",
+              emailData : data.data.user.email,
+              codeData : data.data.user.code,
+              usernameData: data.data.user.username,
+              passwordData: data.data.user.password,
+              descriptionData : data.data.user.description,
+              _idData : data.data.user._id,
+              textData : data.data.text,
+              notesData : data.data.user.notes,
+              tokenData : data.data.token,
+              saltData : data.data.user.salt,
+              viewFrom : false,
+              viewFromChangeMdp : true,
             })
           }else{
           //Envoi des infos user dans redux
@@ -190,6 +232,7 @@ class SignIn extends React.Component {
 
           //Redirection vers le dashboard par les states.
           ctx.setState({
+            bgAlertBlue : false,
             bgAlert: false,
             text : "",
             redirect : true,
@@ -213,40 +256,49 @@ class SignIn extends React.Component {
     console.log("CodeData", ctx.state.codeData)
     console.log("Code Champ", ctx.state.codeText)
 
+    // Erreur si on met rien dans le champ code
+    if(ctx.state.codeText.length === 0){
+      ctx.setState({
+        bgAlert: true,
+        text : "Vous n'avez rien remplie dans le champ du code !"
+      });
+      return;
+    };
+
     //On compare lescode si ils conresponds
     //Si c'est les mêmes codes
     if(ctx.state.codeText == ctx.state.codeData){
 
-      //Envoi des infos user dans redux
-      ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
-
-      //On stock dans la variable les notes reçus du back
-      var Notes = ctx.state.notesData;
-      
-      //On stock dans la variable un map des notes
-      var NoteBDD = Notes.map(notes => {
-        //Sa nous retourne les informations
-        return {
-          id : notes._id,
-          title : notes.title,
-          note : notes.note,
-          date : notes.date,
-          temps : notes.temps,
-          color : notes.color
-        }
-      })
-      console.log("NoteBDD", NoteBDD)
-
-      //Envoi des infos des notes dans redux + fonctionnement de la variable
-      ctx.props.setNotes(NoteBDD)
-
-      // Récupération du token que le backend nous envois.
-      localStorage.setItem('token', this.state.tokenData);
-
       //On change le statut de l'émail vérifier par le backend 
       API.emailVerifSatut(ctx.state._idData)
-      //Si le statue à était bien changer on le redirige sur les dashboards
-      .then(function(data){
+        //Si le statue à était bien changer on le redirige sur les dashboards
+        .then(function(data){
+        //Envoi des infos user dans redux
+        ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
+
+        //On stock dans la variable les notes reçus du back
+        var Notes = ctx.state.notesData;
+        
+        //On stock dans la variable un map des notes
+        var NoteBDD = Notes.map(notes => {
+          //Sa nous retourne les informations
+          return {
+            id : notes._id,
+            title : notes.title,
+            note : notes.note,
+            date : notes.date,
+            temps : notes.temps,
+            color : notes.color
+          }
+        })
+        console.log("NoteBDD", NoteBDD)
+
+        //Envoi des infos des notes dans redux + fonctionnement de la variable
+        ctx.props.setNotes(NoteBDD)
+
+        // Récupération du token que le backend nous envois.
+        localStorage.setItem('token', ctx.state.tokenData);
+
         ctx.setState({
           bgAlert: false,
           text : "",
@@ -280,8 +332,93 @@ class SignIn extends React.Component {
     }
   }
 
+  handleClickChangePassword = () => {
+    console.log("test click")
+    var ctx = this;
+
+    // Erreur si on met rien dans le champ nouveau mot passe
+    if (ctx.state.passwordNew.length === 0){
+      ctx.setState({
+        bgAlert: true,
+        text : "Vous n'avez rien remplie dans le champ nouveau mot de passe !"
+      });
+      return;
+    };
+
+    // Erreur si on met rien dans le champ confirmation du nouveau mot de passe
+    if (ctx.state.passwordNewConfirm.length === 0){
+      ctx.setState({
+        bgAlert: true,
+        text : "Vous n'avez rien remplie dans le champ confirmation du nouveau mot de passe !"
+      });
+      return;
+    };
+
+    //On regarde si les deux mots de passes sont identique
+    if (ctx.state.passwordNew == ctx.state.passwordNewConfirm){
+
+      //On stock les informations que on a besion pour le backend 
+      var _send = {
+        password: ctx.state.passwordNewConfirm,
+        salt : ctx.state.saltData,
+        idUser: ctx.state._idData,
+      }
+
+      //On change le mot passe
+      API.newMdp(_send)
+      //Si le statue à était bien changer on le redirige sur les dashboards
+      .then(function(data){
+        
+        //Envoi des infos user dans redux
+        ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
+
+        //On stock dans la variable les notes reçus du back
+        var Notes = ctx.state.notesData;
+        
+        //On stock dans la variable un map des notes
+        var NoteBDD = Notes.map(notes => {
+          //Sa nous retourne les informations
+          return {
+            id : notes._id,
+            title : notes.title,
+            note : notes.note,
+            date : notes.date,
+            temps : notes.temps,
+            color : notes.color
+          }
+        })
+        console.log("NoteBDD", NoteBDD)
+
+        //Envoi des infos des notes dans redux + fonctionnement de la variable
+        ctx.props.setNotes(NoteBDD)
+
+        // Récupération du token que le backend nous envois.
+        localStorage.setItem('token', ctx.state.tokenData);
+        ctx.setState({
+          bgAlert: false,
+          text : "",
+          redirect : true,
+        })
+      })
+      //En cas d'erreur si le status n'a pas était envoyer
+      .catch((err) => {
+        console.log(err)
+        ctx.setState({
+          bgAlert : true,
+          text : "Erreur interne merci de réessayer plus tard ! ",
+        })
+      }) 
+    }else{
+      //Si les mots de passes sont différent 
+      ctx.setState({
+        bgAlert: true,
+        text : "Les mots de passes sont différent !"
+      });
+    }
+  }
+
   render() {
-    
+
     const { redirect } = this.state;
     //Si le state redirect passe à true on l'envois sur la page dashboard.
     if (redirect === true) {
@@ -308,6 +445,9 @@ class SignIn extends React.Component {
                         <Alert color="danger" isOpen={this.state.bgAlert}>
                           <h6>{this.state.text}</h6>
                         </Alert>
+                        <Alert color="primary" isOpen={this.state.bgAlertBlue}>
+                          <h6>{this.state.text}</h6>
+                        </Alert>
                           <InputGroup>
                             <input type="login" className="fadeIn second" placeholder="Username" onChange={event=>this.setState({username:event.target.value})}/>
                           </InputGroup> 
@@ -317,6 +457,9 @@ class SignIn extends React.Component {
                           </InputGroup>
                         <br />
                         <input type="submit" value="Connexion" onClick={this.handleClick}/>
+                        <div id="formFooter">
+                          <Link to={'/forgotten'}>Mot de passe oublié ?</Link>
+                        </div>
                     </div>
                   </div>
               </Row>
@@ -325,6 +468,43 @@ class SignIn extends React.Component {
           </div>
     </div>
       )
+    //On affiche un formulaire de changement de mot de passe si la personne a fait une demande de mot de passe oublier 
+    }else if(this.state.viewFromChangeMdp === true){
+      return (
+        <div id="page-top">
+        <NavBar/>
+        <div id="wrapper">
+          <SideBar/>
+            <Container className="container-fluid page">
+            <Row>
+                <div className="wrapper">
+                  <div id="formContent">
+                    <div>
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03bHFfc3PT_fAdI7rcgrCGLyZIwy8koE-D2KqFzkN0SqAaDKR" id="icon" alt="User Icon" />
+                      <h5>Nouveau mot de passe</h5>
+                    </div>
+                      <Alert color="danger" isOpen={this.state.bgAlert}>
+                        <h6>{this.state.text}</h6>
+                      </Alert>
+                      <div className="loginFormNewMdp">
+                        <InputGroup>
+                          <input type="password" className="fadeIn secon" placeholder="Nouveau mot de passe" onChange={event=>this.setState({passwordNew:event.target.value})} />
+                        </InputGroup>
+                        <br />
+                        <InputGroup>
+                          <input type="password" className="fadeIn secon" placeholder="Confirmation du nouveau mot de passe" onChange={event=>this.setState({passwordNewConfirm:event.target.value})} />
+                        </InputGroup>
+                        <br />
+                      </div>
+                      <input type="submit" value="Vérifier" onClick={this.handleClickChangePassword}/>
+                  </div>
+                </div>
+            </Row>
+          </Container>
+          {/* <Footer/> */}
+        </div>
+      </div>
+      );
     }else{
       //Et si c'est false on redirage la page de vérification avec le code à vérifier
       return (

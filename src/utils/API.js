@@ -58,11 +58,27 @@ export default {
         })
     },
 
-    //Fonction  changement status de l'email vérification 
+    //Fonction  d'envoie d'email
     emailVerif : function(send) {
         return axios.post(burl + '/user/emailVerif',send,{headers: headers})
     },
 
+    //Fonction demande de changement de mot de passe
+    forgotten : function(username,email) {
+        //Envois des information de connexion aux backend (username, password).
+        return axios.post(burl + '/user/forgottenPassword',{
+            'username' : username,
+            'email' : email
+        },{
+            headers: headers
+        })
+    },
+
+    //Fonction changement du nouveau mot de passe de l'utilsateur  
+    newMdp : function(send) {
+        //Envois des information de connexion aux backend (username, password).
+        return axios.post(burl + '/user/newMdp',send,{headers: headers})
+    },
     //! Fin des functions pour l'utilisation des infos sur l'user
 
     //! Les functions pour l'utilisation des infos sur les notes

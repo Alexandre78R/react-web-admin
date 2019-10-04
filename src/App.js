@@ -10,6 +10,7 @@ import './App.css';
 //Import des Pages 
 import Login from './Pages/Auth/Login';
 import SignUp from './Pages/Auth/Signup';
+import Forgotten from './Pages/Auth/Forgotten'
 import Note from './Pages/Note/Note';
 import Message from './Pages/Message/Message';
 import MessageView from './Pages/Message/MessageView';
@@ -53,6 +54,7 @@ export default class App extends React.Component {
             {/* On peut accèder partout même si on n'est pas connecté. */}
             <Route exact path="/" component={Login}/>
             <Route exact path ="/signup" component={SignUp}/>
+            <Route exact path ="/forgotten" component={Forgotten}/>
 
             {/* Par contre la si tu n'est pas connecté sa ne marcheras pas. */}
             <PrivateRoute path='/dashboard' component={Dashboard} />

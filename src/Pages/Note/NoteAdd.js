@@ -18,12 +18,17 @@ import {
 //Import du composent connect de react-redux
 import {connect} from 'react-redux';
 
-//Import du composent API
-import API from '../../utils/API.js';
+//Import du composent API Backend
+import ApiBackend from '../../utils/ApiBackend.js';
+
+//Import du composent API Local Storage
+import ApiLocalStorage from '../../utils/ApiLocalStorage.js';
 
 //Import du composent circlePiker de react-color
 import { CirclePicker } from 'react-color';
 
+//Import des fonctions
+import fonction from '../../utils/Function.js'
 
 class NoteAdd extends React.Component {
   
@@ -51,6 +56,7 @@ class NoteAdd extends React.Component {
       progressBar : false,
       //State d'affichage UserId
       idUser : props.Users.id,
+      test : console.log("props", props),
     };
   }
     //Fonction d'affichage du modal Ou de  la fermeture du modal
@@ -74,68 +80,8 @@ class NoteAdd extends React.Component {
         this.setState({ color: color.hex });
     };
     
-    //Fonction de récupération de la date du jour.
-    addDate = () => {
-        // console.log("addDate")
-        var date = new Date();
-        var message = "";
-  
-        //Condition pour ajouter un 0 quand t'es sous 10 (Comme pour la vraie date) du jour.
-        if(date.getDate() < 10){
-          message += "0" + date.getDate() + "/"
-        }else{
-          message += date.getDate() + "/"
-        }
-  
-        //Condition pour ajouter un 0 quand t'es sous 10 (Comme pour la vraie date) du mois
-        if(date.getMonth() <10){
-          message += "0" + (date.getMonth() + 1) + "/";
-        }else{
-          message += (date.getMonth() + 1) + "/"
-        }
-  
-        //Récupération de l'année actuelle.
-        message += date.getFullYear() + " ";
-        // console.log(message)
-        
-        //On met à jour le state de la date.
-        this.setState({
-          date : message,
-        });
-        // console.log("setStats (date)", this.state.date)
-    }
-    //Fonction de la récupération de l'heure et des minutes actuelle.
-    addTemps = () => {
-      // console.log("addTemps")
-      var date = new Date();
-      var message = "";
-  
-      //Condition pour ajouter un 0 quand t'es sous 10 (Comme pour la vraie heure)
-      if(date.getHours() < 10){
-        message += "0" + date.getHours() + "h";
-      }else{
-        message += date.getHours() + "h";
-      }
-  
-      //Condition pour ajouter un 0 quand t'es sous 10 (Comme pour la vraie minutes)
-      if(date.getMinutes() < 10){
-      message += "0" + date.getMinutes();
-      }else{
-      message += date.getMinutes();
-    }
-      // console.log(message)
-      
-      //On met a jour du temps.
-      this.setState({
-        temps : message,
-      })
-      // console.log("setStats (temps)", this.state.temps)
-    }
-
     //Function quand on déclanche pour ajouté une note.
     handleSubmitAddNote  = () => {
-    // console.log("Click détecté")
-    // console.log(this.state.title)
 
     //S'il n'y a pas de titre sélection on affiche un message d'erreur.
     if(this.state.title === ""){
@@ -164,14 +110,10 @@ class NoteAdd extends React.Component {
         // Pour garder thix dans certaint cas.
         var ctx = this;
 
-        //On lance le fonctionnement de la fonction date.
-        this.addDate();
-
-        //On lance le fonctionnement de la fonction de l'heure et des minutes.
-        this.addTemps();
-
         //Changement des states surtout pour afficher la progresseBar.
         this.setState({
+          date : fonction.addDate(),
+          temps : fonction.addTemps(),
           alertBgAddRed : false,
           progressBar : true,
         })
@@ -182,34 +124,18 @@ class NoteAdd extends React.Component {
         // Mini décalage entre les 2 fonciton timmer pour bien qui prend en compte des states.
         var tempsChargement = 1;
 
-        //Première fonction timer pour metre en place la progresseBar 
-        setTimeout(function() {
-          var elem = document.getElementById("myBar");  
-          var width = 1;
-          var id = setInterval(frame, (tempsAttente / (100 + tempsChargement) ));
-          function frame() {
-            if (width >= 100) {
-              clearInterval(id);
-            } else {
-              width++; 
-              elem.style.width = width + '%'; 
-              elem.innerHTML = width * 1  + '%';
-            }
-          }
-        }, tempsChargement);  
+        //Fonction timer pour afficher la progresseBar.
+        fonction.barProgress(tempsAttente,tempsChargement)
         
         //Deuxième fonction timer  pour envoyé à Redux plus videz les states.
         setTimeout(function() {
-        // console.log("Temps d'attente fini : " + Math.floor(millis/3000));
-        console.log("IdUser", ctx.state.idUser)
-        // console.log("Title", ctx.state.title)
-        // console.log("Note", ctx.state.note)
-        // console.log("Date", ctx.state.date)
-        // console.log("Temps", ctx.state.temps)
-        // console.log("Color", ctx.state.color)
+
+        //On récupère l'id de l'utulisateur avec lelocal Storage et on le stock dans une variable
+        var idUser = localStorage.getItem('id')
+
         //On stock les données des stats dans la variable _send.
         var _send = {
-          idUser: ctx.state.idUser,
+          idUser: idUser,
           title: ctx.state.title,
           note: ctx.state.note,
           date : ctx.state.date,
@@ -217,8 +143,9 @@ class NoteAdd extends React.Component {
           color : ctx.state.color,
         }
         console.log("send",_send)
+
         //Utulisation de note API pour envoyer vers le backend.
-        API.addNote(_send).then(function(data){
+        ApiBackend.addNote(_send).then(function(data){
           console.log("Data :", data.data)
           //On envoie les infos dans redux
           ctx.props.addNote(data.data.note.title, data.data.note.note, data.data.note.date, data.data.note.temps, data.data.note.color);
@@ -236,6 +163,7 @@ class NoteAdd extends React.Component {
             });
             return;
         })
+        
       }, tempsAttente);
     }
   }
@@ -273,7 +201,7 @@ class NoteAdd extends React.Component {
                     <div className="noteFooterText">{this.state.date} à {this.state.temps}</div>
                 </strong>
                 </div>
-
+                {this.state.test}
                 <div className="noteAddPreview no-cursor">
                 <strong  className='note-topic' style={{backgroundColor : this.state.color}}>
                     {this.state.title}
@@ -307,23 +235,25 @@ function mapStateToProps(state) {
   // console.log("mapStateToProps", state.Users)
    return ({
     Users : state.Users,
+    Notes : state.Notes,
  })
 }
 
 //Listes des fonction dispatch pour les messages
 function mapDispatchToProps(dispatch) {
-    return {
-      // Récupération des infos de l'User
-      addNote(title, note, date, temps, color) { 
-        dispatch({
-        type: 'addNote',
-        title : title,
-        note : note,
-        date : date,
-        temps : temps,
-        color : color,
-      }) 
-     },
-    }
-   }
+  return {
+    // Récupération des infos de l'User
+    addNote(title, note, date, temps, color) { 
+      dispatch({
+      type: 'addNote',
+      title : title,
+      note : note,
+      date : date,
+      temps : temps,
+      color : color,
+    }) 
+    },
+  }
+}
+
  export default connect(mapStateToProps, mapDispatchToProps)(NoteAdd);

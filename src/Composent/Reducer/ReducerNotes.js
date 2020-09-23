@@ -1,4 +1,7 @@
 export default function(Notes = [], action){
+
+  console.log("Console Log reducer Notes ---> ", Notes)
+  console.log("Console Log reducer Notes Actions ---> ", action.type)
   //On fait une copie des Note qu'on stock dans une variable "NoteContentCopy".
   var NoteContentCopy = [...Notes]
 
@@ -23,6 +26,7 @@ export default function(Notes = [], action){
     }
 
     return NoteContentCopy;
+
   //Action d'une nouvelle note.
   } else if(action.type === 'addNote'){
     //On envoie les infomations de la note.
@@ -35,6 +39,20 @@ export default function(Notes = [], action){
       })
       return NoteContentCopy;
 
+  //Action de la modification de la note.
+  } else if(action.type === 'editNote'){
+
+    //On supprime l'ancienne note avec la possition et on la renplace directement par les nouvelles informations.
+    NoteContentCopy.splice(action.position, 1, ({
+      title : action.title,
+      note : action.note,
+      date :  action.date,
+      temps : action.temps,
+      color : action.color,
+      }))
+
+    return NoteContentCopy
+    
   }else {
     return Notes;
   }

@@ -29,8 +29,11 @@ import { Link, Redirect } from "react-router-dom";
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
 
-//Import du composent API
-import API from '../../utils/API';
+//Import du composent API Backend
+import ApiBackend from '../../utils/ApiBackend';
+
+//Import du composent API Local Storage
+import ApiLocalStorage from '../../utils/ApiLocalStorage';
 
 class Dashboard extends React.Component {
 
@@ -46,18 +49,21 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount = () => {
-    var ctx = this;
-    //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
-    if (ctx.props.Users.text === undefined){
-    ctx.setState({
-      bgAlert: false,
-      text : "",
-      redirect : true,
-    });    
-    }
 
-    //On utilisate la fonction userCount pour savoir le nombr d'user que on a dans la BDD
-    API.userCount()
+    console.log("Notes", this.props.Notes)
+
+    var ctx = this;
+    // //Vérif si la personne est bien connecté sinon redirection de force sur la page de connexion
+    // if (ctx.props.Users.text === undefined){
+    // ctx.setState({
+    //   bgAlert: false,
+    //   text : "",
+    //   redirect : true,
+    // });    
+    // }
+
+    //On utilisate la fonction userCount pour savoir le nombre d'user qu'on a dans la BDD
+    ApiBackend.userCount()
       .then(function(data){
         console.log(data.data)
         ctx.setState({
@@ -88,10 +94,10 @@ class Dashboard extends React.Component {
               <Container className="container-fluid page">
               <Row>
               <Alert color="secondary" className="alertDashboard">
-                {this.props.Users.text}
+                Bonjour {localStorage.getItem("user")},
               </Alert>
                 <Col xs="12" sm="6" xl="3">
-                 <Card className="card text-white bg-primary o-hidden ">
+                 <Card className="cardDashboard card text-white bg-primary o-hidden ">
                    <CardBody>
                       <div className="card-body-icon">
                        <i className="fas fa-fw fa-comments"></i>
@@ -110,7 +116,7 @@ class Dashboard extends React.Component {
                   </Col>
 
                   <Col xs="12" sm="6" xl="3">
-                    <Card className="card text-white bg-warning o-hidden ">
+                    <Card className="cardDashboard card text-white bg-warning o-hidden ">
                       <CardBody>
                        <div className="card-body-icon">
                         <i className="fas fa-fw fa-users"></i>
@@ -137,7 +143,7 @@ class Dashboard extends React.Component {
                 </Col>
 
                 <Col xs="12" sm="6" xl="3">
-                  <Card className="card text-white bg-danger o-hidden">
+                  <Card className="cardDashboard card text-white bg-danger o-hidden">
                     <CardBody>
                       <div className="card-body-icon">
                         <i className="fas fa-fw fa-list"></i>
@@ -166,7 +172,7 @@ class Dashboard extends React.Component {
                 </Col>
 
                 <Col xs="12" sm="6" xl="3">
-                  <Card className="card text-white bg-success o-hidden">
+                  <Card className="cardDashboard card text-white bg-success o-hidden">
                     <CardBody>
                       <div className="card-body-icon">
                       <i className="fas fa-fw fa-comments"></i>

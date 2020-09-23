@@ -18,8 +18,11 @@ import SideBar from '../../Composent/SideBar';
 //Import du composent Link de react-router-dom
 import { Redirect } from "react-router-dom";
 
-//Import du composent API
-import API from '../../utils/API';
+//Import du composent API Backend
+import ApiBackend from '../../utils/ApiBackend';
+
+//Import du composent API LocalStorage
+import ApiLocalStorage from '../../utils/ApiLocalStorage';
 
 //Import du composent du Footer
 // import Footer from '../Composent/Footer';
@@ -50,9 +53,9 @@ class User extends React.Component {
 
     //A l'arrivé sur la page on vide bien le localstorage
     componentWillMount = () => {
-        //Apelle de la funtion logout qui se trouve dans le fichier API.
-        //Pour forcer la déconnexion de la dernière session 
-        API.logout();
+        // //Apelle de la funtion logout qui se trouve dans le fichier API.
+        // //Pour forcer la déconnexion de la dernière session 
+        // ApiLocalStorage.logout();
     }
     
     handleClick = () => {
@@ -90,7 +93,7 @@ class User extends React.Component {
         var ctx = this;
         
         //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
-        API.forgotten(this.state.username, this.state.email)
+        ApiBackend.forgotten(this.state.username, this.state.email)
         .then(function(data){
             // console.log("Data :", data)
             // console.log("data dans data", data.data)

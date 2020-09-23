@@ -15,11 +15,11 @@ import NavBar from '../../Composent/NavBar'
 //Import du composent SideBar
 import SideBar from '../../Composent/SideBar';
 
-// Import du composent connect de redux
-// import {connect} from 'react-redux';
+//Import du composent API Backend
+import ApiBackend from '../../utils/ApiBackend';
 
-//Import du composent API 
-import API from '../../utils/API';
+//Import du composent API Local Storage
+import ApiLocalStorage from '../../utils/ApiLocalStorage';
 
 //Import du composent footer
 import Footer from '../../Composent/Footer';
@@ -29,6 +29,8 @@ import { Link, Redirect  } from "react-router-dom";
 
 //Import du composent connect de react-redux
 import {connect} from 'react-redux';
+
+import { bindActionCreators } from 'redux';
 
 class SignUp extends React.Component {
   
@@ -58,7 +60,6 @@ class SignUp extends React.Component {
             descriptionData : "",
             _idData : "",
             textData : "",
-            notesData : "",
             tokenData : "",
             //! Fin des states pour les informations à garder en cas si il doit vérifier l'adresse mail
             //State code champs
@@ -72,8 +73,14 @@ class SignUp extends React.Component {
 
   //A l'arrivé sur la  page on vide bien le localstorage
   componentWillMount = () => {
-    //Apelle de la funtion logout qui se trouve dans le fichier API.
-    API.logout();
+    // //Apelle de la funtion logout qui se trouve dans le fichier API.
+    console.log("PAGE SIGNUP (Fonction componentWillMount)")
+    if (ApiLocalStorage.isAuth()===true){
+      console.log("Tu est connecté !")
+      return window.location = "/dashboard"
+    }else{
+      return(console.log("Tu n'est pas connecté !"))
+    }
   }
   //Fonction qui se déclanche à la validation du formulaire d'enregistrement.
   handleClick = () => {
@@ -117,9 +124,12 @@ class SignUp extends React.Component {
       console.log("Username :", this.state.username)
       console.log("Password :", this.state.password)
       console.log("Email :", this.state.email)
+
       var ctx = this
-      //Utulisation de note API pour envoyer vers le backend les informations du compte.
-      API.signup(_send).then(function(data){
+
+      //Utulisation de l'API pour envoyer vers le backend les informations du compte.
+      ApiBackend.signup(_send)
+      .then(function(data){
           console.log("Data :", data.data)
         //Si l'username existe déjà on lui met un message d'errreur
           if (data.data.code === 403){
@@ -137,19 +147,21 @@ class SignUp extends React.Component {
           }else{
             //On vérifie si son adresse email est vérifier 
             if (data.data.user.emailVerif === false){
-              // console.log("Je suis ici -->", data.data.user.emailVerif)
+
               //On récupère les informations utile pour le mail de vérification
               var _send = {
                 email : data.data.user.email,
                 username: data.data.user.username,
                 code: data.data.user.code,
               }
+
               console.log("Send", _send)
-              //on envoie les infos au backend
-              API.emailVerif(_send)
+
+              //On envoie les infos au backend
+              ApiBackend.emailVerif(_send)
               //Si l'émail à était bien envoyer
               .then(function(info){
-                // console.log(info.data)
+                console.log("Demande d'envois email backend :", info.data)
                 ctx.setState({
                   bgAlert: false,
                   text : "",
@@ -161,7 +173,6 @@ class SignUp extends React.Component {
                   descriptionData : data.data.user.description,
                   _idData : data.data.user._id,
                   textData : data.data.text,
-                  notesData : data.data.user.notes,
                   tokenData : data.data.token,
                   bgAlertGreen : true,
                   textGreen : info.data.text
@@ -169,7 +180,7 @@ class SignUp extends React.Component {
               })
               //En cas d'erreur si l'email n'était pas envoyer 
               .catch((err) => {
-                console.log(err)
+                console.log("Err Envoi d'email", err)
                 ctx.setState({
                   bgAlert: true,
                   text : "Problème interne l'email n'a pas était envoyer !",
@@ -178,29 +189,9 @@ class SignUp extends React.Component {
             }else{
               //Envoi des infos de l'user dans redux
               ctx.props.setUser(data.data.user._id, data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
-              
-              //On stock dans la variable les notes reçus du back
-              var Notes = data.data.user.notes;
-              
-              //On stock dans la variable un map des notes
-              var NoteBDD = Notes.map(notes => {
-                //Sa nous retourne les informations
-                return {
-                  id : notes._id,
-                  title : notes.title,
-                  note : notes.note,
-                  date : notes.date,
-                  temps : notes.temps,
-                  color : notes.color
-                }
-              })
-              console.log("NoteBDD", NoteBDD)
 
-              //Envoi des infos des notes dans redux + fonctionnement de la variable
-              ctx.props.setNotes(NoteBDD)
-
-              //On récupére le token que le backend nous s'a envoyé.
-              localStorage.setItem('token', data.data.token);
+              //On stock des information dans le local storage
+              ApiLocalStorage.addLocalStorageLogin(data.data.token, data.data.user._id, data.data.user.email, data.data.user.username)
               
               //Redirection vers le dashboard par les states.
               ctx.setState({
@@ -228,36 +219,16 @@ class SignUp extends React.Component {
 
     //On compare lescode si ils conresponds
     //Si c'est les mêmes codes
-    if(ctx.state.codeText == ctx.state.codeData){
+    if(ctx.state.codeText === ctx.state.codeData){
 
       //Envoi des infos user dans redux
       ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
 
-      //On stock dans la variable les notes reçus du back
-      var Notes = ctx.state.notesData;
+      // On stock des infomations dans le local Storage
+      ApiLocalStorage.addLocalStorageLogin(ctx.state.tokenData, ctx.state._idData, ctx.state.emailData, ctx.state.usernameData)
       
-      //On stock dans la variable un map des notes
-      var NoteBDD = Notes.map(notes => {
-        //Sa nous retourne les informations
-        return {
-          id : notes._id,
-          title : notes.title,
-          note : notes.note,
-          date : notes.date,
-          temps : notes.temps,
-          color : notes.color
-        }
-      })
-      console.log("NoteBDD", NoteBDD)
-
-      //Envoi des infos des notes dans redux + fonctionnement de la variable
-      ctx.props.setNotes(NoteBDD)
-
-      // Récupération du token que le backend nous envois.
-      localStorage.setItem('token', this.state.tokenData);
-
       //On change le statut de l'émail vérifier par le backend 
-      API.emailVerifSatut(ctx.state._idData)
+      ApiBackend.emailVerifSatut(ctx.state._idData)
       //Si le statue à était bien changer on le redirige sur les dashboards
       .then(function(data){
         ctx.setState({
@@ -271,7 +242,6 @@ class SignUp extends React.Component {
           descriptionData : "",
           _idData : "",
           textData : "",
-          notesData : "",
           tokenData : "",
         })
       })
@@ -382,14 +352,14 @@ class SignUp extends React.Component {
 
  //Réccupération des Messages par Redux.
  function mapStateToProps(state) {
-  // console.log("Messages::::",state.Messages) 
+  // console.log("SignUp::::",state.Signup) 
   console.log("state", state)
    return ({
     Users: state.Users,
  })
  }
 
-//Listes des fonction dispatch pour les messages
+//Listes des fonction dispatch 
 function mapDispatchToProps(dispatch) {
   return {
     // Récupération des infos de l'User pour envoyerà redux
@@ -403,13 +373,6 @@ function mapDispatchToProps(dispatch) {
       email: email,
       description : description,
     }) 
-   },
-   //Recupération des infos des notes pour envoyer à redux
-   setNotes(notes){
-     dispatch({
-       type : 'setNotes',
-       notes : notes,
-     })
    },
   }
  }

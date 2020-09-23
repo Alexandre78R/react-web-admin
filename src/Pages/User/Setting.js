@@ -81,70 +81,59 @@ class Setting extends React.Component {
           <div id="wrapper">
             <SideBar/>
 
-              <Container className="container-fluid">
+              <Container className="container-fluid ">
                <Row>
                 <Card className="CardMenuProfil">
-                  <CardHeader>
+                  <CardHeader className="CardHeaderProfilColor">
                   <i className="fas fa-cogs"></i> Setting 
                   </CardHeader>
-                  <CardBody>
+                  <CardBody className="CardBodyProfileColor">
                   <ListGroup>
                       <ListGroupItem onClick={() => { this.toggle("1");}}>Profil</ListGroupItem>
                       <ListGroupItem onClick={() => { this.toggle("2");}}>Paramètre</ListGroupItem>
                       <ListGroupItem onClick={() => { this.toggle("3");}}>Vos Stats</ListGroupItem>
                       <ListGroupItem onClick={() => { this.toggle("4");}}>Nouveau mot de passe</ListGroupItem>
-                      <ListGroupItem onClick={() => { this.toggle("5");}}>Déconnexion</ListGroupItem>
                   </ListGroup>
                   </CardBody>
                 </Card>
                 <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                  <Card className="ContentProfil">
-                    <CardHeader>
-                      <i className="fas fa-user"></i> Profil {this.props.Users.username}
+                <TabPane tabId="1" >
+                  <Card className="CardProfileBorderColor">
+                    <CardHeader className="CardHeaderProfilColor">
+                      <i className= "fas fa-user"></i> Profil {this.props.Users.username}
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="CardBodyProfileColor">
                       <h4>Profil</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="2">
-                  <Card className="ContentProfil">
-                    <CardHeader>
+                  <Card className="ContentProfil CardProfileBorderColor">
+                    <CardHeader className="CardHeaderProfilColor">
                       <i className="fas fa-cog"></i> Paramètre 
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="CardBodyProfileColor">
                       <h4>Paramètre</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="3">
-                  <Card className="ContentProfil">
-                    <CardHeader>
+                  <Card className="ContentProfil CardProfileBorderColor">
+                    <CardHeader className="CardHeaderProfilColor">
                       <i className="fas fa-info-circle"></i> Vos stats 
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="CardBodyProfileColor">
                       <h4>Stats</h4>
                     </CardBody>
                   </Card>
                 </TabPane>
                 <TabPane tabId="4">
-                  <Card>
-                    <CardHeader className="panel-title">
+                  <Card className="CardProfileBorderColor">
+                    <CardHeader className="CardHeaderProfilColor">
                       <i className="fas fa-key"></i> Nouveau mot de passe
                     </CardHeader>
-                    <CardBody className="panel-body">
+                    <CardBody className="CardBodyProfileColor">
                       <h4>Nouveau mot de passe</h4>
-                    </CardBody>
-                  </Card>
-                </TabPane>
-                <TabPane tabId="5">
-                  <Card className="ContentProfil">
-                    <CardHeader>
-                     <i className="fas fa-sign-out-alt"></i> Déconnexion
-                    </CardHeader>
-                    <CardBody>
-                      <h4>Déconnexion</h4>
                     </CardBody>
                   </Card>
                 </TabPane>

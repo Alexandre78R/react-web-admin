@@ -35,15 +35,15 @@ class User extends React.Component {
   }
 
   componentWillMount = () =>{
-    var ctx = this;
-    //Vérif si la personne est bien connecté
-    if (ctx.props.Users.text === undefined){
-    ctx.setState({
-      bgAlert: false,
-      text : "",
-      redirect : true,
-    });
-    }
+    // var ctx = this;
+    // //Vérif si la personne est bien connecté
+    // if (ctx.props.Users.text === undefined){
+    // ctx.setState({
+    //   bgAlert: false,
+    //   text : "",
+    //   redirect : true,
+    // });
+    // }
   }
 
   render() {

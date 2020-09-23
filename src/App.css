@@ -10,7 +10,13 @@
 
 .alertDashboard {
   width: 100%;
+  text-align: left;
 }
+
+.cardDashboard{
+  text-align: left;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -72,6 +78,10 @@ body {
   margin-top: 0px;
   /* text-align: center; */
   
+}
+
+.paginationCenter {
+  margin : auto auto;
 }
 
 .listMessage{
@@ -402,7 +412,7 @@ html, body{
   border-radius: 5px;
   position: absolute;
   top: -25px;
-  margin-left: 10px;
+  margin-left: -97px;
   text-align: center;
   color: #fff;
   font-size: 19px;
@@ -424,16 +434,17 @@ html, body{
   color : #fff;
 }
 .note-body {
-  margin-top: 20px;
-  padding: 0 10px;
+  margin-top: 15px;
+  padding: 1px;
   overflow-y: auto;
   height: 200px;
+  text-align: left;
 }
 
 .close {
-  margin-right: 3px;
+  margin-right: 4px;
   float: right;
-  margin-top : 2%;
+  margin-top : -12%;
 }
 
 .note-footer{
@@ -443,6 +454,7 @@ html, body{
   position: absolute;
   width: 100%;
   margin-top: -1%;
+  margin-left : -50%;
 }
 
 .container {
@@ -734,17 +746,35 @@ Input[type=emails]:placeholder {
   width: 20%;
   margin-left: -4%;
   margin-right: 2%;
+  border: none;
 }
 
+.card {
+  border : none
+}
+
+.CardProfileBorderColor {
+  border: solid #F8F9F9;
+  /* border : none; */
+}
+
+.CardHeaderProfilColor{
+  background-color : #E4E2E2;
+  border : none;
+}
+
+.CardBodyProfileColor{
+  background-color: #F4F2F2 ;
+  border: none;
+}
+.testDimCard {
+  margin-right: 10%;
+}
 .ContentProfil{
   width: 100%;
   /* margin-top: 30%; */
 }
 
-.ContentProfil2{
-  width: 100%;
-  /* margin-top: 30%; */
-}
 
 .fa-cogs{
   color : #555;
@@ -783,9 +813,6 @@ Input[type=emails]:placeholder {
   height: 100%;
 }
 
-.card {
-  background-color: red;
-}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

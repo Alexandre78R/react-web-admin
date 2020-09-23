@@ -4,8 +4,6 @@ import React from 'react';
 //Import des composents de reactstraps
 import {
     NavItem,
-    Row,
-    Container,
   } from 'reactstrap';
 
 //Import du composent Link de react-router-dom

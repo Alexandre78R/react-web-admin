@@ -21,16 +21,19 @@ import {connect} from 'react-redux';
 //Import du composent footer
 // import Footer from '../Composent/Footer';
 
-//Import du composent API
-import API from '../../utils/API';
+//Import du composent API Backend
+import ApiBackend from '../../utils/ApiBackend';
+
+//Import du composent API Local Storage
+import ApiLocalStorage from '../../utils/ApiLocalStorage';
 
 //Import des composent de react-router-dom
 import { Link, Redirect  } from "react-router-dom";
 
 class SignIn extends React.Component {
   
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       //State de username.
@@ -56,7 +59,6 @@ class SignIn extends React.Component {
       descriptionData : "",
       _idData : "",
       textData : "",
-      notesData : "",
       tokenData : "",
       //Pour le nouveau mot de passe seulement
       saltData :  "",
@@ -71,15 +73,23 @@ class SignIn extends React.Component {
       passwordNew : "",
       //State nouveau mot de passe confirmation
       passwordNewConfirm : "",
+      test : console.log("props", props),
     };
     
   }
 
   //A l'arrivé sur la page on vide bien le localstorage
   componentWillMount = () => {
+    // console.log("test", this.state.test)
     //Apelle de la funtion logout qui se trouve dans le fichier API.
     //Pour forcer la déconnexion de la dernière session 
-    API.logout();
+    console.log("PAGE LOGIN (Fonction componentWillMount)")
+    if (ApiLocalStorage.isAuth()===true){
+      console.log("Tu est connecté !")
+      return window.location = "/dashboard"
+    }else{
+      return(console.log("Tu n'est pas connecté !"))
+    }
   }
 
   handleClick = () => {
@@ -117,13 +127,12 @@ class SignIn extends React.Component {
     });
 
     //Démarage notre API pour utilisé la function login qui se trouve dans notre fichier API.
-    API.login(this.state.username, this.state.password)
+    ApiBackend.login(this.state.username, this.state.password)
     .then(function(data){
         console.log("Data :", data)
         // console.log("data dans data", data.data)
         // console.log("user", data.data.user)
         // console.log("Counts", data.data.user)
-        // console.log("Notes", data.data.user.notes)
         // console.log("Text :", data)
 
         //Si l'username n'existe pas on lui met un message d'erreur
@@ -152,7 +161,7 @@ class SignIn extends React.Component {
               code: data.data.user.code,
             }
             //on envoie les infos au backend
-            API.emailVerif(_send)
+            ApiBackend.emailVerif(_send)
             //Si l'émail à était bien envoyer
             .then(function(info){
               // console.log(info.data)
@@ -168,7 +177,6 @@ class SignIn extends React.Component {
                 descriptionData : data.data.user.description,
                 _idData : data.data.user._id,
                 textData : data.data.text,
-                notesData : data.data.user.notes,
                 tokenData : data.data.token,
                 bgAlertGreen : true,
                 textGreen : info.data.text
@@ -184,6 +192,7 @@ class SignIn extends React.Component {
                 text : "",
               })
             })
+
           }else if(data.data.user.changePassword === true){
             // console.log("Je suis dans changePassword true")
             ctx.setState({
@@ -197,39 +206,19 @@ class SignIn extends React.Component {
               descriptionData : data.data.user.description,
               _idData : data.data.user._id,
               textData : data.data.text,
-              notesData : data.data.user.notes,
               tokenData : data.data.token,
               saltData : data.data.user.salt,
               viewFrom : false,
               viewFromChangeMdp : true,
             })
           }else{
+
           //Envoi des infos user dans redux
           ctx.props.setUser(data.data.user._id, data.data.text, data.data.user.username, data.data.user.password, data.data.user.email, data.data.user.description)
-        
-          //On stock dans la variable les notes reçus du back
-          var Notes = data.data.user.notes;
+
+          // On stock les information dans le Local Storage
+          ApiLocalStorage.addLocalStorageLogin(data.data.token, data.data.user._id, data.data.user.email, data.data.user.username)
           
-          //On stock dans la variable un map des notes
-          var NoteBDD = Notes.map(notes => {
-            //Sa nous retourne les informations
-            return {
-              id : notes._id,
-              title : notes.title,
-              note : notes.note,
-              date : notes.date,
-              temps : notes.temps,
-              color : notes.color
-            }
-          })
-          console.log("NoteBDD", NoteBDD)
-
-          //Envoi des infos des notes dans redux + fonctionnement de la variable
-          ctx.props.setNotes(NoteBDD)
-
-          // Récupération du token que le backend nous envois.
-          localStorage.setItem('token', data.data.token);
-
           //Redirection vers le dashboard par les states.
           ctx.setState({
             bgAlertBlue : false,
@@ -270,34 +259,14 @@ class SignIn extends React.Component {
     if(ctx.state.codeText == ctx.state.codeData){
 
       //On change le statut de l'émail vérifier par le backend 
-      API.emailVerifSatut(ctx.state._idData)
+      ApiBackend.emailVerifSatut(ctx.state._idData)
         //Si le statue à était bien changer on le redirige sur les dashboards
         .then(function(data){
         //Envoi des infos user dans redux
         ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
 
-        //On stock dans la variable les notes reçus du back
-        var Notes = ctx.state.notesData;
-        
-        //On stock dans la variable un map des notes
-        var NoteBDD = Notes.map(notes => {
-          //Sa nous retourne les informations
-          return {
-            id : notes._id,
-            title : notes.title,
-            note : notes.note,
-            date : notes.date,
-            temps : notes.temps,
-            color : notes.color
-          }
-        })
-        console.log("NoteBDD", NoteBDD)
-
-        //Envoi des infos des notes dans redux + fonctionnement de la variable
-        ctx.props.setNotes(NoteBDD)
-
-        // Récupération du token que le backend nous envois.
-        localStorage.setItem('token', ctx.state.tokenData);
+        // On stock les information dans le Local Storage
+        ApiLocalStorage.addLocalStorageLogin(ctx.state.tokenData, ctx.state._idData, ctx.state.emailData, ctx.state.usernameData)
 
         ctx.setState({
           bgAlert: false,
@@ -310,7 +279,6 @@ class SignIn extends React.Component {
           descriptionData : "",
           _idData : "",
           textData : "",
-          notesData : "",
           tokenData : "",
         })
       })
@@ -365,35 +333,16 @@ class SignIn extends React.Component {
       }
 
       //On change le mot passe
-      API.newMdp(_send)
+      ApiBackend.newMdp(_send)
       //Si le statue à était bien changer on le redirige sur les dashboards
       .then(function(data){
         
         //Envoi des infos user dans redux
         ctx.props.setUser(ctx.state._idData, ctx.state.textData, ctx.state.usernameData, ctx.state.passwordData, ctx.state.emailData, ctx.state.descriptionData)
 
-        //On stock dans la variable les notes reçus du back
-        var Notes = ctx.state.notesData;
+        // On stock les information dans le Local Storage
+        ApiLocalStorage.addLocalStorageLogin(ctx.state.tokenData, ctx.state._idData, ctx.state.emailData, ctx.state.usernameData)
         
-        //On stock dans la variable un map des notes
-        var NoteBDD = Notes.map(notes => {
-          //Sa nous retourne les informations
-          return {
-            id : notes._id,
-            title : notes.title,
-            note : notes.note,
-            date : notes.date,
-            temps : notes.temps,
-            color : notes.color
-          }
-        })
-        console.log("NoteBDD", NoteBDD)
-
-        //Envoi des infos des notes dans redux + fonctionnement de la variable
-        ctx.props.setNotes(NoteBDD)
-
-        // Récupération du token que le backend nous envois.
-        localStorage.setItem('token', ctx.state.tokenData);
         ctx.setState({
           bgAlert: false,
           text : "",
@@ -567,13 +516,6 @@ function mapDispatchToProps(dispatch) {
       email: email,
       description : description,
     }) 
-   },
-   //Recupération des infos des notes pour envoyer à redux
-   setNotes(notes){
-     dispatch({
-       type : 'setNotes',
-       notes : notes,
-     })
    },
   }
  }
